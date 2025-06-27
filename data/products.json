@@ -1,0 +1,162 @@
+[
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155",
+        "name": "2155",
+        "imgUrl": "assets/img/products/2155/2155.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155A",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series Vinyl Plush Pendant Sealed Case (6 Blind Box)",
+        "imgUrl": "assets/img/products/2155/2155A.jpg",
+        "price": 167.94,
+        "price_history": [
+            { "date": "2025-01-01", "price": 167.94 },
+            { "date": "2025-02-01", "price": 167.94 },
+            { "date": "2025-03-01", "price": 167.94 },
+            { "date": "2025-04-01", "price": 167.94 },
+            { "date": "2025-05-01", "price": 167.94 },
+            { "date": "2025-06-01", "price": 167.94 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155B",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series Vinyl Plush Pendant Single Blind Box",
+        "imgUrl": "assets/img/products/2155/2155B.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155Happiness",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series Happiness Vinyl Plush Pendant",
+        "imgUrl": "assets/img/products/2155/2155Happiness.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155Hope",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series Hope Vinyl Plush Pendant",
+        "imgUrl": "assets/img/products/2155/2155Hope.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155Love",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series Love Vinyl Plush Pendant",
+        "imgUrl": "assets/img/products/2155/2155Love.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155Loyalty",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series Loyalty Vinyl Plush Pendant",
+        "imgUrl": "assets/img/products/2155/2155Loyalty.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155Luck",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series Luck Vinyl Plush Pendant",
+        "imgUrl": "assets/img/products/2155/2155Luck.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155Secret",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series ID (Secret Version) Vinyl Plush Pendant",
+        "imgUrl": "assets/img/products/2155/2155Secret.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    },
+    {
+        "category": "Labubu",
+        "brand": "Popmart",
+        "id": "2155Serenity",
+        "name": "Pop Mart Labubu The Monsters Big into Energy Series Serenity Vinyl Plush Pendant",
+        "imgUrl": "assets/img/products/2155/2155Serenity.jpg",
+        "price": 27.99,
+        "price_history": [
+            { "date": "2025-01-01", "price": 27.99 },
+            { "date": "2025-02-01", "price": 27.99 },
+            { "date": "2025-03-01", "price": 27.99 },
+            { "date": "2025-04-01", "price": 27.99 },
+            { "date": "2025-05-01", "price": 27.99 },
+            { "date": "2025-06-01", "price": 27.99 }
+        ]
+    }
+]

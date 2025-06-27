@@ -10,99 +10,133 @@ body {
     font-size: x-large;
 }
 
-/* this where nav css begin */
+/* Navbar styles */
 .navbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #ffffff;
     color: #000;
+    padding: 1rem 2%;
 }
 
 .title {
-    margin: 0.5rem;
-    list-style: none;
-    display: block;
-    padding-left:2%;
+    margin: 0;
+    font-size: 2rem; /* Increased title size */
 }
+
+.title a {
+    text-decoration: none;
+    color: #000;
+}
+
+.search-bar {
+    border-radius: 20px;
+    border: 1px solid #000;
+    padding: 0.75rem 1.25rem; /* Slightly larger padding */
+    font-size: 1.1rem; /* Increased font size */
+    display: none;
+}
+
 .navbar-links ul {
     margin: 0;
     padding: 0;
     display: flex;
-}
-.navbar-links li {
     list-style: none;
 }
 
-.title li a {
-    text-decoration: none;
-}
-.navbar h1 a { 
-    text-decoration: none; 
-    color:#000;
-}
 .navbar-links li a {
     text-decoration: none;
-    color:#000;
-    padding: 1rem;
+    color: #000;
+    padding: 0.75rem 1.25rem; /* Slightly larger padding */
     display: block;
+    font-size: 1.2rem; /* Increased font size */
 }
+
 .navbar-links li:hover {
     background-color: #faf9f6;
 }
 
 .toggle-button {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    top: 1rem;
-    right: 1rem;
     display: none;
     flex-direction: column;
     justify-content: space-between;
     width: 40px;
     height: 30px;
+    cursor: pointer;
 }
 
 .toggle-button .bar {
-    height: 3px;
+    height: 4px; /* Slightly thicker bars */
     width: 100%;
     background-color: #000;
     border-radius: 10px;
 }
 
-
-@media (max-width: 650px) {
-    .toggle-button {
-        margin: 0;
-        padding: 0;
+/* Desktop view */
+@media (min-width: 651px) {
+    .navbar-content {
         display: flex;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: flex-end;
     }
 
-    .navbar-links {
-        display: none;
-    }
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-
-    }
-    .navbar-links ul {
-        width:100%;
-        flex-direction: column;
-    }
-
-    .navbar-links li a {
-        padding: 0.5rem 1rem;
-    }
-
-    .navbar-links.active {
-        display:flex;
+    .search-bar {
+        display: block;
+        width: 250px; /* Slightly wider */
+        margin-right: 1rem;
     }
 }
-/* this where nav css end */
 
-/* this where index css begin */
+/* Mobile view */
+@media (max-width: 650px) {
+    .navbar {
+        padding: 1rem;
+        flex-direction: row; /* Keep horizontal layout for title and toggle */
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
 
+    .toggle-button {
+        display: flex;
+        position: static; /* Reset to normal flow */
+    }
+
+    .navbar-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1;
+    }
+
+    .navbar-content.active {
+        display: block;
+    }
+
+    .navbar-links ul {
+        flex-direction: column;
+    }
+
+    .navbar-links li {
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .search-bar {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Modal styles (unchanged) */
 .bg-modal {
     width: 100%;
     height: 100%;
@@ -122,15 +156,14 @@ body {
     background-color: #ffffff;
     border-radius: 4px;
     text-align: center;
-    padding:10px;
+    padding: 10px;
     position: relative;
     z-index: 2;
-
 }
 
 .close {
     position: absolute;
-    top:0;
+    top: 0;
     right: 14px;
     font-size: 50px;
     transform: rotate(45deg);
@@ -143,9 +176,16 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    fill: #6B6B6B; 
-    text-decoration: none; 
+    fill: #6B6B6B;
+    text-decoration: none;
     gap: 10px;
+}
+
+/* Page content styles (unchanged) */
+.home_page {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 90vh;
 }
 
 section {
@@ -154,31 +194,16 @@ section {
     scroll-snap-align: start;
 }
 
-.home_page {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 90vh;
-}
-
 .home {
     justify-content: center;
     align-items: center;
 }
 
 .main_img {
-        padding-top: 1vh;
-        padding-left: 1vh;
-        padding-right: 1vh;
-        padding-bottom: 1vh;
-        display: block;
-        float: right;
-        border-radius: 10px;
-    
-    
-        max-width: 100%;
-        height: auto;
-        width:auto;
-    
+    padding: 1vh;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 .centered-container {
@@ -187,8 +212,8 @@ section {
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    height: 100vh; /* Ensure it takes full viewport height */
-    box-sizing: border-box; /* Include padding in the element's total width and height */
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 .container {
@@ -196,26 +221,24 @@ section {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 5vh; /* Adjust the gap between the text and image */
+    gap: 5vh;
 }
 
-
-
 @media (max-width: 650px) {
-
     .container {
         padding: 0vh;
-        flex-direction: column; /* Stack items vertically on small screens */
-        justify-content: center; /* Center items horizontally in the column layout */
-        align-items: center; /* Center items horizontally in the column layout */
-        gap: 0%; /* Adjust the gap between the text and image for smaller screens */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0%;
     }
+
     .home_about {
         font-size: large;
     }
 
     .face_img {
-        order: -1; /* Ensures the image appears before the text */
+        order: -1;
         padding-top: 1vh;
         border-radius: 25px;
         max-width: 60%;
@@ -223,36 +246,26 @@ section {
         width: auto;
     }
 }
-/* this where index css end */
 
-/* this where market css begins */
-
-.home_page {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 90vh;
-}
-
-
+/* Market page styles (unchanged) */
 .market_centered-container {
     padding: 1vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    height: 100vh; /* Ensure it takes full viewport height */
+    height: 100vh;
     box-sizing: border-box;
-
 }
 
 .market_container {
-    grid-template-columns: repeat(2, 1fr); 
-    grid-template-rows: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     padding: 5vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 5vh; /* Adjust the gap between the text and image */
+    gap: 5vh;
 }
 
 .market_square {
@@ -261,13 +274,13 @@ section {
     align-items: center;
     width: 40vw;
     height: 75vh;
-    background-color: #FFFFFF; 
+    background-color: #FFFFFF;
     color: #000;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.2em;
     border-radius: 8px;
     border: 2px solid #000;
-    position: relative; 
+    position: relative;
     overflow: hidden;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
@@ -284,40 +297,33 @@ section {
 }
 
 .market_square:hover {
-    background-color: #faf9f6; /* Adjust hover color if needed */
-    border-color: #4B4B4B; /* Darker border color on hover */
+    background-color: #faf9f6;
+    border-color: #4B4B4B;
 }
-
-
-
 
 @media (max-width: 650px) {
     .market_container {
-        width: 90vw; /* Ensure the squares are wide */
-        display: grid; /* Use Grid layout */
-        grid-template-columns: 1fr; /* Single column layout */
-        grid-template-rows: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust rows to ensure squares are taller */
-        gap: 5vh; /* Space between squares */
-        flex-direction: column; /* Stack items vertically on small screens */
-        justify-content: center; /* Center items horizontally in the column layout */
-        align-items: center; /* Center items horizontally in the column layout */
-
+        width: 90vw;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 5vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .market_square {
-        width: 90vw; /* Ensure the squares are wide */
-        height: 35vh; /* Make the squares taller */
+        width: 90vw;
+        height: 35vh;
         padding: 0vh;
-        flex-direction: column; /* Stack items vertically on small screens */
-        justify-content: center; /* Center items horizontally in the column layout */
-        align-items: center; /* Center items horizontally in the column layout */
-        gap: 0%; /* Adjust the gap between the text and image for smaller screens */
-
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0%;
     }
+
     .market_square h1 {
         font-size: large;
     }
-
 }
-
-
