@@ -1,0 +1,129 @@
+/* Market page styles */
+.market_centered-container {
+    padding: 1vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.market_container {
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr); 
+    padding: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5vh; /* Adjust the gap between the text and image */
+}
+
+.market_square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 75vh;
+    background-color: #FFFFFF; 
+    color: #000;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 8px;
+    border: 2px solid #000;
+    position: relative; 
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.market_square h1 {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.market_square:hover {
+    background-color: #faf9f6; /* Adjust hover color if needed */
+    border-color: #4B4B4B; /* Darker border color on hover */
+}
+
+@media (max-width: 650px) {
+    .market_container {
+        width: 90vw; /* Ensure the squares are wide */
+        display: grid; /* Use Grid layout */
+        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-rows: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust rows to ensure squares are taller */
+        gap: 5vh; /* Space between squares */
+        flex-direction: column; /* Stack items vertically on small screens */
+        justify-content: center; /* Center items horizontally in the column layout */
+        align-items: center; /* Center items horizontally in the column layout */
+    }
+
+    .market_square {
+        width: 90vw; /* Ensure the squares are wide */
+        height: 35vh; /* Make the squares taller */
+        padding: 0vh;
+        flex-direction: column; /* Stack items vertically on small screens */
+        justify-content: center; /* Center items horizontally in the column layout */
+        align-items: center; /* Center items horizontally in the column layout */
+        gap: 0%; /* Adjust the gap between the text and image for smaller screens */
+    }
+    .market_square h1 {
+        font-size: large;
+    }
+}
+
+/* Page content styles */
+.home_page {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 90vh;
+}
+
+section {
+    height: 90vh;
+    display: flex;
+    scroll-snap-align: start;
+}
+
+.home {
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-container {
+    padding: 1vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh; /* Ensure it takes full viewport height */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.container {
+    padding: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5vh; /* Adjust the gap between the text and image */
+}
+
+@media (max-width: 650px) {
+    .container {
+        padding: 0vh;
+        flex-direction: column; /* Stack items vertically on small screens */
+        justify-content: center; /* Center items horizontally in the column layout */
+        align-items: center; /* Center items horizontally in the column layout */
+        gap: 0%; /* Adjust the gap between the text and image for smaller screens */
+    }
+    .home_about {
+        font-size: large;
+    }
+
+}
