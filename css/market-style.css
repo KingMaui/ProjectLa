@@ -85,7 +85,7 @@
     height: 90vh;
 }
 
-section {
+.section {
     height: 90vh;
     display: flex;
     scroll-snap-align: start;
