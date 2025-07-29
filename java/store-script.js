@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${product.imgUrl}" alt="${product.title}" class="product-image">
                 <div class="product-info">
                     <h3 class="product-title">${product.title}</h3>
-                    <p class="product-brand">${product.brand} • ${product.category}</p>
+                    <p class="product-brand">${product.brand} • ${product.regions}</p>
                     <p class="product-roast">Roast: ${product.roast}</p>
                     <p class="product-price">$${product["sale price"] > 0 ? product["sale price"] : product.price.toFixed(2)}</p>
                     ${product["sale price"] > 0 ? `<p class="original-price">$${product.price.toFixed(2)}</p>` : ''}
