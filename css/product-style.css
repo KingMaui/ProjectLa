@@ -17,7 +17,6 @@
     padding: 0 1rem;
 }
 .back-link {
-    display: inline-block;
     color: var(--primary-color);
     text-decoration: none;
     margin: 1rem 0;
