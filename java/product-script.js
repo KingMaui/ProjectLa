@@ -22,15 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function displayProduct(product) {
         productDetailContainer.innerHTML = `
-            <!-- Image on left side (desktop) -->
             <div class="product-image-container">
                 <img src="${product.imgUrl}" alt="${product.title}" class="product-image">
             </div>
-            <div class="product-description">
-                <p>${product.Description}</p>
-            </div>
-            
-            <!-- Info on right side (desktop) -->
+
             <div class="product-info">
                 <h2>${product.title}</h2>
                 <p class="product-meta">${product.brand} • ${product.Regions} • ${product.Roast} Roast</p>
@@ -48,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 
                 <button class="add-to-cart">Add to Cart</button>
+
+            <div class="product-description">
+                <p>${product.Description}</p>
             </div>
         `;
         
