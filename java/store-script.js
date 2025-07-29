@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 product.brand.toLowerCase().includes(searchTerm) ||
                 product.description.toLowerCase().includes(searchTerm) ||
                 product.category.toLowerCase().includes(searchTerm) ||
-                (product.regions && product.Regions.toLowerCase().includes(searchTerm))
+                (product.regions && product.regions.toLowerCase().includes(searchTerm))
             );
         });
 
