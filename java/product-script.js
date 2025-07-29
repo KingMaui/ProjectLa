@@ -28,24 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <div class="product-info">
                 <h2>${product.title}</h2>
-                <p class="product-meta">${product.brand} • ${product.Regions} • ${product.Roast} Roast</p>
+                <p class="product-meta">${product.brand} • ${product.regions} • ${product.roast} Roast</p>
+                <p class="prdouct-meta">${product.grind} • ${product.us-size}</p>
                 
                 <div class="product-price">
                     $${product["sale price"] > 0 ? product["sale price"].toFixed(2) : product.price.toFixed(2)}
                     ${product["sale price"] > 0 ? `<span class="original-price">$${product.price.toFixed(2)}</span>` : ''}
                 </div>
                 
-                <p class="product-stock">${product.stock} (${product.Quantity} available)</p>
+                <p class="product-stock">${product.stock} (${product.quantity} available)</p>
                 
                 <div class="quantity-section">
                     <label class="quantity-label">Quantity</label>
-                    <input type="number" class="quantity-input" value="1" min="1" max="${product.Quantity}">
+                    <input type="number" class="quantity-input" value="1" min="1" max="${product.quantity}">
                 </div>
                 
                 <button class="add-to-cart">Add to Cart</button>
 
             <div class="product-description">
-                <p>${product.Description}</p>
+                <p>${product.description}</p>
             </div>
         `;
         
