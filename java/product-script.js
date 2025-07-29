@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fetch products and find the selected one
-    fetch('products.json')
+    fetch('data/products.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch products');
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(products => {
-            // Find product with matching ID
-            const product = products.find(p => p.id.toString() === productId);
+            // Find product with matching ID (direct string comparison)
+            const product = products.find(p => p.id === productId);
             
             if (product) {
                 displayProduct(product);
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showError();
         });
 
-    // Display product details
+    // Display product details with all fields from JSON
     function displayProduct(product) {
         productDetailContainer.innerHTML = `
             <div class="product-image-container">
@@ -46,23 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="product-meta">${product.brand} • ${product.category} • ${product.Roast} Roast</p>
                 
                 <div class="product-price">
-                    $${product["sale price"] > 0 ? product["sale price"] : product.price.toFixed(2)}
+                    $${product["sale price"] > 0 ? product["sale price"].toFixed(2) : product.price.toFixed(2)}
                     ${product["sale price"] > 0 ? `<span class="original-price">$${product.price.toFixed(2)}</span>` : ''}
                 </div>
                 
-                <p class="product-stock">${product.stock}</p>
+                <p class="product-stock">${product.stock} (${product.Quantity} available)</p>
                 
                 <div class="product-description">
                     <h3>Description</h3>
                     <p>${product.Description}</p>
                 </div>
                 
-                ${product.Regions ? `
-                    <div class="product-region">
-                        <h3>Origin</h3>
-                        <p>${product.Regions}</p>
-                    </div>
-                ` : ''}
+                <div class="product-region">
+                    <h3>Origin</h3>
+                    <p>${product.Regions}</p>
+                </div>
                 
                 <div class="product-features">
                     <h3>Features</h3>
@@ -70,6 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <li>Roast Level: ${product.Roast}</li>
                         <li>Category: ${product.category}</li>
                         <li>Brand: ${product.brand}</li>
+                        <li>Grind: ${product.Grind}</li>
+                        <li>Size (US): ${product.UsSize}</li>
+                        <li>Size (Global): ${product.GobalSize}</li>
                     </ul>
                 </div>
                 
@@ -77,11 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // Add to cart functionality (basic implementation)
+        // Add to cart functionality
         const addToCartButton = productDetailContainer.querySelector('.add-to-cart');
         addToCartButton.addEventListener('click', () => {
-            // You would typically save to localStorage or send to a server
-            alert(`${product.title} has been added to your cart!`);
+            alert(`${product.title} (${product.UsSize}) has been added to your cart!`);
         });
     }
 
@@ -91,4 +91,3 @@ document.addEventListener('DOMContentLoaded', () => {
         errorMessage.classList.remove('hidden');
     }
 });
-    
