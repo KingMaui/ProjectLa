@@ -2,73 +2,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const productDetailContainer = document.getElementById('product-detail');
     const errorMessage = document.getElementById('error-message');
     
-    // Get product ID from URL query parameter
+    // Get product ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
     
-    // If no product ID, show error
     if (!productId) {
         showError();
         return;
     }
     
-    // Fetch products and find the selected one
+    // Fetch and display product
     fetch('data/products.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch products');
-            }
-            return response.json();
-        })
+        .then(response => response.ok ? response.json() : Promise.reject())
         .then(products => {
-            // Find product with matching ID
             const product = products.find(p => p.id === productId);
-            
-            if (product) {
-                displayProduct(product);
-            } else {
-                showError();
-            }
+            product ? displayProduct(product) : showError();
         })
-        .catch(error => {
-            console.error('Error:', error);
-            showError();
-        });
+        .catch(() => showError());
     
-    // Display product with new layout
     function displayProduct(product) {
         productDetailContainer.innerHTML = `
-            <!-- Product Image (full width) -->
+            <!-- Image on left side (desktop) -->
             <div class="product-image-container">
                 <img src="${product.imgUrl}" alt="${product.title}" class="product-image">
             </div>
             
-            <!-- Key Info (under image: title, brand, price, stock) -->
-            <div class="key-info">
-                <div class="key-info-left">
-                    <h2>${product.title}</h2>
-                    <p class="product-meta">${product.brand} • ${product.category} • ${product.Roast} Roast</p>
+            <!-- Info on right side (desktop) -->
+            <div class="product-info">
+                <h2>${product.title}</h2>
+                <p class="product-meta">${product.brand} • ${product.category} • ${product.Roast} Roast</p>
+                
+                <div class="product-price">
+                    $${product["sale price"] > 0 ? product["sale price"].toFixed(2) : product.price.toFixed(2)}
+                    ${product["sale price"] > 0 ? `<span class="original-price">$${product.price.toFixed(2)}</span>` : ''}
                 </div>
-                <div class="key-info-right">
-                    <div class="product-price">
-                        $${product["sale price"] > 0 ? product["sale price"].toFixed(2) : product.price.toFixed(2)}
-                        ${product["sale price"] > 0 ? `<span class="original-price">$${product.price.toFixed(2)}</span>` : ''}
-                    </div>
-                    <p class="product-stock">${product.stock} (${product.Quantity} available)</p>
-                </div>
-            </div>
-            
-            <!-- Quantity + Add to Cart -->
-            <div class="action-row">
+                
+                <p class="product-stock">${product.stock} (${product.Quantity} available)</p>
+                
                 <div class="quantity-section">
                     <label class="quantity-label">Quantity</label>
                     <input type="number" class="quantity-input" value="1" min="1" max="${product.Quantity}">
                 </div>
+                
                 <button class="add-to-cart">Add to Cart</button>
-            </div>
-            
-            <!-- Additional Details (2 columns on desktop) -->
-            <div class="additional-details">
+                
                 <div class="product-description">
                     <h3>Description</h3>
                     <p>${product.Description}</p>
@@ -100,14 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         
         // Add to cart functionality
-        const addToCartButton = productDetailContainer.querySelector('.add-to-cart');
-        addToCartButton.addEventListener('click', () => {
+        productDetailContainer.querySelector('.add-to-cart').addEventListener('click', () => {
             const quantity = productDetailContainer.querySelector('.quantity-input').value;
-            alert(`${product.title} (${quantity}x) has been added to your cart!`);
+            alert(`${product.title} (${quantity}x) added to cart!`);
         });
     }
     
-    // Show error message if product not found
     function showError() {
         productDetailContainer.innerHTML = '';
         errorMessage.classList.remove('hidden');
