@@ -14,7 +14,7 @@
         "sale price": 0,
         "stock": "In Stock",
         "Quantity": "50",
-        "imgUrl": "/assets/products/coffee/sightglass/sightglass-colombia_edgarossa_550x550.jpeg"
+        "imgUrl": "/assets/img/products/coffee/sightglass/sightglass-colombia_edgarossa_550x550.jpeg"
     },
     {
         "category": "Coffee",
@@ -31,6 +31,6 @@
         "sale price": 0,
         "stock": "In Stock",
         "Quantity": "50",
-        "imgUrl": "/assets/products/coffee/sightglass/sightglass-honduras_salome_550x550.jpeg"
+        "imgUrl": "/assets/img/products/coffee/sightglass/sightglass-honduras_salome_550x550.jpeg"
     }
 ]
