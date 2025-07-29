@@ -19,9 +19,9 @@ function createTrackerCard(id) {
     card.innerHTML = `
         <input type="text" id="tracker-name-${id}" value="${trackerName}" placeholder="Enter tracker name">
         <button class="delete-btn" title="Delete Tracker">✖</button>
-        <label>Start Date: <span id="start-date-display-${id}"></span></label>
+        <label>Creation Date: <span id="creation-date-display-${id}"></span></label>
         <div class="counter-reset-container">
-            <div id="count-${id}" class="sobriety-count"></div>
+            <div id="current-streak-${id}" class="current-streak">Time:</div>
             <div class="reset-section">
                 <button id="reset-btn-${id}" class="reset-button">Reset Tracker</button>
                 <div id="reset-info-${id}" class="reset-info"></div>
@@ -47,7 +47,7 @@ function createTrackerCard(id) {
             clearInterval(intervals[id]);
             delete intervals[id];
         }
-        localStorage.removeItem(`sobrietyStartDate_${id}`);
+        localStorage.removeItem(`creationDate_${id}`);
         localStorage.removeItem(`lastResetDate_${id}`);
         localStorage.removeItem(`resetCount_${id}`);
         localStorage.removeItem(`resetTimestamps_${id}`);
@@ -63,24 +63,24 @@ function createTrackerCard(id) {
  * @param {string} id - The unique ID for the tracker.
  */
 function initializeTracker(id) {
-    const startDateKey = `sobrietyStartDate_${id}`;
+    const creationDateKey = `creationDate_${id}`;
     const lastResetKey = `lastResetDate_${id}`;
     const resetCountKey = `resetCount_${id}`;
     const resetTimestampsKey = `resetTimestamps_${id}`;
 
     // Set initial dates if not present
-    if (!localStorage.getItem(startDateKey)) {
-        const nowISO = new Date().toISOString();
-        localStorage.setItem(startDateKey, nowISO);
+    const nowISO = new Date().toISOString();
+    if (!localStorage.getItem(creationDateKey)) {
+        localStorage.setItem(creationDateKey, nowISO);
         localStorage.setItem(lastResetKey, nowISO);
         localStorage.setItem(resetCountKey, "0");
-        localStorage.setItem(resetTimestampsKey, JSON.stringify([nowISO])); // Initial creation timestamp
+        localStorage.setItem(resetTimestampsKey, JSON.stringify([nowISO]));
     }
 
-    // Display the start date
-    const startDateDisplay = document.getElementById(`start-date-display-${id}`);
-    const savedStart = localStorage.getItem(startDateKey);
-    startDateDisplay.textContent = new Date(savedStart).toLocaleDateString();
+    // Display the creation date (permanent)
+    const creationDateDisplay = document.getElementById(`creation-date-display-${id}`);
+    const creationDate = localStorage.getItem(creationDateKey);
+    creationDateDisplay.textContent = new Date(creationDate).toLocaleDateString();
 
     // Reset button event
     const resetBtn = document.getElementById(`reset-btn-${id}`);
@@ -122,25 +122,34 @@ function calculateAverageResetTime(timestamps) {
 }
 
 /**
- * Update the counter for the tracker with the given ID.
+ * Update the counters for the tracker with the given ID.
  * @param {string} id - The unique ID for the tracker.
  */
 function updateCount(id) {
     // Clear previous interval
     if (intervals[id]) clearInterval(intervals[id]);
 
-    const startDateKey = `sobrietyStartDate_${id}`;
+    const creationDateKey = `creationDate_${id}`;
     const lastResetKey = `lastResetDate_${id}`;
     const resetCountKey = `resetCount_${id}`;
     const resetTimestampsKey = `resetTimestamps_${id}`;
 
     intervals[id] = setInterval(() => {
         const now = new Date();
-        const startDate = new Date(localStorage.getItem(startDateKey));
-        const duration = now - startDate;
+        
+        // Calculate resettable time
+        const lastResetDate = new Date(localStorage.getItem(lastResetKey));
+        const currentTime = now - lastResetDate;
+        
+        // Calculate time since creation (permanent)
+        const creationDate = new Date(localStorage.getItem(creationDateKey));
+        const timeSinceCreation = now - creationDate;
 
-        document.getElementById(`count-${id}`).innerText = `Time: ${formatDuration(duration)}`;
+        // Update resettable time display
+        document.getElementById(`current-streak-${id}`).innerText = 
+            `Time: ${formatDuration(currentTime)}`;
 
+        // Update reset information
         const resetCount = localStorage.getItem(resetCountKey) || 0;
         const resetTimestamps = JSON.parse(localStorage.getItem(resetTimestampsKey) || '[]');
         const avgResetTime = calculateAverageResetTime(resetTimestamps);
@@ -149,7 +158,7 @@ function updateCount(id) {
         resetInfo.innerHTML = `
             🔁 Resets: ${resetCount}<br>
             ⏱ Time since creation:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${formatDuration(duration)}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${formatDuration(timeSinceCreation)}<br>
             ⏳ Avg time between resets:<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${formatDuration(avgResetTime)}
         `;
@@ -157,16 +166,17 @@ function updateCount(id) {
 }
 
 /**
- * Reset the tracker with the given ID.
+ * Reset the tracker's time but keep creation time intact.
  * @param {string} id - The unique ID for the tracker.
  */
 function resetTracker(id) {
     const nowISO = new Date().toISOString();
+    const lastResetKey = `lastResetDate_${id}`;
     const resetCountKey = `resetCount_${id}`;
     const resetTimestampsKey = `resetTimestamps_${id}`;
 
-    // Update last reset date
-    localStorage.setItem(`lastResetDate_${id}`, nowISO);
+    // Update last reset date (this resets the time)
+    localStorage.setItem(lastResetKey, nowISO);
 
     // Increment reset count
     const currentCount = parseInt(localStorage.getItem(resetCountKey) || "0");
@@ -177,7 +187,7 @@ function resetTracker(id) {
     resetTimestamps.push(nowISO);
     localStorage.setItem(resetTimestampsKey, JSON.stringify(resetTimestamps));
 
-    // Update displayed start date (creation date remains unchanged)
+    // Update the counters
     updateCount(id);
 }
 
@@ -201,7 +211,7 @@ addBtn.addEventListener("click", () => {
 function loadExistingTrackers() {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        if (key && key.startsWith("sobrietyStartDate_")) {
+        if (key && key.startsWith("creationDate_")) {
             const id = key.split("_")[1];
             createTrackerCard(id);
         }
@@ -217,3 +227,4 @@ window.onload = () => {
         createTrackerCard(defaultId);
     }
 };
+    
