@@ -35,7 +35,7 @@
         "quantity": "50",
         "imgUrl": "/assets/img/products/coffee/sightglass/sightglass-honduras_salome_550x550.jpeg"
     },
-        {
+    {
         "category": "Coffee",
         "brand": "Sightglass Coffee",
         "id": "sightglass-ethiopia-bochessa-sidama",
@@ -56,7 +56,7 @@
     {
         "category": "Coffee",
         "brand": "Sightglass Coffee",
-        "id": "ssightglass-colombia-finca-alcatra",
+        "id": "sightglass-colombia-finca-alcatra",
         "title": "Finca Las Mercedes, Edgar Ossa",
         "regions": "Colombia",
         "roast": "Light Medium",
@@ -104,7 +104,7 @@
         "sale price": 0,
         "stock": "In Stock",
         "quantity": "30",
-        "imgUrl": "/assets/img/products/coffee/sightglass/sightglass-honduras_finca_zulema_550x550"
+        "imgUrl": "/assets/img/products/coffee/sightglass/sightglass-honduras_finca_zulema_550x550.jpeg"
     },
     {
         "category": "Coffee",
@@ -140,7 +140,7 @@
         "sale price": 0,
         "stock": "In Stock",
         "quantity": "30",
-        "imgUrl": "/assets/img/products/coffee/sightglass/sightglass-kenya_rianjagi_550x550"
+        "imgUrl": "/assets/img/products/coffee/sightglass/sightglass-kenya_rianjagi_550x550.jpeg"
     },
     {
         "category": "Coffee",
@@ -178,5 +178,4 @@
         "quantity": "165",
         "imgUrl": "/assets/img/products/coffee/sightglass/sightglass-tblueboon_550x550.jpeg"
     }
-
 ]
