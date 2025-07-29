@@ -60,7 +60,6 @@ h1 {
     border: 1px solid var(--neutral-200);
 }
 .product-info {
-    max-height: 80vh;
     overflow-y: auto;
     padding-right: 0.5rem;
 }
