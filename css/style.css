@@ -91,7 +91,7 @@ body {
 
     .search-bar {
         display: block;
-        width: 250px; /* Slightly wider */
+        width: 250px;
         margin-right: 1rem;
     }
 }
