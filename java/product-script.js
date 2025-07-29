@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="product-info">
                 <h2>${product.title}</h2>
                 <p class="product-meta">${product.brand} • ${product.regions} • ${product.roast} Roast</p>
-                <p>${product.grind} • ${product.us-size}</p> 
                 
                 <div class="product-price">
                     $${product["sale price"] > 0 ? product["sale price"].toFixed(2) : product.price.toFixed(2)}
