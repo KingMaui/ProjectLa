@@ -31,10 +31,10 @@ h1 {
     font-size: 1.8rem;
     margin: 0 0 1.5rem 0;
 }
-/* Product detail styles */
+/* Product detail styles (original side-by-side layout) */
 .product-detail {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Image on left, info on right */
     gap: 2rem;
     background: #fff;
     border-radius: 8px;
@@ -86,9 +86,6 @@ h1 {
     font-weight: normal;
     font-size: 1.2rem;
 }
-.product-stock {
-    margin: 1.5rem 0;
-}
 /* Quantity selector styles */
 .quantity-section {
     margin: 1.5rem 0;
@@ -112,6 +109,39 @@ h1 {
     line-height: 1.5;
     color: var(--neutral-600);
 }
+/* Product specs styling */
+.product-specs {
+    margin: 1.5rem 0;
+}
+.product-specs p {
+    margin: 0.8rem 0;
+    line-height: 1.5;
+}
+.product-region {
+    margin: 1.5rem 0;
+}
+.product-region h3,
+.product-description h3,
+.product-features h3 {
+    margin-bottom: 0.8rem;
+    color: var(--neutral-700);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.product-features {
+    margin: 1.5rem 0;
+}
+.features-list {
+    list-style-position: inside;
+    color: var(--neutral-600);
+    padding-left: 0;
+}
+.features-list li {
+    margin-bottom: 0.3rem;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid var(--neutral-100);
+    font-size: 0.95rem;
+}
 .add-to-cart {
     background-color: var(--neutral-700);
     color: white;
@@ -130,7 +160,14 @@ h1 {
 .add-to-cart:hover {
     background-color: var(--neutral-600);
 }
-/* Error state */
+/* Loading and error states */
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--neutral-500);
+    font-size: 1.2rem;
+}
 .error-message {
     grid-column: 1 / -1;
     text-align: center;
@@ -157,7 +194,7 @@ h1 {
 .hidden {
     display: none;
 }
-/* Responsive styles */
+/* Responsive styles (original mobile stacking) */
 @media (max-width: 650px) {
     .product-detail {
         grid-template-columns: 1fr;
