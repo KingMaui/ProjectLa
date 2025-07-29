@@ -1,11 +1,10 @@
-// Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', () => {
     const productsContainer = document.querySelector('.products');
     const searchBar = document.getElementById('search-bar');
     let allProducts = [];
 
     // Fetch and load products from JSON
-    fetch('data/products.json')
+    fetch('products.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -41,9 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="product-price">$${product["sale price"] > 0 ? product["sale price"] : product.price.toFixed(2)}</p>
                     ${product["sale price"] > 0 ? `<p class="original-price">$${product.price.toFixed(2)}</p>` : ''}
                     <p class="product-stock">${product.stock}</p>
-                    <p class="product-description">${product.Description}</p>
+                    <p class="product-description">${product.Description.substring(0, 100)}${product.Description.length > 100 ? '...' : ''}</p>
                 </div>
             `;
+            
+            // Add click event to navigate to product detail page
+            // This passes the product ID through the URL
+            productCard.addEventListener('click', () => {
+                window.location.href = `product.html?id=${product.id}`;
+            });
+            
             productsContainer.appendChild(productCard);
         });
     }
@@ -60,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 product.brand.toLowerCase().includes(searchTerm) ||
                 product.Description.toLowerCase().includes(searchTerm) ||
                 product.category.toLowerCase().includes(searchTerm) ||
-                product.Regions.toLowerCase().includes(searchTerm)
+                (product.Regions && product.Regions.toLowerCase().includes(searchTerm))
             );
         });
 
