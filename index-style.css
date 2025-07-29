@@ -1,0 +1,95 @@
+.bg-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 2;
+}
+
+.modal-content {
+    width: 500px;
+    height: 300px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    text-align: center;
+    padding:10px;
+    position: relative;
+    z-index: 2;
+
+}
+
+.close {
+    position: absolute;
+    top:0;
+    right: 14px;
+    font-size: 50px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.contact_icon {
+    padding-top: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    fill: #6B6B6B; 
+    text-decoration: none; 
+    gap: 10px;
+}
+
+section {
+    height: 90vh;
+    display: flex;
+    scroll-snap-align: start;
+}
+
+.home_page {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 90vh;
+}
+
+.home {
+    justify-content: center;
+    align-items: center;
+}
+
+.main_img {
+        padding-top: 1vh;
+        padding-left: 1vh;
+        padding-right: 1vh;
+        padding-bottom: 1vh;
+        display: block;
+        float: right;
+        border-radius: 10px;
+    
+    
+        max-width: 100%;
+        height: auto;
+        width:auto;
+    
+}
+
+.centered-container {
+    padding: 1vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh; /* Ensure it takes full viewport height */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.container {
+    padding: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5vh; /* Adjust the gap between the text and image */
+}
