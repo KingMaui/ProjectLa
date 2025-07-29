@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="product-price">$${product["sale price"] > 0 ? product["sale price"] : product.price.toFixed(2)}</p>
                     ${product["sale price"] > 0 ? `<p class="original-price">$${product.price.toFixed(2)}</p>` : ''}
                     <p class="product-stock">${product.stock}</p>
-                    <p class="product-description">${product.Description.substring(0, 100)}${product.Description.length > 100 ? '...' : ''}</p>
+                    <p class="product-description">${product.description.substring(0, 100)}${product.description.length > 100 ? '...' : ''}</p>
                 </div>
             `;
             
@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return (
                 product.title.toLowerCase().includes(searchTerm) ||
                 product.brand.toLowerCase().includes(searchTerm) ||
-                product.Description.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm) ||
                 product.category.toLowerCase().includes(searchTerm) ||
-                (product.Regions && product.Regions.toLowerCase().includes(searchTerm))
+                (product.regions && product.Regions.toLowerCase().includes(searchTerm))
             );
         });
 
