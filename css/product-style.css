@@ -13,6 +13,7 @@
 }
 .container {
     margin: 0 auto;
+    max-width: 1400px;
     padding: 0 1rem;
 }
 .back-link {
@@ -117,31 +118,15 @@ h1 {
     margin: 0.8rem 0;
     line-height: 1.5;
 }
-.product-region {
-    margin: 1.5rem 0;
-}
+
 .product-region h3,
-.product-description h3,
-.product-features h3 {
+.product-description h3 {
     margin-bottom: 0.8rem;
     color: var(--neutral-700);
     font-size: 1.2rem;
     font-weight: 600;
 }
-.product-features {
-    margin: 1.5rem 0;
-}
-.features-list {
-    list-style-position: inside;
-    color: var(--neutral-600);
-    padding-left: 0;
-}
-.features-list li {
-    margin-bottom: 0.3rem;
-    padding: 0.2rem 0;
-    border-bottom: 1px solid var(--neutral-100);
-    font-size: 0.95rem;
-}
+
 .add-to-cart {
     background-color: var(--neutral-700);
     color: white;
