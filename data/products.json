@@ -15,5 +15,22 @@
         "stock": "In Stock",
         "Quantity": "50",
         "imgUrl": "/assets/products/coffee/sightglass/sightglass-colombia_edgarossa_550x550.jpeg"
+    },
+    {
+        "category": "Coffee",
+        "brand": "Sightglass Coffee",
+        "id": "sightglass-finca-salome-salome-guzman",
+        "title": "Honduras, Finca Salomé, Salomé Guzman",
+        "Regions": "Honduras",
+        "Roast": "Medium",
+        "UsSize": "12 oz",
+        "GobalSize": "340 grams",
+        "Grind": "Whole Bean",
+        "Description": "This is a multigenerational family operations. Salomé's grandkids accompany their parents to the farm and spend the playing among the coffee trees and eating wild strawberries during visits. Salomé has some of the oldest Bourbon trees planted on the area.",
+        "price": 26.50,
+        "sale price": 0,
+        "stock": "In Stock",
+        "Quantity": "50",
+        "imgUrl": "/assets/products/coffee/sightglass/sightglass-honduras_salome_550x550.jpeg"
     }
 ]

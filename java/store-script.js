@@ -1,23 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
-    fetch('data/products.json')
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-            return response.json();
-        })
-        .then(products => {
-            const container = document.querySelector(".products");
-            let output = "";
-            products.forEach(item => {
-                output += `
-                    <div class="product">
-                        <img src="${item.image}" alt="${item.title}">
-                        <p>${item.title}</p>
-                        <p>${item.description}</p>
-                        <p>$${item.price}</p>
-                    </div>
-                `;
-            });
-            container.innerHTML = output;
-        })
-        .catch(error => console.error('Error loading products:', error));
-});
+let http = XMLHttpRequest();
+http.open('get','data/products.json', true);
+http.send();
+http.onload = function(){
+    if(this.readState == 4 && this.status == 200){
+        let products = JSON.parse(this.responseText);
+        let output = "";
+        for(let item of products){
+            output +=`
+            <div class="products">
+                <img src="${item.image}" alt="${item.image}">
+                <p class="${item.title}"></p>
+                <p class="${item.description}"></p>
+                <p class="${item.price}"></p>
+            </div>
+            `;
+        }
+        DocumentFragment.querySelector(".products").innerHTML = output;
+    }
+}
