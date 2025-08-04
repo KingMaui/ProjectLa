@@ -199,15 +199,12 @@ function generateTrackerId() {
     return Date.now().toString() + Math.floor(Math.random() * 1000);
 }
 
-// Add event listener to the "Add New Tracker" button
+
 addBtn.addEventListener("click", () => {
     const newId = generateTrackerId();
     createTrackerCard(newId);
 });
 
-/**
- * Load existing trackers from localStorage.
- */
 function loadExistingTrackers() {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
@@ -218,7 +215,6 @@ function loadExistingTrackers() {
     }
 }
 
-// Load existing trackers when the window loads
 window.onload = () => {
     loadExistingTrackers();
 
