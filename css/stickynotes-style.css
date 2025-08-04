@@ -1,0 +1,106 @@
+/* Projects Section Base Styles */
+.projects-section {
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Fixed Section Titles */
+.section-title {
+    position: sticky;
+    top: 2rem;
+    margin: 2rem 0 1.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    display: inline-block;
+    z-index: 10;
+    font-size: 1.5rem;
+    width: 300px;
+    text-align: center;
+}
+
+.current-title {
+    background-color: #f0f9e8;
+    border: 1px solid #cfe8b0;
+}
+
+.future-title {
+    background-color: #E0F7FA;
+    border: 1px solid #b2ebf2;
+}
+
+/* Project Grids - Single column for all screen sizes */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* One column always */
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Sticky Note Base Styles - Consistent padding */
+.sticky-note {
+    padding: 1.5rem; /* Same padding for all notes */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid;
+    transition: all 0.3s ease;
+    margin: 0 auto; /* Center align notes */
+}
+
+/* Individual Note Styles */
+.store-note {
+    background-color: #f0f9e8;
+    border-color: #cfe8b0;
+    transform: rotate(-1deg);
+}
+
+.counter-note {
+    background-color: #E8C7C8;
+    border-color: #C99A9C;
+    transform: rotate(1deg);
+}
+
+.calendar-note {
+    background-color: #E0F7FA;
+    border-color: #b2ebf2;
+    transform: rotate(-0.5deg);
+}
+
+/* Hover Effect */
+.sticky-note:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px) rotate(0deg);
+}
+
+/* Typography */
+.sticky-note h3 {
+    color: var(--neutral-700);
+    margin-top: 0;
+    border-bottom: 2px solid var(--neutral-300);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.sticky-note p {
+    margin: 0.5rem 0;
+    color: var(--neutral-600);
+    line-height: 1.6;
+}
+
+.sticky-note strong {
+    color: var(--neutral-800);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .section-title {
+        top: 1rem;
+        font-size: 1.25rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .sticky-note {
+        padding: 1.5rem; 
+        max-width: 100%; 
+    }
+}

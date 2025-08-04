@@ -1,4 +1,3 @@
-/* Product grid layout */
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -21,14 +20,12 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* Product image */
 .product-image {
     width: 100%;
     height: 250px;
     object-fit: cover;
 }
 
-/* Product info */
 .product-info {
     padding: 1.5rem;
 }
@@ -65,7 +62,7 @@
 }
 
 .product-stock {
-    color: #28a745; /* Green for in stock */
+    color: #28a745;
     font-size: 0.9rem;
     margin: 0 0 1rem 0;
 }
