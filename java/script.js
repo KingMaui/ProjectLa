@@ -32,10 +32,11 @@ searchBar.addEventListener('keypress', (e) => {
   }
 });
 
-// Close navbar when clicking on a link (mobile)
+// Close navbar when clicking on a link (mobile) - MODIFIED
 document.querySelectorAll('.navbar-links a').forEach(link => {
   link.addEventListener('click', () => {
-    if (window.innerWidth < 651) {
+    // Only close navbar for links that are NOT the Contact button
+    if (window.innerWidth < 651 && link.id !== 'Contact') { 
       navbarContent.classList.remove('active');
       toggleButton.classList.remove('active');
     }
