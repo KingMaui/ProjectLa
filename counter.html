@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JUNXIELIANG</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/contact-modal.css">
   <link rel="stylesheet" href="css/counter-style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <script src="java/clarity.js" defer></script>
   <script src="java/script.js" defer></script>
+  <script src="java/contact-modal.js" defer></script>
+  <script src="java/counter-script.js" defer></script>
 </head>
 <body>
   <header>
@@ -27,21 +30,44 @@
             <li><a id="Calendar">Calendar</a></li>
             <li><a id="Contact" href="#">Contact</a></li>
           </ul>
+          <div class="contact-modal-overlay">
+            <div class="contact-modal-content">
+              <button class="contact-modal-close">&times;</button>
+              <h2>Leave a Message</h2>
+              <form class="contact-form">
+                <div class="form-group">
+                  <label for="fullName">Name</label>
+                  <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="contact-submit-btn">Send</button>
+              </form>
+              <p class="location-info">Junxieliangweb@gmail.com<br>Based in San Francisco, California</p>
+              <div class="social-links">
+                <a href="https://www.linkedin.com/in/junxieliang/" target="_blank" class="linkedin-icon" aria-label="LinkedIn Profile">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
         </div>
       </div>
     </nav>
   </header>
-
 <div class="page">
       <div class="main-wrapper">
         <button id="add-tracker-btn">+ Add New Tracker</button>
         <div id="trackers-container"></div>
       </div>
   </div>
-
-  <script src="java/counter-script.js" defer></script>
-    </section>
-
 
   <footer>
       <h6>© 2025 Jun Xie Liang. All Rights Reserved.</h6>

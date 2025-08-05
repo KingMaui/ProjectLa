@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JUNXIELIANG</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/contact-modal.css">
   <link rel="stylesheet" href="css/stickynotes-style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <script src="java/clarity.js" defer></script>
   <script src="java/script.js" defer></script>
-  
+  <script src="java/contact-modal.js" defer></script>
 </head>
 <body>
   <header>
@@ -28,55 +29,81 @@
             <li><a id="Calendar">Calendar</a></li>
             <li><a id="Contact" href="#">Contact</a></li>
           </ul>
+                    <div class="contact-modal-overlay">
+            <div class="contact-modal-content">
+              <button class="contact-modal-close">&times;</button>
+              <h2>Leave a Message</h2>
+              <form class="contact-form">
+                <div class="form-group">
+                  <label for="fullName">Name</label>
+                  <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="contact-submit-btn">Send</button>
+              </form>
+              <p class="location-info">Junxieliangweb@gmail.com<br>Based in San Francisco, California</p>
+              <div class="social-links">
+                <a href="https://www.linkedin.com/in/junxieliang/" target="_blank" class="linkedin-icon" aria-label="LinkedIn Profile">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+        </div>
         </div>
       </div>
     </nav>
   </header>
-
   <div class="home_page">
     <section class="projects-section">
       <h2 class="section-title current-title">Current Project</h2>
-      
-      <div class="projects-grid current-projects">
-        <div class="sticky-note store-note">
-          <h2>Store</h2>
-          <strong>Concept:</strong>
-          <p>An international e-commerce platform dedicated to delivering authentic US products to customers overseas, with a focus on markets such as China, Japan, Korea and Singapore. During my travels to these regions, I noticed a strong demand for American brands, particularly in lifestyle and premium product categories.</p>
-          <p>Currently, my primary focus is the coffee market, as coffee culture is rapidly gaining popularity in metropolitan areas like Tokyo and Seoul. Being based in San Francisco, a hub for coffee innovation. This gives me a unique advantage in sourcing and curating high-quality coffee beans to share with overseas coffee enthusiasts.</p>
-          <p>As the store grows, I plan to expand into additional categories, offering a wider range of well-known American brands to share with the world. </p>
-          <br>
-          <strong>Roadmap:</strong>
-            <p>✅ Build store/product page that work with json file to backlog product database</p>
-            <p>✅ Scalable data base within the json file</p>
-            <p>✅ Add search function to filter and locate product on the store page</p>
-            <p>✅ Work with mobile devices</p>
-            <p>🛠️ Checkout Page</p>
-            <p>🛠️ Filter selector</p>
-            <p>🛠️ Chinese, Japanese and Korean language support</p>
-            <p>🛠️ Regional payment methods (ex. Alipay and Wechat pay for China)</p>
-        </div>
+        <div class="projects-grid current-projects">
+          <div class="sticky-note store-note">
+            <h2>Store</h2>
+            <strong>Concept:</strong>
+            <p>An international e-commerce platform dedicated to delivering authentic US products to customers overseas, with a focus on markets such as China, Japan, Korea and Singapore. During my travels to these regions, I noticed a strong demand for American brands, particularly in lifestyle and premium product categories.</p>
+            <p>Currently, my primary focus is the coffee market, as coffee culture is rapidly gaining popularity in metropolitan areas like Tokyo and Seoul. Being based in San Francisco, a hub for coffee innovation. This gives me a unique advantage in sourcing and curating high-quality coffee beans to share with overseas coffee enthusiasts.</p>
+            <p>As the store grows, I plan to expand into additional categories, offering a wider range of well-known American brands to share with the world. </p>
+            <br>
+            <strong>Roadmap:</strong>
+              <p>✅ Build store/product page that work with json file to backlog product database</p>
+              <p>✅ Scalable data base within the json file</p>
+              <p>✅ Add search function to filter and locate product on the store page</p>
+              <p>✅ Work with mobile devices</p>
+              <p>🛠️ Checkout Page</p>
+              <p>🛠️ Filter selector</p>
+              <p>🛠️ Chinese, Japanese and Korean language support</p>
+              <p>🛠️ Regional payment methods (ex. Alipay and Wechat pay for China)</p>
+          </div>
 
-        <div class="sticky-note counter-note">
-          <h2>Habit</h2>
-          <strong>Concept:</strong>
-          <p>A tracker designed to help you monitor both positive and negative habits. Track good habits like regular exercise or identify harmful ones such as procrastination. The tracker lets you reset your streak whenever you break a habit, keeping you accountable and motivated. It also provides detailed insights, including the total number of resets and the average time between streaks, so you can better understand your progress and patterns. </p>
-          <br>
-          <strong>WIP:</strong>
-            <p>🛠️ Fix the tracker layout when new tracker is created</p>
-            <p>🛠️ Move from localstorage to a server base storage</p>
-            <p>🛠️ Backend client server architecture</p>
+          <div class="sticky-note counter-note">
+            <h2>Habit</h2>
+            <strong>Concept:</strong>
+            <p>A tracker designed to help you monitor both positive and negative habits. Track good habits like regular exercise or identify harmful ones such as procrastination. The tracker lets you reset your streak whenever you break a habit, keeping you accountable and motivated. It also provides detailed insights, including the total number of resets and the average time between streaks, so you can better understand your progress and patterns. </p>
+            <br>
+            <strong>WIP:</strong>
+              <p>🛠️ Fix the tracker layout when new tracker is created</p>
+              <p>🛠️ Move from localstorage to a server base storage</p>
+              <p>🛠️ Backend client server architecture</p>
+          </div>
         </div>
-      </div>
 
       <h2 class="section-title future-title">Future Project</h2>
-      
-      <div class="projects-grid future-projects">
-        <div class="sticky-note calendar-note">
-          <h2>Calendar</h2>
-          <strong>Concept:</strong>
-          <p>A multi-layered calendar built to help you track progress across every area of life. Whether you are preparing for a major exam or planning a long-term project, this adaptive calendar aligns with your goals and keeps you on track. It is simple user-friendly interface allows you to customize layouts to match your unique needs. With AI-powered adjustments, the calendar automatically reorganizes your schedule when conflicts or unexpected changes arise. Giving you peace of mind and helping you stay focused.</p>
+        <div class="projects-grid future-projects">
+          <div class="sticky-note calendar-note">
+            <h2>Calendar</h2>
+            <strong>Concept:</strong>
+            <p>A multi-layered calendar built to help you track progress across every area of life. Whether you are preparing for a major exam or planning a long-term project, this adaptive calendar aligns with your goals and keeps you on track. It is simple user-friendly interface allows you to customize layouts to match your unique needs. With AI-powered adjustments, the calendar automatically reorganizes your schedule when conflicts or unexpected changes arise. Giving you peace of mind and helping you stay focused.</p>
+          </div>
         </div>
-      </div>
     </section>
   </div>
 
