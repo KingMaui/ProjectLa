@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="css/contact-modal.css">
   <link rel="stylesheet" href="css/stickynotes-style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
+  <script src="java/contact-sumbit.js" defer></script>
   <script src="java/clarity.js" defer></script>
   <script src="java/script.js" defer></script>
   <script src="java/contact-modal.js" defer></script>
@@ -33,7 +35,7 @@
             <div class="contact-modal-content">
               <button class="contact-modal-close">&times;</button>
               <h2>Leave a Message</h2>
-              <form class="contact-form">
+              <form class="contact-form" id=""contactForm">
                 <div class="form-group">
                   <label for="fullName">Name</label>
                   <input type="text" id="fullName" required>
