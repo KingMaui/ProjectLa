@@ -1,29 +1,50 @@
-let schedule = [];
-let startDate = localStorage.getItem("startDate") || new Date().toISOString().split("T")[0];
-let skippedDays = parseInt(localStorage.getItem("skippedDays") || "0");
+// taz-script.js
 
-fetch('projecttaz/schedule.json')
-  .then(response => response.json())
-  .then(data => {
-    schedule = data;
-    updateStatus();
-  });
+const trackerTitle = document.getElementById("tracker-title");
+const trackerDate = document.getElementById("tracker-date");
+const trackerLength = document.getElementById("tracker-length");
+const doneBtn = document.getElementById("done-btn");
+const skipBtn = document.getElementById("skip-btn");
 
-function updateStatus() {
+const STORAGE_KEY = "taz-tracker-index";
+
+fetch("projecttaz/schedule.json")
+  .then((res) => res.json())
+  .then((data) => {
+    const startDate = new Date(data.startDate);
+    const schedule = data.schedule;
+
     const today = new Date();
-    const start = new Date(startDate);
-    const dayDiff = Math.floor((today - start) / (1000 * 60 * 60 * 24));
-    const currentIndex = Math.min(dayDiff - skippedDays, schedule.length - 1);
-    const currentValue = schedule[currentIndex] || "🌙";
-    document.getElementById("status").innerText = `Today's Routine: ${currentValue}`;
-}
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const daysSinceStart = Math.floor((today - startDate) / msPerDay);
 
-function markDone() {
-    updateStatus(); // keeps current progress
-}
+    let currentIndex = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+    if (isNaN(currentIndex)) currentIndex = daysSinceStart;
 
-function skipDay() {
-    skippedDays++;
-    localStorage.setItem("skippedDays", skippedDays);
-    updateStatus(); // keeps the same index
-}
+    if (currentIndex < 0) currentIndex = 0;
+    if (currentIndex >= schedule.length) currentIndex = schedule.length - 1;
+
+    updateTracker(currentIndex);
+
+    doneBtn.addEventListener("click", () => {
+      if (currentIndex < schedule.length - 1) currentIndex++;
+      localStorage.setItem(STORAGE_KEY, currentIndex);
+      updateTracker(currentIndex);
+    });
+
+    skipBtn.addEventListener("click", () => {
+      // keep same index, just refresh display
+      updateTracker(currentIndex);
+    });
+
+    function updateTracker(index) {
+      const displayDate = new Date(startDate);
+      displayDate.setDate(displayDate.getDate() + index);
+      trackerDate.textContent = `Day ${index + 1} - ${displayDate.toDateString()}`;
+      trackerLength.textContent = schedule[index] || "Rest Day";
+    }
+  })
+  .catch((err) => {
+    trackerLength.textContent = "Failed to load schedule.";
+    console.error(err);
+  });
