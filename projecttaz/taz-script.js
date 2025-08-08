@@ -1,100 +1,139 @@
 // taz-script.js
 
-// Get elements from HTML (matches IDs in taz.html)
-const dayStatus = document.getElementById("dayStatus");
-const logBox = document.getElementById("logBox");
+const statusEl = document.getElementById("status");
+const doneBtn = document.getElementById("done-btn");
+const skipBtn = document.getElementById("skip-btn");
+const logBox = document.getElementById("log-box");
+const editBtn = document.getElementById("edit-btn");
+const editForm = document.getElementById("editForm");
+const scheduleEditor = document.getElementById("scheduleEditor");
+const saveScheduleBtn = document.getElementById("saveSchedule");
+const cancelEditBtn = document.getElementById("cancelEdit");
+const editStatus = document.getElementById("editStatus");
 
 const STORAGE_KEY = "taz-tracker-index";
-let currentIndex; // Track current position in schedule
-let scheduleData; // Store loaded schedule data
+const CUSTOM_SCHEDULE_KEY = "taz-custom-schedule"; // For saved edits
 
-// Load schedule from JSON
-fetch("projecttaz/schedule.json")
-  .then((res) => res.json())
-  .then((data) => {
-    scheduleData = data;
-    const startDate = new Date(data.startDate);
-    const schedule = data.schedule;
+let currentIndex;
+let scheduleData; // Will hold either default or custom schedule
 
-    // Calculate current day based on start date
+
+// Load schedule (check for custom edits first)
+async function loadSchedule() {
+    try {
+        // Check if user has a custom schedule saved
+        const customSchedule = localStorage.getItem(CUSTOM_SCHEDULE_KEY);
+        if (customSchedule) {
+            scheduleData = JSON.parse(customSchedule);
+            return;
+        }
+
+        // If no custom schedule, load default from JSON
+        const res = await fetch("projecttaz/schedule.json");
+        scheduleData = await res.json();
+    } catch (err) {
+        statusEl.textContent = "Error loading schedule.";
+        console.error("Load error:", err);
+    }
+}
+
+
+// Initialize the app
+async function init() {
+    await loadSchedule();
+    if (!scheduleData) return;
+
+    const startDate = new Date(scheduleData.startDate);
+    const schedule = scheduleData.schedule;
+
+    // Calculate current index
     const today = new Date();
     const msPerDay = 1000 * 60 * 60 * 24;
     const daysSinceStart = Math.floor((today - startDate) / msPerDay);
 
-    // Get saved progress from localStorage (or use calculated day)
     currentIndex = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-    if (isNaN(currentIndex) || currentIndex < 0) {
-      currentIndex = Math.max(0, daysSinceStart); // Ensure valid index
-    }
-    // Don't go beyond the schedule length
-    if (currentIndex >= schedule.length) {
-      currentIndex = schedule.length - 1;
-    }
+    if (isNaN(currentIndex) || currentIndex < 0) currentIndex = daysSinceStart;
+    if (currentIndex >= schedule.length) currentIndex = schedule.length - 1;
 
-    updateStatus(); // Show initial status
-  })
-  .catch((err) => {
-    dayStatus.textContent = "Failed to load schedule.";
-    console.error("Error loading schedule:", err);
-  });
-
-// Mark current day as completed
-function markDone() {
-  if (!scheduleData) return; // Wait for schedule to load
-
-  const currentDayDate = getCurrentDayDate();
-  logAction(`Taz completed on ${currentDayDate.toDateString()}`);
-  
-  // Move to next day (if not at end of schedule)
-  if (currentIndex < scheduleData.schedule.length - 1) {
-    currentIndex++;
-    localStorage.setItem(STORAGE_KEY, currentIndex);
-    updateStatus();
-  }
+    updateTracker(currentIndex);
+    setupEventListeners();
 }
 
-// Skip current day
-function skipDay() {
-  if (!scheduleData) return; // Wait for schedule to load
 
-  const currentDayDate = getCurrentDayDate();
-  logAction(`Taz skipped on ${currentDayDate.toDateString()}`);
-  // Stay on current day but log the skip
-  updateStatus();
+// Update tracker display
+function updateTracker(index) {
+    const startDate = new Date(scheduleData.startDate);
+    const displayDate = new Date(startDate);
+    displayDate.setDate(displayDate.getDate() + index);
+    statusEl.textContent = `Day ${index + 1} (${displayDate.toDateString()}): ${scheduleData.schedule[index] || "Rest Day"}`;
 }
 
-// Update the displayed status (current day info)
-function updateStatus() {
-  if (!scheduleData) return;
 
-  const startDate = new Date(scheduleData.startDate);
-  const currentDayDate = new Date(startDate);
-  currentDayDate.setDate(startDate.getDate() + currentIndex);
-
-  const dayNumber = currentIndex + 1;
-  const activity = scheduleData.schedule[currentIndex] || "Rest Day";
-  
-  dayStatus.textContent = `Day ${dayNumber} (${currentDayDate.toDateString()}): ${activity}`;
+// Log actions
+function logAction(status) {
+    const now = new Date();
+    const timestamp = now.toLocaleString();
+    const logEntry = `[${timestamp}] Taz was ${status.toLowerCase()} on ${new Date().toDateString()}`;
+    const logItem = document.createElement("div");
+    logItem.textContent = logEntry;
+    logBox.prepend(logItem);
 }
 
-// Log an action with timestamp
-function logAction(message) {
-  const now = new Date();
-  const timestamp = now.toLocaleString(); // e.g., "9/5/2023, 3:45:00 PM"
-  const logEntry = `${timestamp} — ${message}`;
 
-  // Create log element and add to top of log box
-  const logItem = document.createElement("div");
-  logItem.style.padding = "8px";
-  logItem.style.borderBottom = "1px solid #eee";
-  logItem.textContent = logEntry;
-  logBox.prepend(logItem); // Add new logs to the top
+// Setup all event listeners
+function setupEventListeners() {
+    // Done button
+    doneBtn.addEventListener("click", () => {
+        logAction("Completed");
+        if (currentIndex < scheduleData.schedule.length - 1) currentIndex++;
+        localStorage.setItem(STORAGE_KEY, currentIndex);
+        updateTracker(currentIndex);
+    });
+
+    // Skip button
+    skipBtn.addEventListener("click", () => {
+        logAction("Skipped");
+        updateTracker(currentIndex);
+    });
+
+    // Edit schedule button
+    editBtn.addEventListener("click", () => {
+        // Show current schedule in editor
+        scheduleEditor.value = JSON.stringify(scheduleData, null, 2); // Pretty-print JSON
+        editForm.style.display = "block";
+        editStatus.textContent = "";
+    });
+
+    // Cancel edit
+    cancelEditBtn.addEventListener("click", () => {
+        editForm.style.display = "none";
+    });
+
+    // Save edited schedule
+    saveScheduleBtn.addEventListener("click", () => {
+        try {
+            const editedSchedule = JSON.parse(scheduleEditor.value);
+            // Validate required fields
+            if (!editedSchedule.startDate || !Array.isArray(editedSchedule.schedule)) {
+                throw new Error('Missing "startDate" or "schedule" array');
+            }
+            // Save to localStorage
+            localStorage.setItem(CUSTOM_SCHEDULE_KEY, JSON.stringify(editedSchedule));
+            // Reload app with new schedule
+            scheduleData = editedSchedule;
+            currentIndex = 0; // Reset progress (or keep it? Adjust as needed)
+            localStorage.setItem(STORAGE_KEY, currentIndex);
+            updateTracker(currentIndex);
+            editStatus.textContent = "✅ Schedule saved!";
+            editStatus.style.color = "var(--secondary-color)";
+            setTimeout(() => editForm.style.display = "none", 1500);
+        } catch (err) {
+            editStatus.textContent = `❌ Invalid: ${err.message}`;
+            editStatus.style.color = "var(--danger-color)";
+        }
+    });
 }
 
-// Helper: Get date of current tracked day
-function getCurrentDayDate() {
-  const startDate = new Date(scheduleData.startDate);
-  const currentDayDate = new Date(startDate);
-  currentDayDate.setDate(startDate.getDate() + currentIndex);
-  return currentDayDate;
-}
+
+// Start the app
+init();
