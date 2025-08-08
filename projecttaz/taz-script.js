@@ -5,6 +5,7 @@ const trackerDate = document.getElementById("tracker-date");
 const trackerLength = document.getElementById("tracker-length");
 const doneBtn = document.getElementById("done-btn");
 const skipBtn = document.getElementById("skip-btn");
+const logBox = document.getElementById("log-box");
 
 const STORAGE_KEY = "taz-tracker-index";
 
@@ -27,13 +28,14 @@ fetch("projecttaz/schedule.json")
     updateTracker(currentIndex);
 
     doneBtn.addEventListener("click", () => {
+      logAction("Completed");
       if (currentIndex < schedule.length - 1) currentIndex++;
       localStorage.setItem(STORAGE_KEY, currentIndex);
       updateTracker(currentIndex);
     });
 
     skipBtn.addEventListener("click", () => {
-      // keep same index, just refresh display
+      logAction("Skipped");
       updateTracker(currentIndex);
     });
 
@@ -42,6 +44,15 @@ fetch("projecttaz/schedule.json")
       displayDate.setDate(displayDate.getDate() + index);
       trackerDate.textContent = `Day ${index + 1} - ${displayDate.toDateString()}`;
       trackerLength.textContent = schedule[index] || "Rest Day";
+    }
+
+    function logAction(status) {
+      const now = new Date();
+      const timestamp = now.toLocaleString();
+      const logEntry = `Current Date and Time: ${timestamp} — ${status} day.`;
+      const logItem = document.createElement("div");
+      logItem.textContent = logEntry;
+      logBox.prepend(logItem);
     }
   })
   .catch((err) => {
