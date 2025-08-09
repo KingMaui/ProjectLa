@@ -77,18 +77,17 @@ function ensureModal() {
       <!-- ACCOUNT PANEL (when logged in) -->
       <div id="panel-account" style="display:none">
         <h2>Account</h2>
-        <div class="login-status" id="accountStatus"></div>
 
         <div class="login-form" style="margin-bottom:.75rem;">
           <div class="form-group">
-            <div style="font-weight:600;margin-bottom:.2rem;">Signed in as</div>
-            <div id="acctIdentity" style="border:1px solid #000;border-radius:8px;padding:.5rem;">
+            <div style="font-size: 1.5rem;">Signed in as</div>
+            <div id="acctIdentity" style="font-size: 1rem;padding:.2rem;">
               <!-- filled in showAccount() -->
             </div>
           </div>
         </div>
 
-        <h3 style="margin:.25rem 0 .25rem; font-size:1rem;">Change password</h3>
+        <h3 style="margin:.25rem 0 .25rem;font-size: 1.5rem;">Change password</h3>
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="cpCurrent">Current password</label>
@@ -112,6 +111,7 @@ function ensureModal() {
             </div>
           </div>
           <div class="login-status" id="pwStatus"></div>
+          <div class="login-status" id="accountStatus"></div>
         </form>
       </div>
     </div>
@@ -307,7 +307,7 @@ export async function logActivity(action, meta = {}) {
 function ensureActivityModal() {
   if (activityOverlay) return activityOverlay;
   activityOverlay = document.createElement("div");
-  activityOverlay.className = "login-modal-overlay"; // reuse same overlay style
+  activityOverlay.className = "login-modal-overlay";
   activityOverlay.innerHTML = `
     <div class="login-modal-content" role="dialog" aria-modal="true">
       <button class="login-modal-close" id="closeActivity" aria-label="Close">&times;</button>
@@ -316,7 +316,7 @@ function ensureActivityModal() {
         <div style="opacity:.7; padding:.5rem;">Loading…</div>
       </div>
       <div class="login-actions" style="justify-content:flex-end; margin-top:.5rem;">
-        <button class="login-secondary" id="moreActivities" type="button">Load more</button>
+        
       </div>
     </div>
   `;
@@ -394,7 +394,7 @@ async function loadActivities() {
       const left = document.createElement("div");
       left.style.minWidth = 0;
       left.innerHTML = `
-        <div style="font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(rec.action || "")}</div>
+        <div style="font-size: 1rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(rec.action || "")}</div>
         <div style="opacity:.75; font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(rec.path || "")}</div>
       `;
 
