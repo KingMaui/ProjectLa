@@ -1,5 +1,5 @@
 // auth.js
-// PocketBase Auth + Activity Logger (+ Account panel with password change & activity log)
+// PocketBase Auth + Activity Logger + Account panel + Activity modal
 
 const PB_URL = window.PB_URL || "https://pb.junxieliang.com";
 
@@ -20,6 +20,7 @@ const auth = {
 /* ---------------- Modal (Login <-> Signup <-> Account) ---------------- */
 const loginBtn = document.getElementById("loginBtn");
 let overlay;
+let activityOverlay;
 
 function ensureModal() {
   if (overlay) return overlay;
@@ -35,11 +36,11 @@ function ensureModal() {
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="authEmail">Email</label>
-            <input type="email" id="authEmail" autocomplete="email" required>
+            <input type="email" id="authEmail" placeholder="you@example.com" autocomplete="email" required>
           </div>
           <div class="form-group">
             <label for="authPassword">Password</label>
-            <input type="password" id="authPassword" autocomplete="current-password" required>
+            <input type="password" id="authPassword" placeholder="••••••••" autocomplete="current-password" required>
           </div>
           <div class="login-actions">
             <button class="login-btn" id="loginSubmit" type="button">Log in</button>
@@ -55,15 +56,15 @@ function ensureModal() {
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="suUsername">Username</label>
-            <input type="text" id="suUsername" autocomplete="username" required>
+            <input type="text" id="suUsername" placeholder="yourname" autocomplete="username" required>
           </div>
           <div class="form-group">
             <label for="suEmail">Email</label>
-            <input type="email" id="suEmail" autocomplete="email" required>
+            <input type="email" id="suEmail" placeholder="you@example.com" autocomplete="email" required>
           </div>
           <div class="form-group">
             <label for="suPassword">Password</label>
-            <input type="password" id="suPassword" autocomplete="new-password" required>
+            <input type="password" id="suPassword" placeholder="••••••••" autocomplete="new-password" required>
           </div>
           <div class="login-actions">
             <button class="login-btn" id="signupSubmit" type="button">Sign up</button>
@@ -73,18 +74,22 @@ function ensureModal() {
         </form>
       </div>
 
-      <!-- ACCOUNT PANEL (shown when logged in) -->
+      <!-- ACCOUNT PANEL (when logged in) -->
       <div id="panel-account" style="display:none">
         <h2>Account</h2>
         <div class="login-status" id="accountStatus"></div>
 
-        <form class="login-form" onsubmit="return false;">
+        <div class="login-form" style="margin-bottom:.75rem;">
           <div class="form-group">
-            <label>Signed in as</label>
-            <input type="text" id="acctIdentity" readonly>
+            <div style="font-weight:600;margin-bottom:.2rem;">Signed in as</div>
+            <div id="acctIdentity" style="border:1px solid #000;border-radius:8px;padding:.5rem;">
+              <!-- filled in showAccount() -->
+            </div>
           </div>
+        </div>
 
-          <h3 style="margin:.5rem 0 0.25rem;">Change password</h3>
+        <h3 style="margin:.25rem 0 .25rem; font-size:1rem;">Change password</h3>
+        <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="cpCurrent">Current password</label>
             <input type="password" id="cpCurrent" placeholder="Current password" autocomplete="current-password">
@@ -97,20 +102,17 @@ function ensureModal() {
             <label for="cpConfirm">Confirm new password</label>
             <input type="password" id="cpConfirm" placeholder="Confirm new password" autocomplete="new-password">
           </div>
-          <div class="login-actions">
-            <button class="login-btn" id="changePwBtn" type="button">Update password</button>
-            <button class="login-secondary" id="logoutBtn" type="button">Log out</button>
+          <div class="login-actions" style="justify-content:space-between; width:100%;">
+            <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+              <button class="login-btn" id="changePwBtn" type="button">Update password</button>
+            </div>
+            <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+              <button class="login-secondary" id="activityBtn" type="button">Your activity</button>
+              <button class="login-secondary" id="logoutBtn" type="button">Log out</button>
+            </div>
           </div>
           <div class="login-status" id="pwStatus"></div>
         </form>
-
-        <h3 style="margin:1rem 0 .5rem;">Your activity</h3>
-        <div id="activityList" style="max-height: 300px; overflow:auto; border:1px solid #000; border-radius:8px; padding:.5rem;">
-          <div style="opacity:.7;">Loading…</div>
-        </div>
-        <div class="login-actions" style="justify-content:flex-end; margin-top:.5rem;">
-          <button class="login-secondary" id="moreActivities" type="button">Load more</button>
-        </div>
       </div>
     </div>
   `;
@@ -127,6 +129,7 @@ function ensureModal() {
   overlay.querySelector("#toLogin").addEventListener("click", showLogin);
   overlay.querySelector("#logoutBtn").addEventListener("click", doLogout);
   overlay.querySelector("#changePwBtn").addEventListener("click", changePassword);
+  overlay.querySelector("#activityBtn").addEventListener("click", openActivityModal);
 
   return overlay;
 }
@@ -134,50 +137,43 @@ function ensureModal() {
 function openModal() {
   ensureModal();
   overlay.style.display = "flex";
-  if (auth.user) {
-    showAccount();
-  } else {
-    showLogin();
-  }
+  if (auth.user) showAccount();
+  else showLogin();
   updateAccountButton();
 }
 
 if (loginBtn) {
-  // If logged in and user clicks their name → open Account panel (not login)
   loginBtn.addEventListener("click", (e) => { e.preventDefault(); openModal(); });
 }
 
 /* --------- Panel switches ---------- */
 function showLogin() {
   panel("panel-login");
-  setStatus("", true); setSignupStatus("", true); setAccountStatus("", true); setPwStatus("", true);
+  clearAllStatus();
 }
-
 function showSignup() {
   panel("panel-signup");
-  setStatus("", true); setSignupStatus("", true); setAccountStatus("", true); setPwStatus("", true);
+  clearAllStatus();
   const logEmail = overlay.querySelector("#authEmail")?.value?.trim();
   if (logEmail) overlay.querySelector("#suEmail").value = logEmail;
 }
-
 function showAccount() {
   panel("panel-account");
-  setStatus("", true); setSignupStatus("", true); setAccountStatus("", true); setPwStatus("", true);
-  // Fill identity
-  const idField = overlay.querySelector("#acctIdentity");
+  clearAllStatus();
   const name = auth.user?.name || auth.user?.username || auth.user?.email || "User";
-  if (idField) idField.value = name + "  (" + (auth.user?.email || "") + ")";
-  // Load activities
-  activities.reset();
-  loadActivities().catch(()=>{});
+  const email = auth.user?.email || "";
+  const idBox = overlay.querySelector("#acctIdentity");
+  if (idBox) idBox.textContent = `${name} (${email})`;
 }
 
 function panel(id) {
-  const ids = ["panel-login","panel-signup","panel-account"];
-  ids.forEach(pid => {
+  ["panel-login","panel-signup","panel-account"].forEach(pid => {
     const el = overlay.querySelector("#"+pid);
     if (el) el.style.display = (pid === id) ? "" : "none";
   });
+}
+function clearAllStatus(){
+  setStatus("", true); setSignupStatus("", true); setAccountStatus("", true); setPwStatus("", true);
 }
 
 /* --------- Status helpers ---------- */
@@ -230,7 +226,6 @@ async function signup() {
     if (!createRes.ok) throw new Error(await createRes.text() || "Signup failed");
 
     setSignupStatus("Account created! Signing you in…", true);
-    // Auto login with same credentials
     overlay.querySelector("#authEmail").value = email;
     overlay.querySelector("#authPassword").value = password;
     showLogin();
@@ -250,7 +245,6 @@ async function changePassword() {
   setPwStatus("Updating password…");
 
   try {
-    // Update the authed user's record. PocketBase accepts oldPassword + password + passwordConfirm for auth collections.
     const res = await fetch(`${PB_URL}/api/collections/users/records/${auth.user.id}`, {
       method: "PATCH",
       headers: {
@@ -265,7 +259,6 @@ async function changePassword() {
     });
     if (!res.ok) throw new Error(await res.text() || "Password update failed");
     setPwStatus("Password updated.", true);
-    // Optional: force re-login? For now, keep session.
   } catch (e) {
     setPwStatus(cleanErr(e), false);
   }
@@ -290,7 +283,7 @@ function updateAccountButton() {
   }
 }
 
-/* ---------------- Activity Logger + Viewer ---------------- */
+/* ---------------- Activity Logger ---------------- */
 export async function logActivity(action, meta = {}) {
   if (!auth.token || !auth.user) return;
   try {
@@ -310,16 +303,60 @@ export async function logActivity(action, meta = {}) {
   } catch { /* ignore */ }
 }
 
+/* ---------------- Activity Modal (separate popup) ---------------- */
+function ensureActivityModal() {
+  if (activityOverlay) return activityOverlay;
+  activityOverlay = document.createElement("div");
+  activityOverlay.className = "login-modal-overlay"; // reuse same overlay style
+  activityOverlay.innerHTML = `
+    <div class="login-modal-content" role="dialog" aria-modal="true">
+      <button class="login-modal-close" id="closeActivity" aria-label="Close">&times;</button>
+      <h2>Your activity</h2>
+      <div id="activityList" style="max-height: 360px; overflow:auto; border:1px solid #000; border-radius:8px;">
+        <div style="opacity:.7; padding:.5rem;">Loading…</div>
+      </div>
+      <div class="login-actions" style="justify-content:flex-end; margin-top:.5rem;">
+        <button class="login-secondary" id="moreActivities" type="button">Load more</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(activityOverlay);
+
+  activityOverlay.addEventListener("click", (e) => { if (e.target === activityOverlay) activityOverlay.style.display = "none"; });
+  activityOverlay.querySelector("#closeActivity").addEventListener("click", () => activityOverlay.style.display = "none");
+
+  // wire load more
+  const more = activityOverlay.querySelector("#moreActivities");
+  if (more && !more._bound) {
+    more._bound = true;
+    more.addEventListener("click", () => loadActivities());
+  }
+
+  return activityOverlay;
+}
+
 const activities = {
   page: 1,
   perPage: 20,
   done: false,
-  reset(){ this.page = 1; this.done = false; const list = get("#activityList"); if (list) list.innerHTML = '<div style="opacity:.7;">Loading…</div>'; }
+  reset(){
+    this.page = 1; this.done = false;
+    const list = document.querySelector("#activityList");
+    if (list) list.innerHTML = `<div style="opacity:.7; padding:.5rem;">Loading…</div>`;
+  }
 };
+
+function openActivityModal() {
+  if (!auth.user) return;
+  ensureActivityModal();
+  activities.reset();
+  activityOverlay.style.display = "flex";
+  loadActivities().catch(()=>{});
+}
 
 async function loadActivities() {
   if (!auth.user || !auth.token || activities.done) return;
-  const list = get("#activityList");
+  const list = document.querySelector("#activityList");
   if (!list) return;
 
   try {
@@ -333,48 +370,56 @@ async function loadActivities() {
       headers: { "Authorization": `Bearer ${auth.token}` }
     });
     if (!res.ok) throw new Error(await res.text() || "Failed to load activities");
-    const data = await res.json(); // { page, perPage, totalItems, items: [...] }
+    const data = await res.json();
 
     const items = data?.items || [];
     if (activities.page === 1) list.innerHTML = "";
     if (items.length === 0) {
-      if (activities.page === 1) list.innerHTML = `<div style="opacity:.7;">No activity yet.</div>`;
+      if (activities.page === 1) list.innerHTML = `<div style="opacity:.7;padding:.5rem;">No activity yet.</div>`;
       activities.done = true;
       return;
     }
 
+    // Render: one row per item
     items.forEach(rec => {
       const d = new Date(rec.created);
       const row = document.createElement("div");
-      row.style.padding = ".35rem 0";
-      row.style.borderBottom = "1px dashed #ddd";
-      row.innerHTML = `
-        <div style="font-weight:600">${escapeHtml(rec.action || "")}</div>
-        <div style="opacity:.8;font-size:.9rem">${escapeHtml(rec.path || "")}</div>
-        <div style="opacity:.6;font-size:.85rem">${d.toLocaleString()}</div>
+      row.style.display = "grid";
+      row.style.gridTemplateColumns = "1fr auto";
+      row.style.alignItems = "center";
+      row.style.gap = ".5rem";
+      row.style.padding = ".5rem .6rem";
+      row.style.borderBottom = "1px solid #eee";
+
+      const left = document.createElement("div");
+      left.style.minWidth = 0;
+      left.innerHTML = `
+        <div style="font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(rec.action || "")}</div>
+        <div style="opacity:.75; font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(rec.path || "")}</div>
       `;
+
+      const right = document.createElement("div");
+      right.style.opacity = ".65";
+      right.style.fontSize = ".85rem";
+      right.textContent = d.toLocaleString();
+
+      row.appendChild(left);
+      row.appendChild(right);
       list.appendChild(row);
     });
 
-    // pagination
     const totalPages = Math.ceil((data.totalItems || 0) / activities.perPage);
     activities.page++;
     activities.done = activities.page > totalPages;
 
-    // toggle "Load more"
-    const more = get("#moreActivities");
+    const more = document.querySelector("#moreActivities");
     if (more) more.style.display = activities.done ? "none" : "";
-    if (more && !more._bound) {
-      more._bound = true;
-      more.addEventListener("click", () => loadActivities());
-    }
   } catch (e) {
-    list.innerHTML = `<div style="color:crimson">${cleanErr(e)}</div>`;
+    list.innerHTML = `<div style="color:crimson; padding:.5rem;">${cleanErr(e)}</div>`;
   }
 }
 
 /* ---------------- Utilities ---------------- */
-function get(sel){ return overlay?.querySelector(sel); }
 function cleanErr(e){ return (e && e.message) ? e.message : String(e || "Error"); }
 function escapeHtml(s){ return String(s || "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
@@ -392,4 +437,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // expose for other scripts
-window.PBAuth = { auth, logActivity, openModal, showLogin, showSignup, showAccount };
+window.PBAuth = { auth, logActivity, openModal };
