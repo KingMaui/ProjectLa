@@ -1,10 +1,9 @@
+// contact-sumbit.js
 import PocketBase from "https://unpkg.com/pocketbase@0.21.3/dist/pocketbase.es.mjs";
 
-
-const PB_URL = "https://pb.junxieliang.com";
+const PB_URL = window.PB_URL || "https://pb.junxieliang.com";
 const pb = new PocketBase(PB_URL);
 
-// Helpful startup diagnostics in the console
 async function pbDiagnostics() {
   try {
     const res = await fetch(`${PB_URL}/api/health`, { cache: "no-store" });
@@ -15,58 +14,67 @@ async function pbDiagnostics() {
     console.log("Health endpoint body:", text);
     console.log("Using PB_URL:", PB_URL);
     console.log("Site protocol:", location.protocol);
-    console.log("CORS note: Make sure pb.junxieliang.com allows your site origin in PocketBase settings.");
+    console.log("CORS note: Make sure your PB allows this site origin.");
     console.groupEnd();
   } catch (e) {
     console.group("%cPocketBase Diagnostics", "color:#a00;padding:2px 6px;border:1px solid #a00;border-radius:4px;");
-    console.error("Health check failed to fetch:", e);
+    console.error("Health check failed:", e);
     console.groupEnd();
   }
 }
 
-// Warn if site is HTTPS but PB is HTTP (mixed content) — not expected now
-if (location.protocol === "https:" && PB_URL.startsWith("http://")) {
-  console.error("Mixed content: Your site is HTTPS but PocketBase is HTTP. Put PB behind HTTPS.");
+function setStatus(msg, ok = false) {
+  const el = document.getElementById("contactStatus");
+  if (el) {
+    el.textContent = msg || "";
+    el.style.color = ok ? "green" : "crimson";
+  } else {
+    // fallback
+    if (msg) (ok ? console.log : console.error)(msg);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".contact-form");
+  // Prefer the modal form; otherwise any .contact-form on the page
+  const form = document.getElementById("contactFormModal") || document.querySelector(".contact-form");
   if (!form) {
-    console.warn("No .contact-form found on this page.");
+    console.warn("No contact form found.");
     return;
   }
 
-  // Run diagnostics as soon as the page loads (visible in browser devtools)
   pbDiagnostics();
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById("fullName")?.value?.trim() || "";
+    const fullName = document.getElementById("fullName")?.value?.trim() || "";
     const email = document.getElementById("email")?.value?.trim() || "";
     const message = document.getElementById("message")?.value?.trim() || "";
 
-    if (!name || !email || !message) {
-      alert("Please fill out name, email, and message.");
+    if (!fullName || !email || !message) {
+      setStatus("Please fill out name, email, and message.");
       return;
     }
 
     const submitBtn = form.querySelector("[type=submit]");
     if (submitBtn) submitBtn.disabled = true;
+    setStatus("Sending...");
 
     try {
-      // Try creating a record in collection "messages"
-      // Ensure this collection exists in PB with fields: name (text), email (email), message (text)
-      // and that the Create rule allows unauthenticated: leave rule empty or set to true.
-      const record = await pb.collection("messages").create({ name, email, message });
-      alert("Message sent successfully!");
+      // Collection "messages" should have fields: fullName (text), email (email), message (text)
+      const record = await pb.collection("messages").create({ fullName, email, message });
+      setStatus("Message sent successfully!", true);
       form.reset();
       console.log("Created record:", record);
+
+      // optional: auto-close after success
+      setTimeout(() => {
+        if (window.ContactModal?.close) window.ContactModal.close();
+      }, 800);
     } catch (err) {
-      // Surface PocketBase JSON errors in console
-      const payload = (err && err.response) ? err.response : err;
+      const payload = err?.response || err;
       console.error("Submission error:", payload);
-      alert("Failed to send message. See console for details.");
+      setStatus("Failed to send message. Please try again.");
     } finally {
       if (submitBtn) submitBtn.disabled = false;
     }
