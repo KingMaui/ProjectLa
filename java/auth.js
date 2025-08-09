@@ -1,5 +1,5 @@
 // auth.js
-// PocketBase Auth + Activity Logger + Account panel + Activity modal
+// PocketBase Auth + Activity Logger + Account panel + Activity modal (aesthetic updates)
 
 const PB_URL = window.PB_URL || "https://pb.junxieliang.com";
 
@@ -32,7 +32,7 @@ function ensureModal() {
 
       <!-- LOGIN PANEL -->
       <div id="panel-login">
-        <h2 id="loginTitle">Sign in to your account</h2>
+        <h2 class="section-title">Sign in to your account</h2>
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="authEmail">Email</label>
@@ -52,7 +52,7 @@ function ensureModal() {
 
       <!-- SIGNUP PANEL -->
       <div id="panel-signup" style="display:none">
-        <h2>Create your account</h2>
+        <h2 class="section-title">Create your account</h2>
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="suUsername">Username</label>
@@ -74,21 +74,21 @@ function ensureModal() {
         </form>
       </div>
 
-      <!-- ACCOUNT PANEL (when logged in) -->
+      <!-- ACCOUNT PANEL -->
       <div id="panel-account" style="display:none">
-        <h2>Account</h2>
+        <h2 class="section-title">Account</h2>
         <div class="login-status" id="accountStatus"></div>
 
-        <div class="login-form" style="margin-bottom:.75rem;">
-          <div class="form-group">
-            <div style="font-weight:600;margin-bottom:.2rem;">Signed in as</div>
-            <div id="acctIdentity" style="border:1px solid #000;border-radius:8px;padding:.5rem;">
-              <!-- filled in showAccount() -->
-            </div>
-          </div>
-        </div>
+        <h2 class="section-title" style="margin-top:.25rem">Signed in as</h2>
+        <div class="identity-box" id="acctIdentity"></div>
 
-        <h3 style="margin:.25rem 0 .25rem; font-size:1rem;">Change password</h3>
+        <h2 class="section-title" style="margin-top:1rem;">Username</h2>
+        <div class="identity-box" id="acctUsername"></div>
+
+        <h2 class="section-title" style="margin-top:1rem;">Email</h2>
+        <div class="identity-box" id="acctEmail"></div>
+
+        <h2 class="section-title" style="margin-top:1rem;">Change password</h2>
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="cpCurrent">Current password</label>
@@ -102,6 +102,7 @@ function ensureModal() {
             <label for="cpConfirm">Confirm new password</label>
             <input type="password" id="cpConfirm" placeholder="Confirm new password" autocomplete="new-password">
           </div>
+
           <div class="login-actions" style="justify-content:space-between; width:100%;">
             <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
               <button class="login-btn" id="changePwBtn" type="button">Update password</button>
@@ -111,6 +112,7 @@ function ensureModal() {
               <button class="login-secondary" id="logoutBtn" type="button">Log out</button>
             </div>
           </div>
+
           <div class="login-status" id="pwStatus"></div>
         </form>
       </div>
@@ -118,11 +120,9 @@ function ensureModal() {
   `;
   document.body.appendChild(overlay);
 
-  // Close
   overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.style.display = "none"; });
   overlay.querySelector("#closeLogin").addEventListener("click", () => overlay.style.display = "none");
 
-  // Bind actions
   overlay.querySelector("#loginSubmit").addEventListener("click", login);
   overlay.querySelector("#signupSubmit").addEventListener("click", signup);
   overlay.querySelector("#toSignup").addEventListener("click", showSignup);
@@ -147,44 +147,31 @@ if (loginBtn) {
 }
 
 /* --------- Panel switches ---------- */
-function showLogin() {
-  panel("panel-login");
-  clearAllStatus();
-}
-function showSignup() {
-  panel("panel-signup");
-  clearAllStatus();
-  const logEmail = overlay.querySelector("#authEmail")?.value?.trim();
-  if (logEmail) overlay.querySelector("#suEmail").value = logEmail;
-}
+function showLogin() { panel("panel-login"); clearAllStatus(); }
+function showSignup() { panel("panel-signup"); clearAllStatus(); }
 function showAccount() {
-  panel("panel-account");
-  clearAllStatus();
-  const name = auth.user?.name || auth.user?.username || auth.user?.email || "User";
-  const email = auth.user?.email || "";
-  const idBox = overlay.querySelector("#acctIdentity");
-  if (idBox) idBox.textContent = `${name} (${email})`;
+  panel("panel-account"); clearAllStatus();
+  const username = auth.user?.name || auth.user?.username || "User";
+  const email    = auth.user?.email || "";
+  const identity = `${username} (${email})`;
+  get("#acctIdentity").textContent = identity;
+  get("#acctUsername").textContent = username;
+  get("#acctEmail").textContent    = email;
 }
 
 function panel(id) {
   ["panel-login","panel-signup","panel-account"].forEach(pid => {
-    const el = overlay.querySelector("#"+pid);
-    if (el) el.style.display = (pid === id) ? "" : "none";
+    const el = get(`#${pid}`); if (el) el.style.display = (pid === id) ? "" : "none";
   });
 }
-function clearAllStatus(){
-  setStatus("", true); setSignupStatus("", true); setAccountStatus("", true); setPwStatus("", true);
-}
+function clearAllStatus(){ setStatus("", true); setSignupStatus("", true); setAccountStatus("", true); setPwStatus("", true); }
 
 /* --------- Status helpers ---------- */
 function setStatus(msg, ok=false){ setColorText("#loginStatus", msg, ok); }
 function setSignupStatus(msg, ok=false){ setColorText("#signupStatus", msg, ok); }
 function setAccountStatus(msg, ok=false){ setColorText("#accountStatus", msg, ok); }
 function setPwStatus(msg, ok=false){ setColorText("#pwStatus", msg, ok); }
-function setColorText(sel, msg, ok){
-  const el = overlay?.querySelector(sel);
-  if (el){ el.textContent = msg || ""; el.style.color = ok ? "green" : "crimson"; }
-}
+function setColorText(sel, msg, ok){ const el = get(sel); if (el){ el.textContent = msg || ""; el.style.color = ok ? "green" : "crimson"; } }
 
 /* ---------------- Auth ---------------- */
 async function login() {
@@ -193,8 +180,7 @@ async function login() {
   setStatus("Signing in...");
   try {
     const res = await fetch(`${PB_URL}/api/collections/users/auth-with-password`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ identity: email, password })
     });
     if (!res.ok) throw new Error(await res.text() || "Login failed");
@@ -207,9 +193,7 @@ async function login() {
     updateAccountButton();
     setTimeout(() => { overlay && (overlay.style.display = "none"); }, 500);
     logActivity("login", { ua: navigator.userAgent }).catch(()=>{});
-  } catch (e) {
-    setStatus(cleanErr(e), false);
-  }
+  } catch (e) { setStatus(cleanErr(e), false); }
 }
 
 async function signup() {
@@ -219,49 +203,35 @@ async function signup() {
   setSignupStatus("Creating account...");
   try {
     const createRes = await fetch(`${PB_URL}/api/collections/users/records`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, email, password, passwordConfirm: password })
     });
     if (!createRes.ok) throw new Error(await createRes.text() || "Signup failed");
 
     setSignupStatus("Account created! Signing you in…", true);
-    overlay.querySelector("#authEmail").value = email;
-    overlay.querySelector("#authPassword").value = password;
+    get("#authEmail").value = email;
+    get("#authPassword").value = password;
     showLogin();
     await login();
-  } catch (e) {
-    setSignupStatus(cleanErr(e), false);
-  }
+  } catch (e) { setSignupStatus(cleanErr(e), false); }
 }
 
 async function changePassword() {
   if (!auth.user || !auth.token) return;
-  const current = overlay.querySelector("#cpCurrent").value;
-  const pw1     = overlay.querySelector("#cpNew").value;
-  const pw2     = overlay.querySelector("#cpConfirm").value;
-
+  const current = get("#cpCurrent").value;
+  const pw1     = get("#cpNew").value;
+  const pw2     = get("#cpConfirm").value;
   if (!pw1 || pw1 !== pw2){ setPwStatus("Passwords do not match.", false); return; }
   setPwStatus("Updating password…");
-
   try {
     const res = await fetch(`${PB_URL}/api/collections/users/records/${auth.user.id}`, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${auth.token}`
-      },
-      body: JSON.stringify({
-        oldPassword: current || undefined,
-        password: pw1,
-        passwordConfirm: pw2
-      })
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${auth.token}` },
+      body: JSON.stringify({ oldPassword: current || undefined, password: pw1, passwordConfirm: pw2 })
     });
     if (!res.ok) throw new Error(await res.text() || "Password update failed");
     setPwStatus("Password updated.", true);
-  } catch (e) {
-    setPwStatus(cleanErr(e), false);
-  }
+  } catch (e) { setPwStatus(cleanErr(e), false); }
 }
 
 function doLogout() {
@@ -278,9 +248,7 @@ function updateAccountButton() {
   if (auth.user) {
     const name = auth.user?.name || auth.user?.username || auth.user?.email || "User";
     btn.textContent = name;
-  } else {
-    btn.textContent = "Login";
-  }
+  } else { btn.textContent = "Login"; }
 }
 
 /* ---------------- Activity Logger ---------------- */
@@ -289,146 +257,88 @@ export async function logActivity(action, meta = {}) {
   try {
     await fetch(`${PB_URL}/api/collections/activities/records`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${auth.token}`
-      },
-      body: JSON.stringify({
-        user: auth.user.id,
-        action,
-        meta,
-        path: location.pathname
-      })
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${auth.token}` },
+      body: JSON.stringify({ user: auth.user.id, action, meta, path: location.pathname })
     });
-  } catch { /* ignore */ }
+  } catch {}
 }
 
-/* ---------------- Activity Modal (separate popup) ---------------- */
+/* ---------------- Activity Modal (bigger, no pagination) ---------------- */
 function ensureActivityModal() {
   if (activityOverlay) return activityOverlay;
   activityOverlay = document.createElement("div");
-  activityOverlay.className = "login-modal-overlay"; // reuse same overlay style
+  activityOverlay.className = "activity-modal-overlay";
   activityOverlay.innerHTML = `
-    <div class="login-modal-content" role="dialog" aria-modal="true">
+    <div class="activity-modal-content" role="dialog" aria-modal="true">
       <button class="login-modal-close" id="closeActivity" aria-label="Close">&times;</button>
       <h2>Your activity</h2>
-      <div id="activityList" style="max-height: 360px; overflow:auto; border:1px solid #000; border-radius:8px;">
-        <div style="opacity:.7; padding:.5rem;">Loading…</div>
-      </div>
-      <div class="login-actions" style="justify-content:flex-end; margin-top:.5rem;">
-        <button class="login-secondary" id="moreActivities" type="button">Load more</button>
-      </div>
+      <div id="activityList"><div style="opacity:.7; padding:.5rem;">Loading…</div></div>
     </div>
   `;
   document.body.appendChild(activityOverlay);
-
   activityOverlay.addEventListener("click", (e) => { if (e.target === activityOverlay) activityOverlay.style.display = "none"; });
   activityOverlay.querySelector("#closeActivity").addEventListener("click", () => activityOverlay.style.display = "none");
-
-  // wire load more
-  const more = activityOverlay.querySelector("#moreActivities");
-  if (more && !more._bound) {
-    more._bound = true;
-    more.addEventListener("click", () => loadActivities());
-  }
-
   return activityOverlay;
 }
-
-const activities = {
-  page: 1,
-  perPage: 20,
-  done: false,
-  reset(){
-    this.page = 1; this.done = false;
-    const list = document.querySelector("#activityList");
-    if (list) list.innerHTML = `<div style="opacity:.7; padding:.5rem;">Loading…</div>`;
-  }
-};
 
 function openActivityModal() {
   if (!auth.user) return;
   ensureActivityModal();
-  activities.reset();
+  renderActivities([]);            // clear
   activityOverlay.style.display = "flex";
-  loadActivities().catch(()=>{});
+  loadAllActivities().catch(()=>{});
 }
 
-async function loadActivities() {
-  if (!auth.user || !auth.token || activities.done) return;
-  const list = document.querySelector("#activityList");
-  if (!list) return;
-
+// Fetch a large page once; no "load more"
+async function loadAllActivities() {
+  const list = document.getElementById("activityList");
   try {
     const params = new URLSearchParams({
-      page: String(activities.page),
-      perPage: String(activities.perPage),
-      sort: "-created",
-      filter: `user="${auth.user.id}"`
+      page: "1", perPage: "100", sort: "-created", filter: `user="${auth.user.id}"`
     });
     const res = await fetch(`${PB_URL}/api/collections/activities/records?` + params.toString(), {
       headers: { "Authorization": `Bearer ${auth.token}` }
     });
     if (!res.ok) throw new Error(await res.text() || "Failed to load activities");
     const data = await res.json();
-
-    const items = data?.items || [];
-    if (activities.page === 1) list.innerHTML = "";
-    if (items.length === 0) {
-      if (activities.page === 1) list.innerHTML = `<div style="opacity:.7;padding:.5rem;">No activity yet.</div>`;
-      activities.done = true;
-      return;
-    }
-
-    // Render: one row per item
-    items.forEach(rec => {
-      const d = new Date(rec.created);
-      const row = document.createElement("div");
-      row.style.display = "grid";
-      row.style.gridTemplateColumns = "1fr auto";
-      row.style.alignItems = "center";
-      row.style.gap = ".5rem";
-      row.style.padding = ".5rem .6rem";
-      row.style.borderBottom = "1px solid #eee";
-
-      const left = document.createElement("div");
-      left.style.minWidth = 0;
-      left.innerHTML = `
-        <div style="font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(rec.action || "")}</div>
-        <div style="opacity:.75; font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(rec.path || "")}</div>
-      `;
-
-      const right = document.createElement("div");
-      right.style.opacity = ".65";
-      right.style.fontSize = ".85rem";
-      right.textContent = d.toLocaleString();
-
-      row.appendChild(left);
-      row.appendChild(right);
-      list.appendChild(row);
-    });
-
-    const totalPages = Math.ceil((data.totalItems || 0) / activities.perPage);
-    activities.page++;
-    activities.done = activities.page > totalPages;
-
-    const more = document.querySelector("#moreActivities");
-    if (more) more.style.display = activities.done ? "none" : "";
+    renderActivities(data?.items || []);
   } catch (e) {
     list.innerHTML = `<div style="color:crimson; padding:.5rem;">${cleanErr(e)}</div>`;
   }
 }
 
+function renderActivities(items) {
+  const list = document.getElementById("activityList");
+  if (!list) return;
+  if (!items.length) { list.innerHTML = `<div style="opacity:.7;padding:.5rem;">No activity yet.</div>`; return; }
+  list.innerHTML = "";
+  items.forEach(rec => {
+    const d = new Date(rec.created);
+    const row = document.createElement("div");
+    row.className = "activity-row";
+    const left = document.createElement("div");
+    left.className = "left";
+    left.innerHTML = `
+      <div class="act">T ${escapeHtml(rec.action || "")}</div>
+      <div class="path">T ${escapeHtml(rec.path || "")}</div>
+    `;
+    const right = document.createElement("div");
+    right.className = "right";
+    right.textContent = d.toLocaleString();
+    row.appendChild(left); row.appendChild(right);
+    list.appendChild(row);
+  });
+}
+
 /* ---------------- Utilities ---------------- */
+function get(sel){ return overlay?.querySelector(sel); }
 function cleanErr(e){ return (e && e.message) ? e.message : String(e || "Error"); }
 function escapeHtml(s){ return String(s || "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 /* ---------------- Boot ---------------- */
 document.addEventListener("DOMContentLoaded", () => {
   updateAccountButton();
-  // Auto-log page view
   logActivity("page_view", { title: document.title, ref: document.referrer }).catch(()=>{});
-  // Log nav clicks
   document.querySelectorAll(".navbar-links a").forEach(a => {
     a.addEventListener("click", () => {
       logActivity("nav_click", { href: a.getAttribute("href") || "", id: a.id || "" }).catch(()=>{});
@@ -436,5 +346,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// expose for other scripts
 window.PBAuth = { auth, logActivity, openModal };
