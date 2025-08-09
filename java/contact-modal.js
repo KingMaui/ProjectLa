@@ -27,11 +27,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Handle form submission
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Message sent successfully!');
-    modalOverlay.style.display = 'none';
-    contactForm.reset();
-  });
 });

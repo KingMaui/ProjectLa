@@ -1,6 +1,12 @@
   import PocketBase from "https://unpkg.com/pocketbase@0.21.3/dist/pocketbase.es.mjs";
 
-  const pb = new PocketBase("http://170.9.3.173:8080");
+  const PB_URL = "http://170.9.3.173:8080";
+  const pb = new PocketBase(PB_URL);
+  // Warn if site is HTTPS but PB is HTTP (mixed content will be blocked by browsers)
+  if (location.protocol === "https:" && PB_URL.startsWith("http://")) {
+    console.error("Mixed content: Your site is HTTPS but PocketBase is HTTP. Browser will block the request. Put PB behind HTTPS.");
+  }
+
 
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".contact-form");
