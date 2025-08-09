@@ -143,18 +143,19 @@ function doLogout() {
 }
 
 // --------------------
-// UI updates (button text and chip)
+// UI updates (plain text username)
 // --------------------
 function updateAccountButton() {
   const btn = document.getElementById("loginBtn");
   if (!btn) return;
+
   if (auth.user) {
     const name = auth.user?.name || auth.user?.username || auth.user?.email || "User";
-    const initials = String(name).trim().slice(0, 2).toUpperCase();
-    btn.innerHTML = `<span class="user-chip"><span class="user-initials">${initials}</span>${name}</span>`;
+    btn.textContent = name; // Plain text username
   } else {
     btn.textContent = "Login";
   }
+
   if (overlay) {
     overlay.querySelector("#logoutBtn").style.display = auth.user ? "inline-block" : "none";
   }
