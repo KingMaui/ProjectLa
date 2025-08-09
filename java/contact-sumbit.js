@@ -1,6 +1,6 @@
   import PocketBase from "https://unpkg.com/pocketbase@0.21.3/dist/pocketbase.es.mjs";
 
-  const PB_URL = "http://170.9.3.173:8080";
+  const PB_URL = "https://pb.junxieliang.com";
   const pb = new PocketBase(PB_URL);
   // Warn if site is HTTPS but PB is HTTP (mixed content will be blocked by browsers)
   if (location.protocol === "https:" && PB_URL.startsWith("http://")) {
