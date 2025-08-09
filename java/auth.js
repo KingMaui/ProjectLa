@@ -56,7 +56,7 @@ function ensureModal() {
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="suUsername">Username</label>
-            <input type="text" id="suUsername" placeholder="yourname" autocomplete="username" required>
+            <input type="text" id="suUsername" placeholder="name" autocomplete="username" required>
           </div>
           <div class="form-group">
             <label for="suEmail">Email</label>
