@@ -6,6 +6,7 @@
   <title>JUNXIELIANG</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/contact-modal.css">
+  <link rel="stylesheet" href="css/login-modal.css" />
   <link rel="stylesheet" href="css/counter-style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <script> window.PB_URL = "https://pb.junxieliang.com" </script>
@@ -38,21 +39,21 @@
             <div class="contact-modal-content">
               <button class="contact-modal-close">&times;</button>
               <h2>Leave a Message</h2>
-              <form class="contact-form">
-                <div class="form-group">
-                  <label for="fullName">Name</label>
-                  <input type="text" id="fullName" required>
-                </div>
-                <div class="form-group">
-                  <label for="email">E-mail</label>
-                  <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                  <label for="message">Message</label>
-                  <textarea id="message" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="contact-submit-btn">Send</button>
-              </form>
+                <form class="contact-form" id="contact-form">
+                  <div class="form-group">
+                    <label for="fullName">Name</label>
+                    <input type="text" id="fullName" placeholder="name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" placeholder="message" required></textarea>
+                  </div>
+                  <button type="submit" class="contact-submit-btn">Send</button>
+                </form>
               <p class="location-info">Junxieliangweb@gmail.com<br>Based in San Francisco, California</p>
               <div class="social-links">
                 <a href="https://www.linkedin.com/in/junxieliang/" target="_blank" class="linkedin-icon" aria-label="LinkedIn Profile">
