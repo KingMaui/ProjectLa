@@ -70,6 +70,7 @@
 
 .form-group input,
 .form-group textarea {
+  font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   width: 100%;
   padding: 0.5rem 0.75rem; 
   border: 1px solid #000; 
@@ -144,4 +145,9 @@
 
 .contact-submit-btn:active {
   transform: translateY(0);
+}
+
+#contactStatus {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
 }

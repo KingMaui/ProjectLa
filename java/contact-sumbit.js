@@ -61,8 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setStatus("Sending...");
 
     try {
-      // Collection "messages" should have fields: fullName (text), email (email), message (text)
-      const record = await pb.collection("messages").create({ fullName, email, message });
+      const record = await pb.collection("messages").create({
+        name: fullName,
+        fullName,
+        email,
+        message
+      });
       setStatus("Message sent successfully!", true);
       form.reset();
       console.log("Created record:", record);
