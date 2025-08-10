@@ -1,16 +1,4 @@
-:root {
-    --primary-color: #165DFF;
-    --secondary-color: #00B42A;
-    --accent-color: #FF7D00;
-    --danger-color: #F53F3F;
-    --neutral-100: #F2F3F5;
-    --neutral-200: #E5E6EB;
-    --neutral-300: #C9CDD4;
-    --neutral-400: #86909C;
-    --neutral-500: #4E5969;
-    --neutral-600: #272E3B;
-    --neutral-700: #1D2129;
-}
+
 .container {
     margin: 0 auto;
     max-width: 1400px;

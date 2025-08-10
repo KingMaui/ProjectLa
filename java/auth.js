@@ -32,7 +32,7 @@ function ensureModal() {
 
       <!-- LOGIN PANEL -->
       <div id="panel-login">
-        <h2 id="loginTitle">Sign in to your account</h2>
+        <h2 id="loginTitle">Sign In</h2>
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="authEmail">Email</label>
@@ -52,7 +52,7 @@ function ensureModal() {
 
       <!-- SIGNUP PANEL -->
       <div id="panel-signup" style="display:none">
-        <h2>Create your account</h2>
+        <h2>Create Account</h2>
         <form class="login-form" onsubmit="return false;">
           <div class="form-group">
             <label for="suUsername">Username</label>
@@ -76,35 +76,35 @@ function ensureModal() {
 
       <!-- ACCOUNT PANEL (when logged in) -->
       <div id="panel-account" style="display:none">
-        <h2>Account</h2>
+        <h2>Account Setting</h2>
 
         <div class="login-form" style="margin-bottom:.75rem;">
           <div class="form-group">
-            <div style="font-size: 1.5rem;">Signed in as</div>
-            <div id="acctIdentity" style="font-size: 1rem;padding:.2rem;">
+            <div style="font-size: h4;">Signed in as</div>
+            <div id="acctIdentity" style="font-size: h4;">
               <!-- filled in showAccount() -->
             </div>
           </div>
         </div>
 
-        <h3 style="margin:.25rem 0 .25rem;font-size: 1.5rem;">Change password</h3>
-        <form class="login-form" onsubmit="return false;">
-          <div class="form-group">
-            <label for="cpCurrent">Current password</label>
-            <input type="password" id="cpCurrent" placeholder="Current password" autocomplete="current-password">
-          </div>
-          <div class="form-group">
-            <label for="cpNew">New password</label>
-            <input type="password" id="cpNew" placeholder="New password" autocomplete="new-password">
-          </div>
-          <div class="form-group">
-            <label for="cpConfirm">Confirm new password</label>
-            <input type="password" id="cpConfirm" placeholder="Confirm new password" autocomplete="new-password">
-          </div>
-          <div class="login-actions" style="justify-content:space-between; width:100%;">
-            <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
-              <button class="login-btn" id="changePwBtn" type="button">Update password</button>
+          <h3 style="margin:.25rem 0 .25rem;font-size: 1.5rem;">Change password</h3>
+          <form class="login-form" onsubmit="return false;">
+            <div class="form-group">
+              <label for="cpCurrent">Current password</label>
+              <input type="password" id="cpCurrent" placeholder="Current password" autocomplete="current-password">
             </div>
+            <div class="form-group">
+              <label for="cpNew">New password</label>
+              <input type="password" id="cpNew" placeholder="New password" autocomplete="new-password">
+            </div>
+            <div class="form-group">
+              <label for="cpConfirm">Confirm new password</label>
+              <input type="password" id="cpConfirm" placeholder="Confirm new password" autocomplete="new-password">
+            </div>
+            <div class="login-actions" style="justify-content:space-between; width:100%;">
+              <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+                <button class="login-btn" id="changePwBtn" type="button">Update password</button>
+              </div>
             <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
               <button class="login-secondary" id="activityBtn" type="button">Your activity</button>
               <button class="login-secondary" id="logoutBtn" type="button">Log out</button>
