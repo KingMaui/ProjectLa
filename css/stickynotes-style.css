@@ -48,19 +48,25 @@
 }
 
 /* Individual Note Styles */
-.store-note {
+.calendar-note {
     background-color: #f0f9e8;
     border-color: #cfe8b0;
-    transform: rotate(-1deg);
+    transform: rotate(-0.5deg);
+}
+
+.store-note {
+    background-color: #E8C7C8;
+    border-color: #C99A9C;
+    transform: rotate(0.5deg);
 }
 
 .counter-note {
-    background-color: #E8C7C8;
-    border-color: #C99A9C;
-    transform: rotate(1deg);
+    background-color: #DFF5E1;
+    border-color: #A5D6A7;
+    transform: rotate(-0.5deg);
 }
 
-.calendar-note {
+.tcm-note{
     background-color: #E0F7FA;
     border-color: #b2ebf2;
     transform: rotate(-0.5deg);
