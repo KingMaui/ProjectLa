@@ -11,6 +11,7 @@
 
 // ------------------------ Config / Utilities ------------------------
 const PB_BASE = window.PB_URL || "https://pb.junxieliang.com"; // same default as auth.js
+const TZ = 'America/Los_Angeles'; // change to whatever you want
 
 function authState() {
   const a = window.PBAuth?.auth;
@@ -473,7 +474,9 @@ function weekRangeOf(date){
 
 function renderControls(){
   if (!el.controls) return;
-  const monthName = state.current.toLocaleDateString(undefined, { month:'long', year:'numeric' });
+  const monthName = new Intl.DateTimeFormat(undefined, {
+  timeZone: TZ, month:'long', year:'numeric'
+  }).format(new Date(state.current.getFullYear(), state.current.getMonth(), 1));
   el.monthTitle.textContent = monthName;
 
   if (!el.builtControls) {
@@ -590,7 +593,9 @@ function renderMonth(){
   const pos = state.logs[activeId] || new Set();
   const neg = state.negLogs[activeId] || new Set();
   const notes = state.notes[activeId] || {};
-  const todayIso = ymd(new Date());
+  const todayIso = new Intl.DateTimeFormat('en-CA', {
+  timeZone: TZ, year:'numeric', month:'2-digit', day:'2-digit'
+  }).format(new Date());
 
   for (let day=1; day<=days; day++) {
     const d = new Date(state.current.getFullYear(), state.current.getMonth(), day);
