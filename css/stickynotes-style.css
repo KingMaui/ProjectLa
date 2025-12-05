@@ -24,6 +24,10 @@
     border: 1px solid #cfe8b0;
 }
 
+.active-title {
+    background-color: #f5f5f5;
+    border: 1px solid #dcdcdc;
+}
 .future-title {
     background-color: #E0F7FA;
     border: 1px solid #b2ebf2;
@@ -48,9 +52,15 @@
 }
 
 /* Individual Note Styles */
-.calendar-note {
+.OCR-note {
     background-color: #f0f9e8;
     border-color: #cfe8b0;
+    transform: rotate(0.5deg);
+}
+
+.calendar-note {
+    background-color: #f5f5f5;
+    border-color: #dcdcdc;
     transform: rotate(-0.5deg);
 }
 
