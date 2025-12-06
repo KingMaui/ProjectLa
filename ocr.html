@@ -21,6 +21,8 @@
   <script src="java/script.js" defer></script>
   <script src="java/contact-modal.js" defer></script>
   <script src="java/camera.js" defer></script>
+  <script src="https://unpkg.com/tesseract.js@5.0.3/dist/tesseract.min.js"></script>
+  <script src="java/visionocr.js" defer></script>
 </head>
 <body>
   <header>
@@ -86,7 +88,7 @@
   <main class="ocr-main">
     <section class="ocr-hero">
       <h2>VisionOCR</h2>
-      <p>Scan receipts and invoices directly from your camera.</p>
+      <p>Take a photo of a receipt and extract the text locally in your browser.</p>
     </section>
 
     <section class="camera-section">
@@ -95,12 +97,6 @@
           <div class="camera-header-left">
             <h3 class="camera-title">Live camera</h3>
             <p id="cameraStatus" class="camera-status">Camera is off.</p>
-          </div>
-          <div class="camera-header-right">
-            <span class="camera-label">Camera</span>
-            <select id="cameraSelect" class="camera-select" disabled>
-              <option>Loading…</option>
-            </select>
           </div>
         </div>
 
@@ -112,7 +108,7 @@
         <div class="camera-controls">
           <button id="startCamera" class="camera-btn primary">Start camera</button>
           <button id="stopCamera" class="camera-btn" disabled>Stop</button>
-          <button id="captureFrame" class="camera-btn" disabled>Capture</button>
+          <button id="captureFrame" class="camera-btn" disabled>Capture + OCR</button>
         </div>
         <p class="camera-permission-hint">
           If nothing happens, check your browser's camera permission settings.
@@ -122,29 +118,27 @@
 
     <section class="camera-section">
       <div class="camera-card">
-        <h3 class="camera-title">Last capture</h3>
+        <h2 class="camera-title">Last capture &amp; OCR result</h2>
+
         <canvas id="captureCanvas" style="display:none;"></canvas>
-        <img id="capturedImage" alt="Captured frame"
-             style="max-width:100%; border-radius:8px; display:none;" />
-        <p id="captureHint" class="camera-permission-hint">
-          Press “Capture” to freeze a frame for OCR.
+        <img
+          id="capturedImage"
+          alt="Captured frame"
+          style="max-width:100%; border-radius:8px; display:none; margin-bottom:0.75rem;"
+        />
+
+        <p id="ocrStatus" class="camera-permission-hint">
+          Press “Capture + OCR” to freeze a frame and extract text.
         </p>
-        <textarea id="ocrOutput" rows="5"
-                  style="width:100%; margin-top:0.75rem;"
-                  placeholder="Extracted text will appear here once OCR is wired up."></textarea>
+        <textarea
+          id="ocrOutput"
+          rows="8"
+          style="width:100%; box-sizing:border-box; margin-top:0.25rem;"
+          placeholder="OCR text will appear here. You can edit it manually."
+        ></textarea>
       </div>
     </section>
   </main>
-  <script src="java/camera.js"></script>
-  <script>
-    const navbarToggle = document.getElementById('navbarToggle');
-    const navbarContent = document.querySelector('.navbar-content');
-    if (navbarToggle && navbarContent) {
-      navbarToggle.addEventListener('click', () => {
-        navbarContent.classList.toggle('active');
-      });
-    }
-  </script>
 
   <footer>
     <h6>© 2025 Jun Xie Liang. All Rights Reserved.</h6>
