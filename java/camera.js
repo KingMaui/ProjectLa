@@ -7,8 +7,14 @@
   const video = document.getElementById("cameraPreview");
   const startBtn = document.getElementById("startCamera");
   const stopBtn = document.getElementById("stopCamera");
+  const captureBtn = document.getElementById("captureFrame");
   const cameraSelect = document.getElementById("cameraSelect");
   const statusEl = document.getElementById("cameraStatus");
+
+  const captureCanvas = document.getElementById("captureCanvas");
+  const capturedImage = document.getElementById("capturedImage");
+  const captureHint = document.getElementById("captureHint");
+  const ocrOutput = document.getElementById("ocrOutput");
 
   if (!video || !startBtn || !stopBtn || !cameraSelect || !statusEl) {
     // Not on the OCR page or markup missing – do nothing.
@@ -76,6 +82,7 @@
     setStatus("Requesting camera access…", false);
     startBtn.disabled = true;
     stopBtn.disabled = true;
+    if (captureBtn) captureBtn.disabled = true;
 
     try {
       if (!devicesLoaded) {
@@ -101,6 +108,7 @@
       setStatus("Camera is on.", false);
       startBtn.disabled = true;
       stopBtn.disabled = false;
+      if (captureBtn) captureBtn.disabled = false;
     } catch (err) {
       console.error("getUserMedia error:", err);
       if (err.name === "NotAllowedError") {
@@ -112,6 +120,7 @@
       }
       startBtn.disabled = false;
       stopBtn.disabled = true;
+      if (captureBtn) captureBtn.disabled = true;
     }
   }
 
@@ -120,6 +129,57 @@
     setStatus("Camera is off.", false);
     startBtn.disabled = false;
     stopBtn.disabled = true;
+    if (captureBtn) captureBtn.disabled = true;
+  }
+
+  function captureFrame() {
+    if (!captureCanvas || !video) return;
+
+    if (!currentStream) {
+      setStatus("Start the camera before capturing.", true);
+      return;
+    }
+
+    const width = video.videoWidth;
+    const height = video.videoHeight;
+    if (!width || !height) {
+      setStatus("Camera not ready yet. Try again.", true);
+      return;
+    }
+
+    captureCanvas.width = width;
+    captureCanvas.height = height;
+    const ctx = captureCanvas.getContext("2d");
+    ctx.drawImage(video, 0, 0, width, height);
+
+    if (capturedImage) {
+      capturedImage.src = captureCanvas.toDataURL("image/png");
+      capturedImage.style.display = "block";
+    }
+    if (captureHint) {
+      captureHint.textContent = "Frame captured. You can now run OCR on it.";
+    }
+
+    setStatus("Frame captured.", false);
+
+    // Optional hook: if you define window.runOcr(canvas) elsewhere,
+    // it will be called automatically.
+    if (typeof window.runOcr === "function") {
+      try {
+        const maybePromise = window.runOcr(captureCanvas);
+        if (maybePromise && typeof maybePromise.then === "function") {
+          maybePromise.then(text => {
+            if (ocrOutput && typeof text === "string") {
+              ocrOutput.value = text;
+            }
+          }).catch(err => {
+            console.error("runOcr promise rejected:", err);
+          });
+        }
+      } catch (err) {
+        console.error("runOcr error:", err);
+      }
+    }
   }
 
   // Event listeners
@@ -130,6 +190,9 @@
       startCamera().catch(() => {});
     }
   });
+  if (captureBtn) {
+    captureBtn.addEventListener("click", captureFrame);
+  }
 
   // Try to pre-load camera list (will only succeed after permission in some browsers)
   if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
