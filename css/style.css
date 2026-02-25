@@ -36,36 +36,55 @@ h6 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 1rem;
+    font-size: 0.75rem;
+    color: var(--neutral-400);
+    font-weight: 400;
 }
 
-/* Navbar styles */
+footer {
+    border-top: 1px solid var(--neutral-200);
+    margin-top: 2rem;
+}
+
+/* ========================
+   NAVBAR
+======================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
+    background-color: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color: #000;
-    padding: 1rem 2%;
+    padding: 0.75rem 2%;
+    border-bottom: 1px solid var(--neutral-200);
+    position: sticky;
+    top: 0;
+    z-index: 200;
 }
 
 .title {
     margin: 0;
-    font-size: 2rem; /* Increased title size */
+    font-size: 1.5rem;
     list-style: none;
     display: block;
-    padding-left:2%;
+    padding-left: 2%;
 }
 
 .title a {
     text-decoration: none;
     color: #000;
+    letter-spacing: 0.04em;
 }
 
 .search-bar {
     border-radius: 20px;
     border: 1px solid #000;
-    padding: 0.5rem 1rem; 
-    font-size: 1rem; 
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
     display: none;
 }
 
@@ -74,41 +93,176 @@ h6 {
     padding: 0;
     display: flex;
     list-style: none;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .navbar-links li a {
     text-decoration: none;
-    color:#000;
-    padding: 0.5rem;
+    color: var(--neutral-600);
+    padding: 0.4rem 0.75rem;
     display: block;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s ease, color 0.15s ease;
 }
 
-.navbar-links li:hover {
-    background-color: #faf9f6;
+.navbar-links li a:hover {
+    background-color: var(--neutral-100);
+    color: var(--neutral-700);
 }
 
+/* ========================
+   DROPDOWN (Active Projects submenu)
+======================== */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--neutral-600);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+    background: none;
+    border: none;
+    font-family: inherit;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle {
+    background-color: var(--neutral-100);
+    color: var(--neutral-700);
+}
+
+.nav-dropdown-toggle .chevron {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.25s ease;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.nav-dropdown.open .nav-dropdown-toggle .chevron {
+    transform: rotate(180deg);
+}
+
+/* The floating panel */
+.nav-dropdown-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    background: #fff;
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    padding: 0.5rem;
+    min-width: 200px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 300;
+}
+
+/* Arrow notch */
+.nav-dropdown-panel::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-left: 1px solid var(--neutral-200);
+    border-top: 1px solid var(--neutral-200);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.nav-dropdown.open .nav-dropdown-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.6rem 0.9rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--neutral-700);
+    font-size: 0.9rem;
+    transition: background 0.12s ease;
+}
+
+.nav-dropdown-item:hover {
+    background: var(--neutral-100);
+}
+
+.nav-dropdown-item .item-icon {
+    font-size: 1.1rem;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    background: var(--neutral-100);
+    flex-shrink: 0;
+}
+
+.nav-dropdown-item .item-label {
+    font-weight: 600;
+}
+
+.nav-dropdown-item .item-desc {
+    font-size: 0.75rem;
+    color: var(--neutral-400);
+    margin-top: 1px;
+}
+
+.nav-dropdown-divider {
+    height: 1px;
+    background: var(--neutral-200);
+    margin: 0.35rem 0.5rem;
+}
+
+/* ========================
+   TOGGLE BUTTON (mobile)
+======================== */
 .toggle-button {
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 40px;
-    height: 30px;
+    width: 36px;
+    height: 26px;
     cursor: pointer;
-    position: absolute;
-    margin: 0;
+    background: none;
+    border: none;
     padding: 0;
-    top: 1rem;
-    right: 1rem;
 }
 
 .toggle-button .bar {
-    height: 4px; /* Slightly thicker bars */
+    height: 3px;
     width: 100%;
     background-color: #000;
     border-radius: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Desktop view */
+/* ========================
+   DESKTOP
+======================== */
 @media (min-width: 651px) {
     .navbar-content {
         display: flex;
@@ -119,24 +273,26 @@ h6 {
 
     .search-bar {
         display: block;
-        width: 250px;
+        width: 220px;
         margin-right: 1rem;
     }
 }
 
-/* Mobile view */
+/* ========================
+   MOBILE
+======================== */
 @media (max-width: 650px) {
     .navbar {
-        padding: 1rem;
-        flex-direction: row; /* Keep horizontal layout for title and toggle */
+        padding: 0.75rem 1rem;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        position: relative;
+        position: sticky;
+        top: 0;
     }
 
     .toggle-button {
         display: flex;
-        position: static; /* Reset to normal flow */
     }
 
     .navbar-content {
@@ -146,9 +302,10 @@ h6 {
         left: 0;
         width: 100%;
         background-color: #fff;
-        padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        padding: 0.75rem 1rem 1rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         z-index: 10;
+        border-bottom: 1px solid var(--neutral-200);
     }
 
     .navbar-content.active {
@@ -157,31 +314,68 @@ h6 {
 
     .navbar-links ul {
         flex-direction: column;
+        gap: 0;
+    }
+
+    .navbar-links li a,
+    .nav-dropdown-toggle {
+        padding: 0.6rem 0.5rem;
+        font-size: 1rem;
+        width: 100%;
     }
 
     .navbar-links li {
-        margin-left: 0;
-        margin-bottom: 0.1rem;
+        margin-bottom: 0;
+    }
+
+    /* Mobile dropdown: inline expand, not floating */
+    .nav-dropdown-panel {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--neutral-200);
+        border-radius: 0;
+        padding: 0.25rem 0 0.25rem 1rem;
+        margin-left: 0.5rem;
+        opacity: 1;
+        pointer-events: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+    }
+
+    .nav-dropdown-panel::before { display: none; }
+
+    .nav-dropdown.open .nav-dropdown-panel {
+        pointer-events: auto;
+        max-height: 300px;
+        transform: none;
+    }
+
+    .nav-dropdown-item {
+        padding: 0.5rem 0.5rem;
     }
 
     .search-bar {
         display: block;
         width: 100%;
-        margin-bottom: 0.1rem;
+        margin-bottom: 0.5rem;
     }
 }
 
-/* Modal styles */
+/* ========================
+   MODAL (legacy)
+======================== */
 .bg-modal {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     position: absolute;
     top: 0;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    display: none;
     z-index: 10;
 }
 
@@ -191,14 +385,14 @@ h6 {
     background-color: #ffffff;
     border-radius: 4px;
     text-align: center;
-    padding:10px;
+    padding: 10px;
     position: relative;
     z-index: 10;
 }
 
 .close {
     position: absolute;
-    top:0;
+    top: 0;
     right: 14px;
     font-size: 50px;
     transform: rotate(45deg);
@@ -211,11 +405,11 @@ h6 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    fill: #6B6B6B; 
-    text-decoration: none; 
+    fill: #6B6B6B;
+    text-decoration: none;
     gap: 10px;
 }
 
 .section-title {
-     z-index: 1;
+    z-index: 1;
 }

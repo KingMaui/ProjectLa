@@ -3,36 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JUNXIELIANG</title>
+  <title>Habit Tracker</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/login-modal.css">
   <link rel="stylesheet" href="css/contact-modal.css">
-  <link rel="stylesheet" href="css/login-modal.css" />
   <link rel="stylesheet" href="css/counter-style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <script> window.PB_URL = "https://pb.junxieliang.com" </script>
-  <script type="module" src="java/contact-sumbit.js" defer></script>
-  <script type="module" src="java/auth.js" defer></script>  
+  <script> window.PB_URL = "https://pb.junxieliang.com"; </script>
   <script src="java/clarity.js" defer></script>
   <script src="java/script.js" defer></script>
   <script src="java/contact-modal.js" defer></script>
   <script src="java/counter-script.js" defer></script>
+  <script type="module" src="java/contact-sumbit.js"></script>
+  <script type="module" src="java/auth.js"></script>
 </head>
 <body>
   <header>
     <nav class="navbar">
       <h1 class="title"><a href="index.html">JUNXIELIANG</a></h1>
-      <a href="#" class="toggle-button">
+      <button class="toggle-button" aria-label="Menu">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
-      </a>
+      </button>
       <div class="navbar-content">
         <div class="navbar-links">
           <ul>
             <li><a href="ocr.html">VisionOCR</a></li>
-            <li><a href="calendar.html">Calendar</a></li>
-            <li><a href="store.html">Store</a></li>
-            <li><a href="counter.html">Habit</a></li>
+            <li class="nav-dropdown">
+              <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                Active Projects
+                <svg class="chevron" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="nav-dropdown-panel" role="menu">
+                <a class="nav-dropdown-item" href="calendar.html" role="menuitem">
+                  <span class="item-icon">📅</span>
+                  <div>
+                    <div class="item-label">Calendar</div>
+                    <div class="item-desc">Track goals & habits</div>
+                  </div>
+                </a>
+                <div class="nav-dropdown-divider"></div>
+                <a class="nav-dropdown-item" href="store.html" role="menuitem">
+                  <span class="item-icon">🛍️</span>
+                  <div>
+                    <div class="item-label">Store</div>
+                    <div class="item-desc">US products worldwide</div>
+                  </div>
+                </a>
+                <div class="nav-dropdown-divider"></div>
+                <a class="nav-dropdown-item" href="counter.html" role="menuitem">
+                  <span class="item-icon">🔁</span>
+                  <div>
+                    <div class="item-label">Habit</div>
+                    <div class="item-desc">Track streaks & resets</div>
+                  </div>
+                </a>
+              </div>
+            </li>
             <li><a id="Contact" href="#">Contact</a></li>
             <li><a id="loginBtn" class="account-btn" href="#" aria-label="Account">Login</a></li>
           </ul>
@@ -40,23 +70,23 @@
             <div class="contact-modal-content">
               <button class="contact-modal-close">&times;</button>
               <h2>Leave a Message</h2>
-                <form class="contact-form" id="contact-form">
-                  <div class="form-group">
-                    <label for="fullName">Name</label>
-                    <input type="text" id="fullName" placeholder="name" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" placeholder="you@example.com" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="4" placeholder="message" required></textarea>
-                  </div>
-                  <button type="submit" class="contact-submit-btn">Send</button>
-                  <div id="contactStatus" role="status" aria-live="polite"></div>
-                </form>
-              <p class="location-info"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fab08f9482939f96939b949dba9d979b9396d4999597">[email&#160;protected]</a><br>Based in San Francisco, California</p>
+              <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                  <label for="fullName">Name</label>
+                  <input type="text" id="fullName" placeholder="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" rows="4" placeholder="message" required></textarea>
+                </div>
+                <button type="submit" class="contact-submit-btn">Send</button>
+                <div id="contactStatus" role="status" aria-live="polite"></div>
+              </form>
+              <p class="location-info">Junxieliang@gmail.com<br>Based in San Francisco, California</p>
               <div class="social-links">
                 <a href="https://www.linkedin.com/in/junxieliang/" target="_blank" class="linkedin-icon" aria-label="LinkedIn Profile">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,11 +95,20 @@
                 </a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </nav>
   </header>
+
 <div class="page">
-      <div class="main-wrapper">
-        <button id="add-tracker-btn">+ Add New Tracker</button>
-        <div id="trackers-container"></di
+  <div class="main-wrapper">
+    <button id="add-tracker-btn">+ Add New Tracker</button>
+    <div id="trackers-container"></div>
+  </div>
+</div>
+  <footer>
+    <h6>© 2026 Jun Xie Liang. All Rights Reserved.</h6>
+  </footer>
+</body>
+</html>
