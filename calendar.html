@@ -9,13 +9,23 @@
   <link rel="stylesheet" href="css/contact-modal.css">
   <link rel="stylesheet" href="css/calendar.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <script> window.PB_URL = "https://pb.junxieliang.com" </script>
-  <script type="module" src="java/contact-sumbit.js" defer></script>
-  <script type="module" src="java/auth.js" defer></script>
+
+  <!-- PocketBase URL must be set BEFORE any scripts run -->
+  <script> window.PB_URL = "https://pb.junxieliang.com"; </script>
+
+  <!-- Non-module scripts: clarity + navbar toggle + contact modal -->
   <script src="java/clarity.js" defer></script>
-  <script src="java/contact-modal.js" defer></script>
   <script src="java/script.js" defer></script>
-  <script type="module" src="java/calendar.js" defer></script>
+  <script src="java/contact-modal.js" defer></script>
+
+  <!--
+    Module scripts are ALREADY deferred by the browser spec — do NOT add defer here.
+    auth.js MUST be listed before calendar.js so window.PBAuth is set first.
+    The old code had defer on modules which caused a race condition with auth loading.
+  -->
+  <script type="module" src="java/contact-sumbit.js"></script>
+  <script type="module" src="java/auth.js"></script>
+  <script type="module" src="java/calendar.js"></script>
 </head>
 <body>
   <header>
@@ -56,7 +66,7 @@
                   <button type="submit" class="contact-submit-btn">Send</button>
                   <div id="contactStatus" role="status" aria-live="polite"></div>
                 </form>
-              <p class="location-info"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="da90afb4a2b3bfb6b3bbb4bd9abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a><br>Based in San Francisco, California</p>
+              <p class="location-info">Junxieliang@gmail.com<br>Based in San Francisco, California</p>
               <div class="social-links">
                 <a href="https://www.linkedin.com/in/junxieliang/" target="_blank" class="linkedin-icon" aria-label="LinkedIn Profile">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -70,4 +80,11 @@
       </div>
     </nav>
   </header>
-      <main id="calendarApp" 
+
+  <main id="calendarApp" aria-live="polite"></main>
+
+  <footer>
+    <h6>© 2025 Jun Xie Liang. All Rights Reserved.</h6>
+  </footer>
+</body>
+</html>
