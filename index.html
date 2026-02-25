@@ -17,7 +17,7 @@
   <script type="module" src="java/auth.js"></script>
 </head>
 <body>
-  <header>
+    <header>
     <nav class="navbar">
       <h1 class="title"><a href="index.html">JUNXIELIANG</a></h1>
       <button class="toggle-button" aria-label="Menu">
@@ -37,29 +37,11 @@
                 </svg>
               </button>
               <div class="nav-dropdown-panel">
-                <a class="nav-dropdown-item" href="calendar.html">
-                  <span class="item-icon">📅</span>
-                  <div>
-                    <div class="item-label">Calendar</div>
-                    <div class="item-desc">Track goals &amp; habits</div>
-                  </div>
-                </a>
+                <a class="nav-dropdown-item" href="calendar.html">Calendar</a>
                 <div class="nav-dropdown-divider"></div>
-                <a class="nav-dropdown-item" href="store.html">
-                  <span class="item-icon">🛍️</span>
-                  <div>
-                    <div class="item-label">Store</div>
-                    <div class="item-desc">US products worldwide</div>
-                  </div>
-                </a>
+                <a class="nav-dropdown-item" href="store.html">Store</a>
                 <div class="nav-dropdown-divider"></div>
-                <a class="nav-dropdown-item" href="counter.html">
-                  <span class="item-icon">🔁</span>
-                  <div>
-                    <div class="item-label">Habit</div>
-                    <div class="item-desc">Track streaks &amp; resets</div>
-                  </div>
-                </a>
+                <a class="nav-dropdown-item" href="counter.html">Habit</a>
               </div>
             </li>
             <li><a id="Contact" href="#">Contact</a></li>
@@ -100,7 +82,87 @@
       </div>
     </div>
   </div>
+<div class="home_page">
+    <section class="projects-section">
 
+      <h2 class="section-title current-title">Current Projects</h2>
+        <div class="projects-grid current-projects">
+          <div class="sticky-note OCR-note">
+            <h2>VisionOCR</h2>
+            <strong>Concept:</strong>
+            <p>A smart scanning tool designed to automate the manual process of entering receipts and invoices. By simply uploading or taking a photo, VisionOCR extracts key details such as vendors, dates, items and totals with high accuracy. The system organizes each entry into clear structured data. This provides easy tracking spending, managing and staying on top of monthly budgets without manual input. Everyday users can rely on VisionOCR for groceries, budgeting and building healthier spending habits. In the future, all processing will run locally to ensure complete privacy and security of your data.</p>
+            <strong>Roadmap:</strong>
+          </div>
+        </div>
+      <h2 class="section-title active-title">Active Project</h2>
+        <div class="projects-grid active-projects">
+          <div class="sticky-note calendar-note">
+            <h2>Calendar</h2>
+            <strong>Concept:</strong>
+            <p>A multi-layered calendar built to help you track progress across every area of life. Whether you are preparing for a major exam or planning a long-term project, this adaptive calendar aligns with your goals and keeps you on track. It’s simple, user-friendly interface allows you to customize layouts to match your unique needs. Plus, with AI- powered adjustments, the calendar automatically reorganizes your schedule when conflicts or unexpected changes arise. Giving you peace of mind and helping you stay focused.</p>
+            <strong>Roadmap:</strong>
+            <p>✅ Create an interactive calendar for tracking different progress goals</p>
+            <p>✅ Add a section to view and track calendar progress</p>
+            <p>✅ Allow Done/Not markers with notes, custom colors, and emojis</p>
+            <p>✅ Use backend to support user accounts to save all calendar data</p>
+            <p>✅ Add a Note Increment feature to shift notes when a date is marked X</p>
+            <p>🛠️ Include a time zone selector</p>
+            <p>🛠️ Add a dashboard to see all notes by date</p>
+            <p>🛠️ Offer more calendar customization options</p>
+            <p>🛠️ Make the calendar mobile-friendly</p>
+            <p>🛠️ Integrate AI features for smarter use</p>
+          </div>
+
+          <div class="sticky-note store-note">
+            <h2>Store</h2>
+            <strong>Concept:</strong>
+            <p>An international e-commerce platform dedicated to delivering authentic US products to customers overseas, with a focus on markets such as China, Japan, Korea and Singapore. During my travels to these regions, I noticed a strong demand for American brands, particularly in lifestyle and premium product categories.</p>
+            <p>Currently, my primary focus is the coffee market, as coffee culture is rapidly gaining popularity in metropolitan areas like Tokyo and Seoul. Being based in San Francisco, a hub for coffee innovation. This gives me a unique advantage in sourcing and curating high-quality coffee beans to share with overseas coffee enthusiasts.</p>
+            <p>As the store grows, I plan to expand into additional categories, offering a wider range of well-known American brands to share with the world. </p>
+            <br>
+            <strong>Roadmap:</strong>
+              <p>✅ Build a store page that reads products from a JSON file</p>
+              <p>✅ Keep the JSON product database scalable</p>
+              <p>✅ Add search to filter and find products</p>
+              <p>✅ Make the store mobile-friendly</p>
+              <p>🛠️ Create a checkout page</p>
+              <p>🛠️ Add filter selectors for products</p>
+              <p>🛠️ Support Chinese, Japanese, and Korean languages</p>
+              <p>🛠️ Enable regional payments (ex. Alipay and Wechat pay for China)</p>
+          </div>
+
+          <div class="sticky-note counter-note">
+            <h2>Habit</h2>
+            <strong>Concept:</strong>
+            <p>A tracker designed to help you monitor both positive and negative habits. Track good habits like regular exercise or identify harmful ones such as procrastination. The tracker lets you reset your streak whenever you break a habit, keeping you accountable and motivated. It also provides detailed insights, including the total number of resets and the average time between streaks, so you can better understand your progress and patterns. </p>
+            <br>
+            <strong>Roadmap:</strong>
+              <p>✅ Create a habit tracker</p>
+              <p>✅ Allow users to create multiple trackers</p>
+              <p>✅ Show a reset counter and average time between resets</p>
+              <p>✅ Make it work on mobile devices</p>
+              <p>🛠️ Add a backend to replace localStorage</p>
+              <p>🛠️ Fix the layout when new trackers are created</p>
+              <p>🛠️ Add drag-and-drop to reorder trackers</p>
+          </div>
+        </div>
+
+      <h2 class="section-title future-title">Future Project</h2>
+        <div class="projects-grid future-projects">
+          <div class="sticky-note tcm-note">
+            <h2>TCM Helper</h2>
+            <strong>Concept:</strong>
+            <p>Growing up Asian-American, I have vivid memories of my parents making us drink bitter soups and teas. I did not understand why at the time, but with so much information available today and after reading more studies on Traditional Chinese Medicine (TCM), I have realized they were trying to keep us healthy and not punish us. While there is a long-standing debate between Eastern and Western medicine, TCM often faces skepticism about its effectiveness. The TCM Helper is designed to educate people on TCM ingredients and formulas, highlighting which are supported by research and which are best avoided. It will also provide simple daily recipes tailored to specific health concerns and feature an interactive drag-and-drop interface where users can mix ingredients and instantly see the potential benefits and side effects of each combination. </p>
+          </div>
+          <div class="sticky-note closet-note">
+            <h2>Closet</h2>
+            <strong>Concept:</strong>
+            <p>A social platform where users can share their outfits and tag products from their favorite brands directly in the post. Users can input their body measurements, allowing the app to recommend outfits that are their size with precision. This makes online clothing shopping more efficient and reduces return rates—an issue that currency contributes to billions of pounds of waste ending up in landfills each year. Return not only creates massive packaging waste but also lead to significant financial losses for retailers. As online shopping continues to grow, this platform aims to promote smarter shopping habits and create a more sustainable future. </p>
+          </div>
+        </div>
+    </sec
+    </section>
+  </div>
   <footer>
     <h6>© 2026 Jun Xie Liang. All Rights Reserved.</h6>
   </footer>
