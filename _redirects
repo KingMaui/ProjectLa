@@ -1,0 +1,7 @@
+# Netlify redirect rules
+# Allow direct navigation to all HTML pages
+/calendar   /calendar.html   200
+/store      /store.html      200
+/counter    /counter.html    200
+/ocr        /ocr.html        200
+/product    /product.html    200
