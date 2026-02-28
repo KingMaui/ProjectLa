@@ -1,4 +1,4 @@
-const API = 'http://137.184.35.81:8000';
+const API = 'https://api.junxieliang.com';
 let allCourses = [];
 
 const WEATHER_ICONS = {
