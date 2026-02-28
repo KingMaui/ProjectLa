@@ -1,0 +1,153 @@
+/* CONTROLS */
+.controls {
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid #1f1f1f;
+}
+.controls input, .controls select {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #e0e0e0;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  outline: none;
+}
+.controls input { width: 220px; }
+.controls input:focus, .controls select:focus { border-color: #444; }
+.count { color: #555; font-size: 0.8rem; margin-left: auto; }
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 2.5rem;
+}
+
+/* CARD */
+.card {
+  background: #141414;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: #333; }
+
+.card-header { margin-bottom: 1rem; }
+.card-header h2 { font-size: 1rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+.card-header .city { font-size: 0.78rem; color: #666; letter-spacing: 1px; text-transform: uppercase; }
+
+.card-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.badge {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  color: #aaa;
+}
+
+.description {
+  font-size: 0.82rem;
+  color: #777;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* WEATHER */
+.weather {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+.weather-current { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+.weather-temp { font-size: 1.4rem; font-weight: 700; }
+.weather-details { font-size: 0.75rem; color: #666; }
+.weather-details div { margin-bottom: 0.1rem; }
+.weather-forecast { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+.forecast-day {
+  flex: 1;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #555;
+  background: #0e0e0e;
+  border-radius: 4px;
+  padding: 0.4rem;
+}
+.forecast-day .date { color: #444; margin-bottom: 0.2rem; }
+.forecast-day .temps { color: #888; }
+
+/* TEE TIMES */
+.tee-times { margin-bottom: 1rem; }
+.tee-times h4 { font-size: 0.72rem; letter-spacing: 1px; color: #555; text-transform: uppercase; margin-bottom: 0.5rem; }
+.booking-link {
+  display: block;
+  font-size: 0.78rem;
+  color: #888;
+  text-decoration: none;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+.booking-link:hover { color: #ccc; }
+.booking-link:last-child { border-bottom: none; }
+.no-booking { font-size: 0.78rem; color: #444; font-style: italic; }
+
+.card-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.phone { font-size: 0.75rem; color: #555; }
+.visit-link {
+  font-size: 0.72rem;
+  color: #666;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.visit-link:hover { color: #aaa; }
+
+/* LOADING / ERROR */
+.state-msg {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #444;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+.state-msg .spinner {
+  width: 24px; height: 24px;
+  border: 2px solid #222;
+  border-top-color: #555;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 600px) {
+  .grid { padding: 1rem; gap: 1rem; }
+  nav { padding: 1rem; }
+  nav ul { gap: 1rem; }
+  .controls { padding: 1rem; }
+  .page-header { padding: 2rem 1rem 1rem; }
+}
