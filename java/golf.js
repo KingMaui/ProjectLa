@@ -77,7 +77,7 @@ function renderCard(c) {
         <div class="city">${c.city}</div>
       </div>
       ${metaBadges ? `<div class="card-meta">${metaBadges}</div>` : ''}
-      ${c.description ? `<div class="description">${c.description}</div>` : ''}
+
       ${weatherHTML}
       ${teeHTML}
       <div class="card-footer">
