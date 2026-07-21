@@ -1,0 +1,2237 @@
+{
+  "version": "5.0",
+  "region": "San Francisco Bay Area",
+  "updated": "2026-07-21",
+  "total_courses": 62,
+  "note": "Weekend Birdie index — lightweight, loaded on every page view",
+  "courses": [
+    {
+      "id": "CAL01",
+      "name": "Presidio Golf Course",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7905717,
+      "lng": -122.4598702,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 128,
+        "rating": 69.4,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "blue+red",
+          "color": "#800080"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "white+blue",
+          "color": "#8080FF"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "black+white",
+          "color": "#808080"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL02",
+      "name": "TPC Harding Park",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7251721,
+      "lng": -122.4905939,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 131,
+        "rating": 73.5,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white+red",
+          "color": "#FF8080"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue+white",
+          "color": "#8080FF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL03",
+      "name": "Lincoln Park Golf Course",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7822772,
+      "lng": -122.4943269,
+      "holes_available": [
+        18
+      ],
+      "par_total": 68,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 113,
+        "rating": 65.9,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        }
+      ]
+    },
+    {
+      "id": "CAL04",
+      "name": "Sharp Park Golf Course",
+      "city": "Pacifica",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.6261517,
+      "lng": -122.4820871,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 125,
+        "rating": 71.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL05",
+      "name": "Gleneagles Golf Course",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7160062,
+      "lng": -122.4244312,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "white",
+        "slope": 113,
+        "rating": 69.9,
+        "color": "#FFFFFF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "CAL06",
+      "name": "Corica Park South Course",
+      "city": "Alameda",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7391869,
+      "lng": -122.2332145,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 123,
+        "rating": 70.4,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "yellow",
+          "color": "#FFFF00"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL07",
+      "name": "Metropolitan Golf Links",
+      "city": "Oakland",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.72189300000001,
+      "lng": -122.1967918,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 126,
+        "rating": 71.4,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "silver",
+          "color": "#C0C0C0"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL08",
+      "name": "Monarch Bay Golf Club (Tony Lema Course)",
+      "city": "San Leandro",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.697822,
+      "lng": -122.1864756,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "public",
+      "ref_tee": {
+        "key": "green",
+        "slope": 114,
+        "rating": 66.8,
+        "color": "#008000"
+      },
+      "tee_colors": [
+        {
+          "key": "green",
+          "color": "#008000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL09",
+      "name": "Half Moon Bay Golf Links — Ocean Course",
+      "city": "Half Moon Bay",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.4284259,
+      "lng": -122.4239975,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "resort",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 125,
+        "rating": 71.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL10",
+      "name": "Half Moon Bay Golf Links — Old Course",
+      "city": "Half Moon Bay",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.434877107091,
+      "lng": -122.440210697671,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "resort",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 131,
+        "rating": 72.9,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL11",
+      "name": "Coyote Creek Golf Club — Tournament Course",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.34174,
+      "lng": -121.8822525,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 139,
+        "rating": 73.3,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL12",
+      "name": "Coyote Creek Golf Club — Valley Course",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.1935791,
+      "lng": -121.7026229,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 135,
+        "rating": 74.4,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL13",
+      "name": "The Links at Everline Golf Course",
+      "city": "Olympic Valley",
+      "state": "California",
+      "country": "United States",
+      "lat": 39.1995,
+      "lng": -120.217734,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "resort",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 139,
+        "rating": 70.8,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL14",
+      "name": "Hiddenbrooke Golf Club",
+      "city": "Vallejo",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.1559097,
+      "lng": -122.1790411,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 139,
+        "rating": 70.4,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "palmer",
+          "color": "#4F7942"
+        }
+      ]
+    },
+    {
+      "id": "CAL15",
+      "name": "Sunnyvale Golf Course",
+      "city": "Sunnyvale",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.3986613,
+      "lng": -122.0418378,
+      "holes_available": [
+        18
+      ],
+      "par_total": 70,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 117,
+        "rating": 70.1,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL16",
+      "name": "Boundary Oak Golf Course",
+      "city": "Walnut Creek",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.9240795,
+      "lng": -121.997026,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 130,
+        "rating": 72.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL17",
+      "name": "Napa Golf Course at Kennedy Park",
+      "city": "Napa",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.2666277,
+      "lng": -122.2762315,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 127,
+        "rating": 71.7,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL18",
+      "name": "Rooster Run Golf Club",
+      "city": "Petaluma",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.2629792,
+      "lng": -122.6167942,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 132,
+        "rating": 71.8,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white+red",
+          "color": "#FF8080"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue+white",
+          "color": "#8080FF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL19",
+      "name": "Foxtail Golf Course — North",
+      "city": "Rohnert Park",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.3608672,
+      "lng": -122.707414,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 121,
+        "rating": 70.3,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL20",
+      "name": "Skywest Golf Course",
+      "city": "Hayward",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.6658207,
+      "lng": -122.1265171,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 123,
+        "rating": 71.4,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "yellow",
+          "color": "#FFFF00"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL21",
+      "name": "Lake Chabot Golf Course",
+      "city": "Oakland",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7393872,
+      "lng": -122.1192466,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 119,
+        "rating": 68.9,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        }
+      ]
+    },
+    {
+      "id": "CAL22",
+      "name": "Poppy Ridge Golf Course",
+      "city": "Livermore",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.6516799,
+      "lng": -121.6843846,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 124,
+        "rating": 70.9,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "green",
+          "color": "#008000"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "orange",
+          "color": "#FFA500"
+        }
+      ]
+    },
+    {
+      "id": "CAL23",
+      "name": "Corica Park North Course",
+      "city": "Alameda",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7391869,
+      "lng": -122.2332145,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 118,
+        "rating": 70.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL24",
+      "name": "Spring Valley Golf Course",
+      "city": "Milpitas",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.4519411,
+      "lng": -121.8548378,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "orange",
+        "slope": 87,
+        "rating": 57.4,
+        "color": "#FFA500"
+      },
+      "tee_colors": [
+        {
+          "key": "orange",
+          "color": "#FFA500"
+        },
+        {
+          "key": "silver",
+          "color": "#C0C0C0"
+        },
+        {
+          "key": "green+sliver",
+          "color": "#A9A9A9"
+        },
+        {
+          "key": "green",
+          "color": "#008000"
+        },
+        {
+          "key": "black+green",
+          "color": "#006400"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL25",
+      "name": "Foxtail Golf Course — South",
+      "city": "Rohnert Park",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.3608672,
+      "lng": -122.707414,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 121,
+        "rating": 69.8,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        }
+      ]
+    },
+    {
+      "id": "CAL26",
+      "name": "Wente Vineyards",
+      "city": "Livermore",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.6248674,
+      "lng": -121.7542549,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 126,
+        "rating": 70.8,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL27",
+      "name": "Sequoyah Country Club",
+      "city": "Oakland",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7645324,
+      "lng": -122.1341531,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "private",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 134,
+        "rating": 73.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL28",
+      "name": "Poplar Creek Golf Course",
+      "city": "San Mateo",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.586542,
+      "lng": -122.3251808,
+      "holes_available": [
+        18
+      ],
+      "par_total": 70,
+      "type": "public",
+      "ref_tee": {
+        "key": "silver",
+        "slope": 112,
+        "rating": 66.1,
+        "color": "#C0C0C0"
+      },
+      "tee_colors": [
+        {
+          "key": "silver",
+          "color": "#C0C0C0"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL29",
+      "name": "Fremont Park Golf Club",
+      "city": "Fremont",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.5570113,
+      "lng": -121.9578712,
+      "holes_available": [
+        9
+      ],
+      "par_total": 33,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 79,
+        "rating": 60.4,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL30",
+      "name": "San Jose Municipal Golf Course",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.3787028,
+      "lng": -121.8902646,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 118,
+        "rating": 69.8,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL31",
+      "name": "Santa Teresa Golf Club",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.2123891,
+      "lng": -121.7907726,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 119,
+        "rating": 69.9,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL32",
+      "name": "Los Lagos Golf Course",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.3011404,
+      "lng": -121.8279189,
+      "holes_available": [
+        18
+      ],
+      "par_total": 54,
+      "type": "public",
+      "ref_tee": {
+        "key": "red",
+        "slope": 92,
+        "rating": 60.3,
+        "color": "#FF0000"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "CAL33",
+      "name": "Palo Alto Hills Golf & Country Club",
+      "city": "Palo Alto",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.3739753,
+      "lng": -122.1719525,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "private",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 126,
+        "rating": 71.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL34",
+      "name": "Summitpointe Golf Club",
+      "city": "Milpitas",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.45542289999999,
+      "lng": -121.8813678,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 126,
+        "rating": 70.9,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL35",
+      "name": "Rancho del Pueblo Golf Course",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.346725,
+      "lng": -121.851592,
+      "holes_available": [
+        9
+      ],
+      "par_total": 27,
+      "type": "public",
+      "ref_tee": {
+        "key": "Gold",
+        "slope": 79,
+        "rating": 52.4,
+        "color": "#FFD700"
+      },
+      "tee_colors": [
+        {
+          "key": "Gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "Black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL36",
+      "name": "Cinnabar Hills Golf Club — Lake/Canyon",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.1695158,
+      "lng": -121.7507835,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 140,
+        "rating": 73.4,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL37",
+      "name": "Sunol Valley Golf Course — Palm Course",
+      "city": "Sunol",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.5775015,
+      "lng": -121.8831253,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 122,
+        "rating": 70.5,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL38",
+      "name": "Sunol Valley Golf Course — Cypress Course",
+      "city": "Sunol",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.5745015,
+      "lng": -121.8861253,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 120,
+        "rating": 69.7,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL39",
+      "name": "Adobe Creek Golf Club",
+      "city": "Petaluma",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.2483904,
+      "lng": -122.5867605,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 133,
+        "rating": 72.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL40",
+      "name": "Marin Country Club",
+      "city": "Novato",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.0636141,
+      "lng": -122.5662618,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "private",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 127,
+        "rating": 71.5,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL41",
+      "name": "Eagle Ridge Golf Club",
+      "city": "Gilroy",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.0013329,
+      "lng": -121.610544,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 127,
+        "rating": 70.6,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL42",
+      "name": "Tilden Park Golf Course",
+      "city": "Berkeley",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.8878956,
+      "lng": -122.243245,
+      "holes_available": [
+        18
+      ],
+      "par_total": 70,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 130,
+        "rating": 71.6,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL43",
+      "name": "Willow Park Golf Course",
+      "city": "Castro Valley",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7343391,
+      "lng": -122.1075749,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "public",
+      "ref_tee": {
+        "key": "white",
+        "slope": 111,
+        "rating": 66.1,
+        "color": "#FFFFFF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        }
+      ]
+    },
+    {
+      "id": "CAL44",
+      "name": "Crystal Springs Golf Course",
+      "city": "Burlingame",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.5576788,
+      "lng": -122.3822666,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 130,
+        "rating": 71.8,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL45",
+      "name": "Peacock Gap Golf Club",
+      "city": "San Rafael",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.9944553,
+      "lng": -122.4650079,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 122,
+        "rating": 69,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL46",
+      "name": "Cypress Lakes Golf Course",
+      "city": "Vacaville",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.3231677,
+      "lng": -121.9250028,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 120,
+        "rating": 70.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL47",
+      "name": "Franklin Canyon Golf Course",
+      "city": "Hercules",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.0139849,
+      "lng": -122.2554429,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 132,
+        "rating": 71.8,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL48",
+      "name": "Indian Valley Golf Club",
+      "city": "Novato",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.1086795,
+      "lng": -122.6404617,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 119,
+        "rating": 69.3,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL51",
+      "name": "TPC Harding Park — Fleming 9",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7256356478945,
+      "lng": -122.491057663721,
+      "holes_available": [
+        9
+      ],
+      "par_total": 30,
+      "type": "public",
+      "ref_tee": {
+        "key": "white",
+        "slope": 96,
+        "rating": 30.7,
+        "color": "#FFFFFF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        }
+      ]
+    },
+    {
+      "id": "CAL52",
+      "name": "Golden Gate Park Golf Course",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.7694522,
+      "lng": -122.5072834,
+      "holes_available": [
+        9
+      ],
+      "par_total": 27,
+      "type": "public",
+      "ref_tee": {
+        "key": "I",
+        "slope": 73,
+        "rating": 51,
+        "color": "#FFFFFF"
+      },
+      "tee_colors": [
+        {
+          "key": "I",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "II",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL53",
+      "name": "Mariners Point Golf Center",
+      "city": "Foster City",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.5717162,
+      "lng": -122.28444,
+      "holes_available": [
+        9
+      ],
+      "par_total": 27,
+      "type": "public",
+      "ref_tee": {
+        "key": "red",
+        "slope": 75,
+        "rating": 25.4,
+        "color": "#FF0000"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "CAL54",
+      "name": "Windsor Golf Club",
+      "city": "Windsor",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.52734,
+      "lng": -122.803723,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 127,
+        "rating": 70.1,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL55",
+      "name": "Northwood Golf Club",
+      "city": "Monte Rio",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.4777261,
+      "lng": -122.9969988,
+      "holes_available": [
+        9
+      ],
+      "par_total": 36,
+      "type": "public",
+      "ref_tee": {
+        "key": "white",
+        "slope": 114,
+        "rating": 67.8,
+        "color": "#FFFFFF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        }
+      ]
+    },
+    {
+      "id": "CAL56",
+      "name": "The Links at Bodega Harbour",
+      "city": "Bodega Bay",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.3128449,
+      "lng": -123.0275451,
+      "holes_available": [
+        18
+      ],
+      "par_total": 70,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 126,
+        "rating": 69.5,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "id": "CAL57",
+      "name": "Diablo Hills Golf Course",
+      "city": "Walnut Creek",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.9173799,
+      "lng": -122.0436525,
+      "holes_available": [
+        9
+      ],
+      "par_total": 34,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 100,
+        "rating": 62.8,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL58",
+      "name": "Diablo Creek Golf Course",
+      "city": "Concord",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.01358219999999,
+      "lng": -122.023576,
+      "holes_available": [
+        18
+      ],
+      "par_total": 71,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 127,
+        "rating": 73.5,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "red",
+          "color": "#FF0000"
+        },
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL59",
+      "name": "Valley of the Moon Golf Course",
+      "city": "Santa Rosa",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.4327415,
+      "lng": -122.5931181,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 130,
+        "rating": 71.2,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "yellow",
+          "color": "#FFFF00"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL60",
+      "name": "Sugarloaf Golf Course",
+      "city": "Santa Rosa",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.426658,
+      "lng": -122.5823862,
+      "holes_available": [
+        18
+      ],
+      "par_total": 63,
+      "type": "public",
+      "ref_tee": {
+        "key": "yellow",
+        "slope": 98,
+        "rating": 60.2,
+        "color": "#FFFF00"
+      },
+      "tee_colors": [
+        {
+          "key": "yellow",
+          "color": "#FFFF00"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "CAL61",
+      "name": "Bay Club at StoneTree",
+      "city": "Novato",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.1022803,
+      "lng": -122.5096194,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "private",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 123,
+        "rating": 68.6,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "black",
+          "color": "#000000"
+        },
+        {
+          "key": "championship",
+          "color": "#F54927"
+        }
+      ]
+    },
+    {
+      "id": "CAL62",
+      "name": "Silverado Resort — North Course",
+      "city": "Napa",
+      "state": "California",
+      "country": "United States",
+      "lat": 38.3491745,
+      "lng": -122.2656878,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "resort",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 135,
+        "rating": 73.1,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "gold",
+          "color": "#FFD700"
+        },
+        {
+          "key": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        }
+      ]
+    },
+    {
+      "id": "CAL63",
+      "name": "Blackberry Farm Golf Course",
+      "city": "Cupertino",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.3225479,
+      "lng": -122.0596319,
+      "holes_available": [
+        9
+      ],
+      "par_total": 29,
+      "type": "public",
+      "ref_tee": {
+        "key": "blue",
+        "slope": 57,
+        "rating": 93,
+        "color": "#0000FF"
+      },
+      "tee_colors": [
+        {
+          "key": "blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "red",
+          "color": "#FF0000"
+        }
+      ]
+    },
+    {
+      "id": "CAL64",
+      "name": "Baylands Golf Links",
+      "city": "Palo Alto",
+      "state": "California",
+      "country": "United States",
+      "lat": 37.4536941,
+      "lng": -122.1159865,
+      "holes_available": [
+        18
+      ],
+      "par_total": 72,
+      "type": "public",
+      "ref_tee": {
+        "key": "Green",
+        "slope": 108,
+        "rating": 63.2,
+        "color": "#008000"
+      },
+      "tee_colors": [
+        {
+          "key": "Green",
+          "color": "#008000"
+        },
+        {
+          "key": "White",
+          "color": "#FFFFFF"
+        },
+        {
+          "key": "Blue",
+          "color": "#0000FF"
+        },
+        {
+          "key": "Black",
+          "color": "#000000"
+        }
+      ]
+    }
+  ]
+}
