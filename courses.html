@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Map</title>
+  <meta name="description" content="Find golf courses around the world. Interactive map with search and filters.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <!-- Leaflet.markercluster CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
+
+  <!-- Styles: shared nav/modal, then page-specific -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/courses.css">
+</head>
+<body>
+
+  <!-- ── NAVIGATION ─────────────────────────────────── -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="14" r="4" fill="white"/>
+          <rect x="9.2" y="1.5" width="1.6" height="10" rx="0.8" fill="white"/>
+          <path d="M10.8 2 L17 5.8 L10.8 9.6 Z" fill="white" opacity="0.75"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text">Weekend Birdie</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="courses.html" style="color:var(--green-mid); font-weight:500;">Course Map</a></li>
+      <li><a href="scorecard.html">My Stats</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="#" class="btn-login"  id="btn-login-nav"  onclick="openModal(event)">Log in</a>
+      <a href="#" class="btn-signup" id="btn-signup-nav" onclick="openModal(event,'signup')">Get started</a>
+
+      <div class="profile-avatar" id="profile-avatar" onclick="toggleProfileDropdown()">
+        <span id="avatar-initials"></span>
+                <div class="profile-dropdown" id="profile-dropdown">
+          <a href="courses.html">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M4 7h6M7 4v6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            Course Map
+          </a>
+          <a href="scorecard.html">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="2" y="3" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M5 3V2.5a2 2 0 014 0V3" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            My Scorecards
+          </a>
+          <a href="scorecard.html?tab=new-round">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            New Round
+          </a>
+          <div class="dd-divider"></div>
+          <a href="#" class="logout" onclick="logout()">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M9 2h2.5a.5.5 0 01.5.5v9a.5.5 0 01-.5.5H9M6 4.5L3.5 7 6 9.5M3.5 7H10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Log Out
+          </a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── SEARCH & FILTER BAR ────────────────────────── -->
+  <div class="controls-bar">
+
+    <div class="search-wrap">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="6.5" cy="6.5" r="4.5"/>
+        <path d="M10.5 10.5l3 3"/>
+      </svg>
+      <input type="text" id="course-search" placeholder="Search courses, cities, states…" oninput="applyFilters()">
+    </div>
+
+    <div class="divider-v"></div>
+
+    <div class="filter-group">
+      <span class="filter-label">Tees</span>
+      <button class="filter-pill active" data-tee="all"   onclick="setTeePill(this)">All</button>
+      <button class="filter-pill"        data-tee="white" onclick="setTeePill(this)">White</button>
+      <button class="filter-pill"        data-tee="blue"  onclick="setTeePill(this)">Blue</button>
+      <button class="filter-pill"        data-tee="black" onclick="setTeePill(this)">Black</button>
+      <button class="filter-pill"        data-tee="red"   onclick="setTeePill(this)">Red</button>
+    </div>
+
+    <div class="divider-v"></div>
+
+    <div class="filter-group">
+      <span class="filter-label">Country</span>
+      <select class="filter-select" id="filter-country" onchange="applyFilters()">
+        <option value="all">All</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">Par</span>
+      <select class="filter-select" id="filter-par" onchange="applyFilters()">
+        <option value="all">Any</option>
+        <option value="70">70</option>
+        <option value="71">71</option>
+        <option value="72">72</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">Difficulty</span>
+      <select class="filter-select" id="filter-slope" onchange="applyFilters()">
+        <option value="all">Any</option>
+        <option value="easy">Easy (slope &lt;120)</option>
+        <option value="medium">Medium (120–135)</option>
+        <option value="hard">Challenging (&gt;135)</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">Holes</span>
+      <select class="filter-select" id="filter-holes" onchange="applyFilters()">
+        <option value="all">Any</option>
+        <option value="9">9</option>
+        <option value="18">18</option>
+        <option value="27">27</option>
+      </select>
+    </div>
+
+    <div class="divider-v"></div>
+
+    <button class="filter-pill" onclick="resetFilters()" style="color:var(--text-muted);">Reset</button>
+
+    <span class="results-count" id="results-count">Loading…</span>
+  </div>
+
+
+  <!-- ── MAP + SIDEBAR ──────────────────────────────── -->
+  <div class="map-layout">
+
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Golf courses</div>
+        <div class="sidebar-sub" id="sidebar-sub">Loading courses…</div>
+      </div>
+      <div class="course-list" id="course-list">
+        <div class="list-loading">Loading courses…</div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+  </div>
+
+
+  <!-- ── LOGIN / SIGNUP MODAL ───────────────────────── -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+
+      <div class="modal-logo">
+        <div class="modal-logo-mark">
+          <svg viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="14" r="4" fill="white"/>
+            <rect x="9.2" y="1.5" width="1.6" height="10" rx="0.8" fill="white"/>
+            <path d="M10.8 2 L17 5.8 L10.8 9.6 Z" fill="white" opacity="0.75"/>
+          </svg>
+        </div>
+        <span>Weekend Birdie</span>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tab-login"  onclick="switchTab('login')">Log in</button>
+        <button class="modal-tab"        id="tab-signup" onclick="switchTab('signup')">Sign up</button>
+      </div>
+
+      <div id="login-form">
+        <div class="modal-field"><label>Email</label><input type="email" id="login-email"></div>
+        <div class="modal-field"><label>Password</label><input type="password" id="login-pass"></div>
+        <button class="modal-btn" onclick="doLogin()">Log in</button>
+        <div class="modal-footer-note">Forgot your password? <a href="#">Reset it</a></div>
+      </div>
+
+      <div id="signup-form" style="display:none;">
+        <div class="modal-grid-2">
+          <div class="modal-field"><label>First name</label><input type="text" id="signup-first" placeholder="Tiger"></div>
+          <div class="modal-field"><label>Last name</label><input type="text" id="signup-last" placeholder="W."></div>
+        </div>
+        <div class="modal-field"><label>Email</label><input type="email" id="signup-email" placeholder="you@example.com"></div>
+        <div class="modal-field"><label>Password</label><input type="password" id="signup-pass" placeholder="Min. 8 characters"></div>
+        <button class="modal-btn" onclick="doSignup()">Create account</button>
+        <div class="modal-footer-note">Already have an account? <a href="#" onclick="switchTab('login'); return false;">Log in</a></div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ── QUICK SCORECARD PANEL ──────────────────────── -->
+  <div class="qsc-overlay" id="qsc-overlay" onclick="closeQuickScorecard(event)">
+    <div class="qsc-panel" id="qsc-panel">
+
+      <!-- Header -->
+      <div class="qsc-header">
+        <div class="qsc-header-info">
+          <div class="qsc-course-name" id="qsc-course-name">Course Name</div>
+          <div class="qsc-course-meta" id="qsc-course-meta">City, State</div>
+        </div>
+        <button class="qsc-close" onclick="closeQuickScorecard()">&times;</button>
+      </div>
+
+      <!-- Body -->
+      <div class="qsc-body">
+
+        <!-- Tee / Holes / Date -->
+        <div class="qsc-setup">
+          <div class="qsc-field">
+            <label>Tees</label>
+            <select id="qsc-tee-select" onchange="qscOnTeeChange()">
+              <option value="">— select —</option>
+            </select>
+          </div>
+          <div class="qsc-field">
+            <label>Holes</label>
+            <select id="qsc-holes-select" onchange="qscBuildTable()">
+              <option value="18">18 holes</option>
+              <option value="9F">Front 9</option>
+              <option value="9B">Back 9</option>
+            </select>
+          </div>
+          <div class="qsc-field">
+            <label>Date</label>
+            <input type="date" id="qsc-date">
+          </div>
+        </div>
+
+        <!-- Live diff bar -->
+        <div class="qsc-diff-bar">
+          <div class="qsc-diff-item">
+            <span class="qsc-diff-label">Gross</span>
+            <span class="qsc-diff-value" id="qsc-live-gross">—</span>
+          </div>
+          <div class="qsc-diff-sep"></div>
+          <div class="qsc-diff-item">
+            <span class="qsc-diff-label">Differential</span>
+            <span class="qsc-diff-value" id="qsc-live-diff">—</span>
+          </div>
+          <div class="qsc-diff-sep"></div>
+          <div class="qsc-diff-item">
+            <span class="qsc-diff-label">Rating</span>
+            <span class="qsc-diff-value" id="qsc-live-rating">—</span>
+          </div>
+          <div class="qsc-diff-sep"></div>
+          <div class="qsc-diff-item">
+            <span class="qsc-diff-label">Slope</span>
+            <span class="qsc-diff-value" id="qsc-live-slope">—</span>
+          </div>
+        </div>
+
+        <!-- Scorecard table -->
+        <div id="qsc-table-container"></div>
+
+      </div><!-- /qsc-body -->
+
+      <!-- Footer -->
+      <div class="qsc-footer">
+        <div class="qsc-login-note" id="qsc-login-note" style="display:none">
+          <a href="#" onclick="openModal(event,'login')">Log in</a> or
+          <a href="#" onclick="openModal(event,'signup')">sign up</a>
+          to save this round to your stats.
+        </div>
+        <button class="qsc-save-btn" id="qsc-save-btn" onclick="qscSaveRound()" disabled>
+          Save round to my stats
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- QSC Toast -->
+  <div class="qsc-toast" id="qsc-toast"></div>
+
+  <!-- ── SCRIPTS ────────────────────────────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+  <script src="js/pb.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/courses.js"></script>
+
+</body>
+</html>
