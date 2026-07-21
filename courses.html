@@ -96,24 +96,6 @@
     <div class="divider-v"></div>
 
     <div class="filter-group">
-      <span class="filter-label">Tees</span>
-      <button class="filter-pill active" data-tee="all"   onclick="setTeePill(this)">All</button>
-      <button class="filter-pill"        data-tee="white" onclick="setTeePill(this)">White</button>
-      <button class="filter-pill"        data-tee="blue"  onclick="setTeePill(this)">Blue</button>
-      <button class="filter-pill"        data-tee="black" onclick="setTeePill(this)">Black</button>
-      <button class="filter-pill"        data-tee="red"   onclick="setTeePill(this)">Red</button>
-    </div>
-
-    <div class="divider-v"></div>
-
-    <div class="filter-group">
-      <span class="filter-label">Country</span>
-      <select class="filter-select" id="filter-country" onchange="applyFilters()">
-        <option value="all">All</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
       <span class="filter-label">Par</span>
       <select class="filter-select" id="filter-par" onchange="applyFilters()">
         <option value="all">Any</option>
@@ -140,6 +122,15 @@
         <option value="9">9</option>
         <option value="18">18</option>
         <option value="27">27</option>
+      </select>
+    </div>
+
+    <div class="filter-group repeat-filter-group" id="repeat-filter-group" title="">
+      <span class="filter-label">Repeat</span>
+      <select class="filter-select" id="filter-repeat" onchange="applyFilters()">
+        <option value="all">All</option>
+        <option value="been">Have Been</option>
+        <option value="not-been">Have Not Been</option>
       </select>
     </div>
 
@@ -301,7 +292,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
   <script src="js/pb.js"></script>
   <script src="js/main.js"></script>
-  <script src="java/courses.js"></script>
+  <script src="js/courses.js"></script>
 
 </body>
 </html>
