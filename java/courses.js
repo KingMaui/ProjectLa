@@ -5,17 +5,18 @@
    fetches per-course scorecards from data/details/{id}.json
    on demand.
    Dependencies: Leaflet 1.9, Leaflet.markercluster 1.5,
-   js/main.js (auth/nav)
+   js/main.js (auth/nav), js/pb.js (PB)
    ===================================================== */
 
 /* ── STATE ─────────────────────────────────────────── */
-let ALL_COURSES  = [];   // lightweight index rows
-let detailCache  = {};   // id -> full detail object, fetched on demand
-let map          = null;
-let markersLayer = null; // Leaflet.markercluster group
-let activeId     = null;
-let activeTee    = 'all';
-let markerMap    = {};
+let ALL_COURSES       = [];       // lightweight index rows
+let detailCache       = {};       // id -> full detail object, fetched on demand
+let map               = null;
+let markersLayer      = null;     // Leaflet.markercluster group
+let activeId          = null;
+let markerMap         = {};
+let playedCourseIds   = new Set(); // course IDs the logged-in user has a saved round for
+let repeatFilterReady = false;     // true once playedCourseIds has loaded successfully
 
 /* ── BOOT ───────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,7 +38,7 @@ async function loadCourses() {
     initCourseMap();
     renderSidebar(ALL_COURSES);
     updateResultsCount(ALL_COURSES.length);
-    populateCountryFilter();
+    initRepeatFilter();
   } catch (err) {
     console.error('Failed to load courses-index.json:', err);
     document.getElementById('course-list').innerHTML =
@@ -53,6 +54,35 @@ async function getCourseDetail(id) {
   const detail = await res.json();
   detailCache[id] = detail;
   return detail;
+}
+
+/* ── REPEAT FILTER (logged-in only) ─────────────────── */
+async function initRepeatFilter() {
+  const group  = document.getElementById('repeat-filter-group');
+  const select = document.getElementById('filter-repeat');
+
+  if (!PB.isLoggedIn()) {
+    group.classList.add('locked');
+    group.title = 'Log in to use this filter';
+    select.disabled = true;
+    repeatFilterReady = false;
+    return;
+  }
+
+  try {
+    const rounds = await PB.getRounds();
+    playedCourseIds = new Set(rounds.map(r => r.courseId));
+    repeatFilterReady = true;
+    group.classList.remove('locked');
+    group.title = '';
+    select.disabled = false;
+  } catch (err) {
+    console.error('Failed to load played courses for Repeat filter:', err);
+    group.classList.add('locked');
+    group.title = 'Could not load your rounds';
+    select.disabled = true;
+    repeatFilterReady = false;
+  }
 }
 
 /* ── MAP INIT ───────────────────────────────────────── */
@@ -404,6 +434,8 @@ async function qscSaveRound() {
   try {
     await PB.saveRound(round);
     qscShowToast('Round saved! ⛳ View it in My Stats.');
+    // Newly played course — reflect it in the Repeat filter immediately
+    playedCourseIds.add(qscCourse.id);
     setTimeout(() => closeQuickScorecard(), 1800);
   } catch(err) {
     qscShowToast(err.message || 'Failed to save. Please try again.');
@@ -485,22 +517,14 @@ function updateResultsCount(n) {
 }
 
 /* ── FILTERS ────────────────────────────────────────── */
-function setTeePill(el) {
-  document.querySelectorAll('.filter-pill[data-tee]')
-    .forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  activeTee = el.dataset.tee;
-  applyFilters();
-}
-
 function applyFilters() {
   if (!ALL_COURSES.length) return;
 
-  const query    = document.getElementById('course-search').value.toLowerCase().trim();
-  const par      = document.getElementById('filter-par').value;
-  const slope    = document.getElementById('filter-slope').value;
-  const holes    = document.getElementById('filter-holes').value;
-  const country  = document.getElementById('filter-country').value;
+  const query  = document.getElementById('course-search').value.toLowerCase().trim();
+  const par    = document.getElementById('filter-par').value;
+  const slope  = document.getElementById('filter-slope').value;
+  const holes  = document.getElementById('filter-holes').value;
+  const repeat = document.getElementById('filter-repeat').value;
 
   const filtered = ALL_COURSES.filter(c => {
     // Text search — name, city, state, country
@@ -509,23 +533,21 @@ function applyFilters() {
       if (!haystack.includes(query)) return false;
     }
 
-    // Country
-    if (country !== 'all' && c.country !== country) return false;
-
     // Par
     if (par !== 'all' && c.par_total !== +par) return false;
 
     // Holes (any of the available options includes the filter value)
     if (holes !== 'all' && !c.holes_available.includes(+holes)) return false;
 
-    // Tee availability — index only stores tee_colors (key + color)
-    if (activeTee !== 'all' && !(c.tee_colors || []).some(t => t.key === activeTee)) return false;
-
     // Slope (uses the pre-computed ref_tee from the index)
     const s = (c.ref_tee || {}).slope;
     if (slope === 'easy'   && s >= 120)             return false;
     if (slope === 'medium' && (s < 120 || s > 135)) return false;
     if (slope === 'hard'   && s <= 135)             return false;
+
+    // Repeat (logged-in only — no-ops if not ready, since the select is disabled then)
+    if (repeatFilterReady && repeat === 'been'     && !playedCourseIds.has(c.id)) return false;
+    if (repeatFilterReady && repeat === 'not-been' &&  playedCourseIds.has(c.id)) return false;
 
     return true;
   });
@@ -540,26 +562,10 @@ function resetFilters() {
   document.getElementById('filter-par').value     = 'all';
   document.getElementById('filter-slope').value   = 'all';
   document.getElementById('filter-holes').value   = 'all';
-  document.getElementById('filter-country').value = 'all';
-  document.querySelectorAll('.filter-pill[data-tee]')
-    .forEach(p => p.classList.remove('active'));
-  document.querySelector('.filter-pill[data-tee="all"]').classList.add('active');
-  activeTee = 'all';
+  document.getElementById('filter-repeat').value  = 'all';
 
   renderSidebar(ALL_COURSES);
   placeMarkers(ALL_COURSES);
   updateResultsCount(ALL_COURSES.length);
   map.flyTo([37.7749, -122.4194], 8, { duration: 1.2 });
-}
-
-/* ── POPULATE COUNTRY DROPDOWN DYNAMICALLY ────────── */
-function populateCountryFilter() {
-  const countries = [...new Set(ALL_COURSES.map(c => c.country))].sort();
-  const sel = document.getElementById('filter-country');
-  countries.forEach(ctry => {
-    const opt = document.createElement('option');
-    opt.value = ctry;
-    opt.textContent = ctry;
-    sel.appendChild(opt);
-  });
 }
