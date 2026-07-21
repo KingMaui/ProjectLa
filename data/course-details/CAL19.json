@@ -1,0 +1,248 @@
+{
+  "id": "CAL19",
+  "name": "Foxtail Golf Course — North",
+  "city": "Rohnert Park",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "white": {
+        "slope": 115,
+        "rating": 67.9,
+        "color": "#FFFFFF"
+      },
+      "blue": {
+        "slope": 121,
+        "rating": 70.3,
+        "color": "#0000FF"
+      },
+      "black": {
+        "slope": 126,
+        "rating": 73,
+        "color": "#000000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 72,
+    "yardage": {
+      "white": {
+        "men": 5846,
+        "women": 5846,
+        "women_rating": 72.4,
+        "women_slope": 120
+      },
+      "blue": {
+        "men": 6394
+      },
+      "black": {
+        "men": 6851
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 5,
+        "stroke_index_men": "07",
+        "stroke_index_women": "03",
+        "yards": {
+          "white": 500,
+          "blue": 533,
+          "black": 563
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "05",
+        "stroke_index_women": "09",
+        "yards": {
+          "white": 363,
+          "blue": 398,
+          "black": 427
+        }
+      },
+      {
+        "hole": "03",
+        "par": 3,
+        "stroke_index_men": "13",
+        "stroke_index_women": "15",
+        "yards": {
+          "white": 144,
+          "blue": 166,
+          "black": 174
+        }
+      },
+      {
+        "hole": "04",
+        "par": 5,
+        "stroke_index_men": "11",
+        "stroke_index_women": "01",
+        "yards": {
+          "white": 458,
+          "blue": 488,
+          "black": 520
+        }
+      },
+      {
+        "hole": "05",
+        "par": 4,
+        "stroke_index_men": "01",
+        "stroke_index_women": "05",
+        "yards": {
+          "white": 383,
+          "blue": 417,
+          "black": 460
+        }
+      },
+      {
+        "hole": "06",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "white": 113,
+          "blue": 139,
+          "black": 144
+        }
+      },
+      {
+        "hole": "07",
+        "par": 4,
+        "stroke_index_men": "03",
+        "stroke_index_women": "07",
+        "yards": {
+          "white": 359,
+          "blue": 397,
+          "black": 419
+        }
+      },
+      {
+        "hole": "08",
+        "par": 4,
+        "stroke_index_men": "09",
+        "stroke_index_women": "11",
+        "yards": {
+          "white": 333,
+          "blue": 361,
+          "black": 388
+        }
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": "15",
+        "stroke_index_women": "13",
+        "yards": {
+          "white": 272,
+          "blue": 303,
+          "black": 333
+        }
+      },
+      {
+        "hole": "10",
+        "par": 4,
+        "stroke_index_men": "16",
+        "stroke_index_women": "12",
+        "yards": {
+          "white": 311,
+          "blue": 329,
+          "black": 349
+        }
+      },
+      {
+        "hole": "11",
+        "par": 4,
+        "stroke_index_men": "02",
+        "stroke_index_women": "14",
+        "yards": {
+          "white": 379,
+          "blue": 410,
+          "black": 441
+        }
+      },
+      {
+        "hole": "12",
+        "par": 5,
+        "stroke_index_men": "08",
+        "stroke_index_women": "02",
+        "yards": {
+          "white": 518,
+          "blue": 553,
+          "black": 583
+        }
+      },
+      {
+        "hole": "13",
+        "par": 3,
+        "stroke_index_men": "18",
+        "stroke_index_women": "18",
+        "yards": {
+          "white": 128,
+          "blue": 148,
+          "black": 152
+        }
+      },
+      {
+        "hole": "14",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": "08",
+        "yards": {
+          "white": 328,
+          "blue": 358,
+          "black": 381
+        }
+      },
+      {
+        "hole": "15",
+        "par": 3,
+        "stroke_index_men": "12",
+        "stroke_index_women": "16",
+        "yards": {
+          "white": 106,
+          "blue": 139,
+          "black": 168
+        }
+      },
+      {
+        "hole": "16",
+        "par": 5,
+        "stroke_index_men": "10",
+        "stroke_index_women": "04",
+        "yards": {
+          "white": 444,
+          "blue": 479,
+          "black": 510
+        }
+      },
+      {
+        "hole": "17",
+        "par": 4,
+        "stroke_index_men": "06",
+        "stroke_index_women": "10",
+        "yards": {
+          "white": 351,
+          "blue": 390,
+          "black": 417
+        }
+      },
+      {
+        "hole": "18",
+        "par": 4,
+        "stroke_index_men": "04",
+        "stroke_index_women": "06",
+        "yards": {
+          "white": 355,
+          "blue": 386,
+          "black": 422
+        }
+      }
+    ]
+  }
+}

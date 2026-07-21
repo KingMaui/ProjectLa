@@ -1,0 +1,277 @@
+{
+  "id": "CAL61",
+  "name": "Bay Club at StoneTree",
+  "city": "Novato",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "white": {
+        "slope": 115,
+        "rating": 65.2,
+        "color": "#FFFFFF"
+      },
+      "blue": {
+        "slope": 123,
+        "rating": 68.6,
+        "color": "#0000FF"
+      },
+      "black": {
+        "slope": 135,
+        "rating": 70.9,
+        "color": "#000000"
+      },
+      "championship": {
+        "slope": 138,
+        "rating": 73.1,
+        "color": "#F54927"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 72,
+    "yardage": {
+      "white": {
+        "men": 5083,
+        "women": 5083,
+        "women_rating": 70.2,
+        "women_slope": 125
+      },
+      "blue": {
+        "men": 5873,
+        "women": 5873,
+        "women_rating": 74.6,
+        "women_slope": 135
+      },
+      "black": {
+        "men": 6354
+      },
+      "championship": {
+        "men": 6782
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 4,
+        "stroke_index_men": "15",
+        "stroke_index_women": "15",
+        "yards": {
+          "white": 317,
+          "blue": 344,
+          "black": 368,
+          "championship": 401
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "11",
+        "stroke_index_women": "11",
+        "yards": {
+          "white": 265,
+          "blue": 294,
+          "black": 308,
+          "championship": 310
+        }
+      },
+      {
+        "hole": "03",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "white": 121,
+          "blue": 154,
+          "black": 175,
+          "championship": 192
+        }
+      },
+      {
+        "hole": "04",
+        "par": 4,
+        "stroke_index_men": "05",
+        "stroke_index_women": "05",
+        "yards": {
+          "white": 326,
+          "blue": 347,
+          "black": 393,
+          "championship": 429
+        }
+      },
+      {
+        "hole": "05",
+        "par": 4,
+        "stroke_index_men": "03",
+        "stroke_index_women": "03",
+        "yards": {
+          "white": 260,
+          "blue": 333,
+          "black": 371,
+          "championship": 426
+        }
+      },
+      {
+        "hole": "06",
+        "par": 5,
+        "stroke_index_men": "09",
+        "stroke_index_women": "09",
+        "yards": {
+          "white": 449,
+          "blue": 504,
+          "black": 533,
+          "championship": 549
+        }
+      },
+      {
+        "hole": "07",
+        "par": 4,
+        "stroke_index_men": "07",
+        "stroke_index_women": "07",
+        "yards": {
+          "white": 247,
+          "blue": 308,
+          "black": 331,
+          "championship": 358
+        }
+      },
+      {
+        "hole": "08",
+        "par": 3,
+        "stroke_index_men": "13",
+        "stroke_index_women": "13",
+        "yards": {
+          "white": 144,
+          "blue": 144,
+          "black": 148,
+          "championship": 169
+        }
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": "01",
+        "stroke_index_women": "01",
+        "yards": {
+          "white": 330,
+          "blue": 390,
+          "black": 408,
+          "championship": 430
+        }
+      },
+      {
+        "hole": "10",
+        "par": 3,
+        "stroke_index_men": "18",
+        "stroke_index_women": "18",
+        "yards": {
+          "white": 80,
+          "blue": 122,
+          "black": 136,
+          "championship": 162
+        }
+      },
+      {
+        "hole": "11",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": "14",
+        "yards": {
+          "white": 292,
+          "blue": 334,
+          "black": 366,
+          "championship": 385
+        }
+      },
+      {
+        "hole": "12",
+        "par": 5,
+        "stroke_index_men": "08",
+        "stroke_index_women": "08",
+        "yards": {
+          "white": 439,
+          "blue": 474,
+          "black": 530,
+          "championship": 573
+        }
+      },
+      {
+        "hole": "13",
+        "par": 4,
+        "stroke_index_men": "12",
+        "stroke_index_women": "12",
+        "yards": {
+          "white": 261,
+          "blue": 267,
+          "black": 296,
+          "championship": 309
+        }
+      },
+      {
+        "hole": "14",
+        "par": 5,
+        "stroke_index_men": "10",
+        "stroke_index_women": "10",
+        "yards": {
+          "white": 405,
+          "blue": 436,
+          "black": 472,
+          "championship": 488
+        }
+      },
+      {
+        "hole": "15",
+        "par": 4,
+        "stroke_index_men": "02",
+        "stroke_index_women": "02",
+        "yards": {
+          "white": 316,
+          "blue": 410,
+          "black": 429,
+          "championship": 453
+        }
+      },
+      {
+        "hole": "16",
+        "par": 5,
+        "stroke_index_men": "06",
+        "stroke_index_women": "06",
+        "yards": {
+          "white": 414,
+          "blue": 451,
+          "black": 487,
+          "championship": 511
+        }
+      },
+      {
+        "hole": "17",
+        "par": 3,
+        "stroke_index_men": "16",
+        "stroke_index_women": "16",
+        "yards": {
+          "white": 102,
+          "blue": 157,
+          "black": 170,
+          "championship": 185
+        }
+      },
+      {
+        "hole": "18",
+        "par": 4,
+        "stroke_index_men": "04",
+        "stroke_index_women": "04",
+        "yards": {
+          "white": 315,
+          "blue": 404,
+          "black": 433,
+          "championship": 452
+        }
+      }
+    ]
+  }
+}

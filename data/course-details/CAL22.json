@@ -1,0 +1,309 @@
+{
+  "id": "CAL22",
+  "name": "Poppy Ridge Golf Course",
+  "city": "Livermore",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "green": {
+        "slope": 98,
+        "rating": 60.7,
+        "color": "#008000"
+      },
+      "gold": {
+        "slope": 102,
+        "rating": 64.1,
+        "color": "#FFD700"
+      },
+      "white": {
+        "slope": 118,
+        "rating": 68.3,
+        "color": "#FFFFFF"
+      },
+      "blue": {
+        "slope": 124,
+        "rating": 70.9,
+        "color": "#0000FF"
+      },
+      "orange": {
+        "slope": 129,
+        "rating": 72.7,
+        "color": "#FFA500"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 72,
+    "yardage": {
+      "green": {
+        "men": 4225,
+        "women": 4225,
+        "women_rating": 64.5,
+        "women_slope": 99
+      },
+      "gold": {
+        "men": 5095,
+        "women": 5095,
+        "women_rating": 68.9,
+        "women_slope": 115
+      },
+      "white": {
+        "men": 6022,
+        "women": 6022,
+        "women_rating": 74.3,
+        "women_slope": 125
+      },
+      "blue": {
+        "men": 6562,
+        "women": 6562,
+        "women_rating": 77.1,
+        "women_slope": 131
+      },
+      "orange": {
+        "men": 7010
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 5,
+        "stroke_index_men": "05",
+        "stroke_index_women": "07",
+        "yards": {
+          "green": 310,
+          "gold": 442,
+          "white": 542,
+          "blue": 580,
+          "orange": 610
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "03",
+        "stroke_index_women": "03",
+        "yards": {
+          "green": 311,
+          "gold": 358,
+          "white": 428,
+          "blue": 440,
+          "orange": 488
+        }
+      },
+      {
+        "hole": "03",
+        "par": 3,
+        "stroke_index_men": "15",
+        "stroke_index_women": "15",
+        "yards": {
+          "green": 106,
+          "gold": 125,
+          "white": 155,
+          "blue": 172,
+          "orange": 197
+        }
+      },
+      {
+        "hole": "04",
+        "par": 5,
+        "stroke_index_men": "07",
+        "stroke_index_women": "05",
+        "yards": {
+          "green": 360,
+          "gold": 407,
+          "white": 456,
+          "blue": 485,
+          "orange": 490
+        }
+      },
+      {
+        "hole": "05",
+        "par": 3,
+        "stroke_index_men": "09",
+        "stroke_index_women": "13",
+        "yards": {
+          "green": 126,
+          "gold": 160,
+          "white": 185,
+          "blue": 205,
+          "orange": 225
+        }
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": "13",
+        "stroke_index_women": "09",
+        "yards": {
+          "green": 238,
+          "gold": 262,
+          "white": 340,
+          "blue": 362,
+          "orange": 389
+        }
+      },
+      {
+        "hole": "07",
+        "par": 5,
+        "stroke_index_men": "01",
+        "stroke_index_women": "01",
+        "yards": {
+          "green": 357,
+          "gold": 426,
+          "white": 475,
+          "blue": 527,
+          "orange": 558
+        }
+      },
+      {
+        "hole": "08",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "green": 92,
+          "gold": 116,
+          "white": 135,
+          "blue": 160,
+          "orange": 186
+        }
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": "11",
+        "stroke_index_women": "11",
+        "yards": {
+          "green": 182,
+          "gold": 280,
+          "white": 300,
+          "blue": 324,
+          "orange": 339
+        }
+      },
+      {
+        "hole": "10",
+        "par": 4,
+        "stroke_index_men": "06",
+        "stroke_index_women": "04",
+        "yards": {
+          "green": 304,
+          "gold": 315,
+          "white": 375,
+          "blue": 425,
+          "orange": 441
+        }
+      },
+      {
+        "hole": "11",
+        "par": 4,
+        "stroke_index_men": "04",
+        "stroke_index_women": "06",
+        "yards": {
+          "green": 292,
+          "gold": 301,
+          "white": 358,
+          "blue": 415,
+          "orange": 470
+        }
+      },
+      {
+        "hole": "12",
+        "par": 4,
+        "stroke_index_men": "12",
+        "stroke_index_women": "12",
+        "yards": {
+          "green": 229,
+          "gold": 309,
+          "white": 344,
+          "blue": 377,
+          "orange": 402
+        }
+      },
+      {
+        "hole": "13",
+        "par": 5,
+        "stroke_index_men": "16",
+        "stroke_index_women": "10",
+        "yards": {
+          "green": 337,
+          "gold": 390,
+          "white": 490,
+          "blue": 510,
+          "orange": 527
+        }
+      },
+      {
+        "hole": "14",
+        "par": 3,
+        "stroke_index_men": "10",
+        "stroke_index_women": "16",
+        "yards": {
+          "green": 88,
+          "gold": 122,
+          "white": 145,
+          "blue": 184,
+          "orange": 205
+        }
+      },
+      {
+        "hole": "15",
+        "par": 4,
+        "stroke_index_men": "02",
+        "stroke_index_women": "02",
+        "yards": {
+          "green": 310,
+          "gold": 326,
+          "white": 390,
+          "blue": 418,
+          "orange": 440
+        }
+      },
+      {
+        "hole": "16",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": "14",
+        "yards": {
+          "green": 184,
+          "gold": 260,
+          "white": 332,
+          "blue": 358,
+          "orange": 382
+        }
+      },
+      {
+        "hole": "17",
+        "par": 3,
+        "stroke_index_men": "18",
+        "stroke_index_women": "18",
+        "yards": {
+          "green": 67,
+          "gold": 96,
+          "white": 109,
+          "blue": 133,
+          "orange": 154
+        }
+      },
+      {
+        "hole": "18",
+        "par": 5,
+        "stroke_index_men": "08",
+        "stroke_index_women": "08",
+        "yards": {
+          "green": 332,
+          "gold": 400,
+          "white": 463,
+          "blue": 487,
+          "orange": 507
+        }
+      }
+    ]
+  }
+}

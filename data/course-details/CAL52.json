@@ -1,0 +1,135 @@
+{
+  "id": "CAL52",
+  "name": "Golden Gate Park Golf Course",
+  "city": "San Francisco",
+  "state": "California",
+  "holes_available": [
+    9
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "I": {
+        "slope": 73,
+        "rating": 51,
+        "color": "#FFFFFF"
+      },
+      "II": {
+        "slope": 80,
+        "rating": 53.2,
+        "color": "#000000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 9,
+    "par_total": 27,
+    "yardage": {
+      "I": {
+        "men": 931,
+        "women": 931,
+        "women_rating": 53.6,
+        "women_slope": 77
+      },
+      "II": {
+        "men": 1177,
+        "women": 1177,
+        "women_rating": 55.6,
+        "women_slope": 82
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 3,
+        "stroke_index_men": "05",
+        "stroke_index_women": "05",
+        "yards": {
+          "I": 116,
+          "II": 144
+        }
+      },
+      {
+        "hole": "02",
+        "par": 3,
+        "stroke_index_men": "11",
+        "stroke_index_women": "11",
+        "yards": {
+          "I": 90,
+          "II": 110
+        }
+      },
+      {
+        "hole": "03",
+        "par": 3,
+        "stroke_index_men": "13",
+        "stroke_index_women": "13",
+        "yards": {
+          "I": 105,
+          "II": 126
+        }
+      },
+      {
+        "hole": "04",
+        "par": 3,
+        "stroke_index_men": "15",
+        "stroke_index_women": "15",
+        "yards": {
+          "I": 77,
+          "II": 112
+        }
+      },
+      {
+        "hole": "05",
+        "par": 3,
+        "stroke_index_men": "01",
+        "stroke_index_women": "01",
+        "yards": {
+          "I": 130,
+          "II": 158
+        }
+      },
+      {
+        "hole": "06",
+        "par": 3,
+        "stroke_index_men": "09",
+        "stroke_index_women": "09",
+        "yards": {
+          "I": 110,
+          "II": 150
+        }
+      },
+      {
+        "hole": "07",
+        "par": 3,
+        "stroke_index_men": "07",
+        "stroke_index_women": "07",
+        "yards": {
+          "I": 106,
+          "II": 135
+        }
+      },
+      {
+        "hole": "08",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "I": 72,
+          "II": 91
+        }
+      },
+      {
+        "hole": "09",
+        "par": 3,
+        "stroke_index_men": "03",
+        "stroke_index_women": "03",
+        "yards": {
+          "I": 125,
+          "II": 151
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "id": "CAL08",
+  "name": "Monarch Bay Golf Club (Tony Lema Course)",
+  "city": "San Leandro",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "green": {
+        "slope": 114,
+        "rating": 66.8,
+        "color": "#008000"
+      },
+      "white": {
+        "slope": 124,
+        "rating": 69.6,
+        "color": "#FFFFFF"
+      },
+      "red": {
+        "slope": 119,
+        "rating": 69.8,
+        "color": "#FF0000"
+      },
+      "gold": {
+        "slope": 128,
+        "rating": 72.2,
+        "color": "#FFD700"
+      },
+      "black": {
+        "slope": 132,
+        "rating": 73.8,
+        "color": "#000000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 71,
+    "yardage": {
+      "green": {
+        "men": 5502
+      },
+      "white": {
+        "men": 6061
+      },
+      "red": {
+        "men": 5140
+      },
+      "gold": {
+        "men": 6567
+      },
+      "black": {
+        "men": 7015
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 4,
+        "stroke_index_men": "07",
+        "stroke_index_women": "09",
+        "yards": {
+          "green": 338,
+          "white": 369,
+          "red": 288,
+          "gold": 403,
+          "black": 413
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "03",
+        "stroke_index_women": "03",
+        "yards": {
+          "green": 363,
+          "white": 374,
+          "red": 298,
+          "gold": 385,
+          "black": 409
+        }
+      },
+      {
+        "hole": "03",
+        "par": 4,
+        "stroke_index_men": "05",
+        "stroke_index_women": "11",
+        "yards": {
+          "green": 336,
+          "white": 376,
+          "red": 330,
+          "gold": 402,
+          "black": 443
+        }
+      },
+      {
+        "hole": "04",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "green": 139,
+          "white": 160,
+          "red": 131,
+          "gold": 173,
+          "black": 198
+        }
+      },
+      {
+        "hole": "05",
+        "par": 5,
+        "stroke_index_men": "11",
+        "stroke_index_women": "01",
+        "yards": {
+          "green": 458,
+          "white": 482,
+          "red": 401,
+          "gold": 507,
+          "black": 514
+        }
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": "13",
+        "stroke_index_women": "07",
+        "yards": {
+          "green": 355,
+          "white": 365,
+          "red": 337,
+          "gold": 389,
+          "black": 411
+        }
+      },
+      {
+        "hole": "07",
+        "par": 3,
+        "stroke_index_men": "15",
+        "stroke_index_women": "15",
+        "yards": {
+          "green": 152,
+          "white": 180,
+          "red": 141,
+          "gold": 207,
+          "black": 244
+        }
+      },
+      {
+        "hole": "08",
+        "par": 4,
+        "stroke_index_men": "09",
+        "stroke_index_women": "13",
+        "yards": {
+          "green": 308,
+          "white": 332,
+          "red": 302,
+          "gold": 354,
+          "black": 383
+        }
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": "01",
+        "stroke_index_women": "05",
+        "yards": {
+          "green": 373,
+          "white": 389,
+          "red": 349,
+          "gold": 405,
+          "black": 437
+        }
+      },
+      {
+        "hole": "10",
+        "par": 3,
+        "stroke_index_men": "18",
+        "stroke_index_women": "18",
+        "yards": {
+          "green": 106,
+          "white": 129,
+          "red": 100,
+          "gold": 139,
+          "black": 152
+        }
+      },
+      {
+        "hole": "11",
+        "par": 4,
+        "stroke_index_men": "12",
+        "stroke_index_women": "10",
+        "yards": {
+          "green": 324,
+          "white": 342,
+          "red": 318,
+          "gold": 369,
+          "black": 396
+        }
+      },
+      {
+        "hole": "12",
+        "par": 5,
+        "stroke_index_men": "06",
+        "stroke_index_women": "06",
+        "yards": {
+          "green": 386,
+          "white": 507,
+          "red": 380,
+          "gold": 546,
+          "black": 556
+        }
+      },
+      {
+        "hole": "13",
+        "par": 5,
+        "stroke_index_men": "04",
+        "stroke_index_women": "04",
+        "yards": {
+          "green": 417,
+          "white": 450,
+          "red": 389,
+          "gold": 468,
+          "black": 497
+        }
+      },
+      {
+        "hole": "14",
+        "par": 4,
+        "stroke_index_men": "16",
+        "stroke_index_women": "12",
+        "yards": {
+          "green": 260,
+          "white": 278,
+          "red": 251,
+          "gold": 293,
+          "black": 315
+        }
+      },
+      {
+        "hole": "15",
+        "par": 4,
+        "stroke_index_men": "08",
+        "stroke_index_women": "08",
+        "yards": {
+          "green": 326,
+          "white": 358,
+          "red": 320,
+          "gold": 388,
+          "black": 429
+        }
+      },
+      {
+        "hole": "16",
+        "par": 5,
+        "stroke_index_men": "02",
+        "stroke_index_women": "02",
+        "yards": {
+          "green": 461,
+          "white": 519,
+          "red": 455,
+          "gold": 556,
+          "black": 598
+        }
+      },
+      {
+        "hole": "17",
+        "par": 3,
+        "stroke_index_men": "10",
+        "stroke_index_women": "16",
+        "yards": {
+          "green": 149,
+          "white": 178,
+          "red": 107,
+          "gold": 190,
+          "black": 213
+        }
+      },
+      {
+        "hole": "18",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": "14",
+        "yards": {
+          "green": 251,
+          "white": 273,
+          "red": 243,
+          "gold": 393,
+          "black": 407
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "id": "CAL38",
+  "name": "Sunol Valley Golf Course — Cypress Course",
+  "city": "Sunol",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "red": {
+        "slope": 110,
+        "rating": 66.3,
+        "color": "#FF0000"
+      },
+      "white": {
+        "slope": 116,
+        "rating": 68,
+        "color": "#FFFFFF"
+      },
+      "blue": {
+        "slope": 120,
+        "rating": 69.7,
+        "color": "#0000FF"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 72,
+    "yardage": {
+      "red": {
+        "men": 5248
+      },
+      "white": {
+        "men": 5812
+      },
+      "blue": {
+        "men": 6238
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "03",
+        "par": 5,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "04",
+        "par": 3,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "05",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "07",
+        "par": 3,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "08",
+        "par": 5,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "10",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "11",
+        "par": 3,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "12",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "13",
+        "par": 5,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "14",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "15",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "16",
+        "par": 3,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "17",
+        "par": 5,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "18",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      }
+    ]
+  }
+}
