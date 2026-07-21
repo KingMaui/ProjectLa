@@ -1,0 +1,225 @@
+{
+  "id": "CAL60",
+  "name": "Sugarloaf Golf Course",
+  "city": "Santa Rosa",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "yellow": {
+        "slope": 98,
+        "rating": 60.2,
+        "color": "#FFFF00"
+      },
+      "white": {
+        "slope": 101,
+        "rating": 61.5,
+        "color": "#FFFFFF"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 63,
+    "yardage": {
+      "yellow": {
+        "men": 4067,
+        "women": 4067,
+        "women_rating": 62.2,
+        "women_slope": 97
+      },
+      "white": {
+        "men": 4293,
+        "women": 4293,
+        "women_rating": 63.5,
+        "women_slope": 100
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 4,
+        "stroke_index_men": "09",
+        "stroke_index_women": "12",
+        "yards": {
+          "yellow": 292,
+          "white": 303
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "17",
+        "stroke_index_women": "14",
+        "yards": {
+          "yellow": 231,
+          "white": 246
+        }
+      },
+      {
+        "hole": "03",
+        "par": 4,
+        "stroke_index_men": "11",
+        "stroke_index_women": "04",
+        "yards": {
+          "yellow": 273,
+          "white": 280
+        }
+      },
+      {
+        "hole": "04",
+        "par": 3,
+        "stroke_index_men": "01",
+        "stroke_index_women": "06",
+        "yards": {
+          "yellow": 206,
+          "white": 221
+        }
+      },
+      {
+        "hole": "05",
+        "par": 3,
+        "stroke_index_men": "05",
+        "stroke_index_women": "16",
+        "yards": {
+          "yellow": 160,
+          "white": 169
+        }
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": "13",
+        "stroke_index_women": "10",
+        "yards": {
+          "yellow": 289,
+          "white": 302
+        }
+      },
+      {
+        "hole": "07",
+        "par": 3,
+        "stroke_index_men": "03",
+        "stroke_index_women": "02",
+        "yards": {
+          "yellow": 175,
+          "white": 198
+        }
+      },
+      {
+        "hole": "08",
+        "par": 3,
+        "stroke_index_men": "15",
+        "stroke_index_women": "18",
+        "yards": {
+          "yellow": 135,
+          "white": 145
+        }
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": "07",
+        "stroke_index_women": "08",
+        "yards": {
+          "yellow": 294,
+          "white": 306
+        }
+      },
+      {
+        "hole": "10",
+        "par": 4,
+        "stroke_index_men": "08",
+        "stroke_index_women": "03",
+        "yards": {
+          "yellow": 331,
+          "white": 344
+        }
+      },
+      {
+        "hole": "11",
+        "par": 3,
+        "stroke_index_men": "12",
+        "stroke_index_women": "11",
+        "yards": {
+          "yellow": 144,
+          "white": 157
+        }
+      },
+      {
+        "hole": "12",
+        "par": 3,
+        "stroke_index_men": "06",
+        "stroke_index_women": "13",
+        "yards": {
+          "yellow": 187,
+          "white": 203
+        }
+      },
+      {
+        "hole": "13",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": "15",
+        "yards": {
+          "yellow": 315,
+          "white": 324
+        }
+      },
+      {
+        "hole": "14",
+        "par": 3,
+        "stroke_index_men": "02",
+        "stroke_index_women": "09",
+        "yards": {
+          "yellow": 149,
+          "white": 171
+        }
+      },
+      {
+        "hole": "15",
+        "par": 4,
+        "stroke_index_men": "18",
+        "stroke_index_women": "01",
+        "yards": {
+          "yellow": 284,
+          "white": 290
+        }
+      },
+      {
+        "hole": "16",
+        "par": 3,
+        "stroke_index_men": "16",
+        "stroke_index_women": "17",
+        "yards": {
+          "yellow": 119,
+          "white": 127
+        }
+      },
+      {
+        "hole": "17",
+        "par": 4,
+        "stroke_index_men": "10",
+        "stroke_index_women": "05",
+        "yards": {
+          "yellow": 308,
+          "white": 320
+        }
+      },
+      {
+        "hole": "18",
+        "par": 3,
+        "stroke_index_men": "04",
+        "stroke_index_women": "07",
+        "yards": {
+          "yellow": 175,
+          "white": 187
+        }
+      }
+    ]
+  }
+}

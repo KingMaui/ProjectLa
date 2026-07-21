@@ -1,0 +1,165 @@
+{
+  "id": "CAL43",
+  "name": "Willow Park Golf Course",
+  "city": "Castro Valley",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "white": {
+        "slope": 111,
+        "rating": 66.1,
+        "color": "#FFFFFF"
+      },
+      "red": {
+        "slope": 107,
+        "rating": 68.1,
+        "color": "#FF0000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 71,
+    "yardage": {
+      "white": {
+        "men": 5840
+      },
+      "red": {
+        "men": 5404
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "02",
+        "par": 3,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "03",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "04",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "05",
+        "par": 3,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "07",
+        "par": 5,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "08",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "10",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "11",
+        "par": 3,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "12",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "13",
+        "par": 5,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "14",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "15",
+        "par": 3,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "16",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "17",
+        "par": 4,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      },
+      {
+        "hole": "18",
+        "par": 5,
+        "stroke_index_men": null,
+        "stroke_index_women": null,
+        "yards": {}
+      }
+    ]
+  }
+}

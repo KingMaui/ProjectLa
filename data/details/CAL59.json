@@ -1,0 +1,251 @@
+{
+  "id": "CAL59",
+  "name": "Valley of the Moon Golf Course",
+  "city": "Santa Rosa",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "yellow": {
+        "slope": 121,
+        "rating": 67.4,
+        "color": "#FFFF00"
+      },
+      "white": {
+        "slope": 126,
+        "rating": 70.1,
+        "color": "#FFFFFF"
+      },
+      "blue": {
+        "slope": 130,
+        "rating": 71.2,
+        "color": "#0000FF"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 72,
+    "yardage": {
+      "yellow": {
+        "men": 5528,
+        "women": 5528,
+        "women_rating": 72.5,
+        "women_slope": 125
+      },
+      "white": {
+        "men": 6032,
+        "women": 6032,
+        "women_rating": 75.5,
+        "women_slope": 132
+      },
+      "blue": {
+        "men": 6359
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 4,
+        "stroke_index_men": "10",
+        "stroke_index_women": "06",
+        "yards": {
+          "yellow": 295,
+          "white": 331,
+          "blue": 351
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "02",
+        "stroke_index_women": "12",
+        "yards": {
+          "yellow": 318,
+          "white": 382,
+          "blue": 399
+        }
+      },
+      {
+        "hole": "03",
+        "par": 5,
+        "stroke_index_men": "14",
+        "stroke_index_women": "08",
+        "yards": {
+          "yellow": 418,
+          "white": 453,
+          "blue": 472
+        }
+      },
+      {
+        "hole": "04",
+        "par": 4,
+        "stroke_index_men": "06",
+        "stroke_index_women": "04",
+        "yards": {
+          "yellow": 318,
+          "white": 329,
+          "blue": 354
+        }
+      },
+      {
+        "hole": "05",
+        "par": 3,
+        "stroke_index_men": "04",
+        "stroke_index_women": "16",
+        "yards": {
+          "yellow": 168,
+          "white": 199,
+          "blue": 214
+        }
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": "12",
+        "stroke_index_women": "14",
+        "yards": {
+          "yellow": 299,
+          "white": 329,
+          "blue": 343
+        }
+      },
+      {
+        "hole": "07",
+        "par": 5,
+        "stroke_index_men": "16",
+        "stroke_index_women": "02",
+        "yards": {
+          "yellow": 440,
+          "white": 455,
+          "blue": 467
+        }
+      },
+      {
+        "hole": "08",
+        "par": 3,
+        "stroke_index_men": "18",
+        "stroke_index_women": "18",
+        "yards": {
+          "yellow": 114,
+          "white": 130,
+          "blue": 143
+        }
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": "08",
+        "stroke_index_women": "10",
+        "yards": {
+          "yellow": 293,
+          "white": 323,
+          "blue": 357
+        }
+      },
+      {
+        "hole": "10",
+        "par": 5,
+        "stroke_index_men": "11",
+        "stroke_index_women": "05",
+        "yards": {
+          "yellow": 441,
+          "white": 472,
+          "blue": 485
+        }
+      },
+      {
+        "hole": "11",
+        "par": 4,
+        "stroke_index_men": "15",
+        "stroke_index_women": "13",
+        "yards": {
+          "yellow": 310,
+          "white": 333,
+          "blue": 353
+        }
+      },
+      {
+        "hole": "12",
+        "par": 4,
+        "stroke_index_men": "09",
+        "stroke_index_women": "11",
+        "yards": {
+          "yellow": 359,
+          "white": 371,
+          "blue": 381
+        }
+      },
+      {
+        "hole": "13",
+        "par": 3,
+        "stroke_index_men": "13",
+        "stroke_index_women": "15",
+        "yards": {
+          "yellow": 108,
+          "white": 145,
+          "blue": 174
+        }
+      },
+      {
+        "hole": "14",
+        "par": 4,
+        "stroke_index_men": "05",
+        "stroke_index_women": "09",
+        "yards": {
+          "yellow": 342,
+          "white": 369,
+          "blue": 380
+        }
+      },
+      {
+        "hole": "15",
+        "par": 5,
+        "stroke_index_men": "07",
+        "stroke_index_women": "01",
+        "yards": {
+          "yellow": 497,
+          "white": 531,
+          "blue": 546
+        }
+      },
+      {
+        "hole": "16",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "yellow": 108,
+          "white": 131,
+          "blue": 143
+        }
+      },
+      {
+        "hole": "17",
+        "par": 4,
+        "stroke_index_men": "01",
+        "stroke_index_women": "03",
+        "yards": {
+          "yellow": 360,
+          "white": 382,
+          "blue": 400
+        }
+      },
+      {
+        "hole": "18",
+        "par": 4,
+        "stroke_index_men": "03",
+        "stroke_index_women": "07",
+        "yards": {
+          "yellow": 340,
+          "white": 367,
+          "blue": 397
+        }
+      }
+    ]
+  }
+}

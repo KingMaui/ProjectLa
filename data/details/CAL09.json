@@ -1,0 +1,297 @@
+{
+  "id": "CAL09",
+  "name": "Half Moon Bay Golf Links — Ocean Course",
+  "city": "Half Moon Bay",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "gold": {
+        "slope": 118,
+        "rating": 66.5,
+        "color": "#FFD700"
+      },
+      "red": {
+        "slope": 115,
+        "rating": 68.5,
+        "color": "#FF0000"
+      },
+      "white": {
+        "slope": 123,
+        "rating": 69.6,
+        "color": "#FFFFFF"
+      },
+      "blue": {
+        "slope": 125,
+        "rating": 71.2,
+        "color": "#0000FF"
+      },
+      "black": {
+        "slope": 132,
+        "rating": 72.5,
+        "color": "#000000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 72,
+    "yardage": {
+      "gold": {
+        "men": 2916
+      },
+      "red": {
+        "men": 2671
+      },
+      "white": {
+        "men": 3298
+      },
+      "blue": {
+        "men": 3524
+      },
+      "black": {
+        "men": 3711
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 4,
+        "stroke_index_men": "03",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 316,
+          "red": 316,
+          "white": 360,
+          "blue": 376,
+          "black": 394
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "09",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 297,
+          "red": 147,
+          "white": 297,
+          "blue": 332,
+          "black": 344
+        }
+      },
+      {
+        "hole": "03",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 101,
+          "red": 82,
+          "white": 118,
+          "blue": 140,
+          "black": 150
+        }
+      },
+      {
+        "hole": "04",
+        "par": 5,
+        "stroke_index_men": "15",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 429,
+          "red": 397,
+          "white": 446,
+          "blue": 481,
+          "black": 526
+        }
+      },
+      {
+        "hole": "05",
+        "par": 4,
+        "stroke_index_men": "01",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 381,
+          "red": 356,
+          "white": 408,
+          "blue": 431,
+          "black": 465
+        }
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": "11",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 311,
+          "red": 272,
+          "white": 351,
+          "blue": 365,
+          "black": 386
+        }
+      },
+      {
+        "hole": "07",
+        "par": 3,
+        "stroke_index_men": "13",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 132,
+          "red": 77,
+          "white": 143,
+          "blue": 155,
+          "black": 172
+        }
+      },
+      {
+        "hole": "08",
+        "par": 5,
+        "stroke_index_men": "05",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 441,
+          "red": 433,
+          "white": 475,
+          "blue": 500,
+          "black": 526
+        }
+      },
+      {
+        "hole": "09",
+        "par": 3,
+        "stroke_index_men": "07",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 137,
+          "red": 121,
+          "white": 156,
+          "blue": 166,
+          "black": 180
+        }
+      },
+      {
+        "hole": "10",
+        "par": 5,
+        "stroke_index_men": "10",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 468,
+          "red": 421,
+          "white": 488,
+          "blue": 550,
+          "black": 565
+        }
+      },
+      {
+        "hole": "11",
+        "par": 4,
+        "stroke_index_men": "06",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 364,
+          "red": 322,
+          "white": 412,
+          "blue": 422,
+          "black": 437
+        }
+      },
+      {
+        "hole": "12",
+        "par": 3,
+        "stroke_index_men": "08",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 146,
+          "red": 139,
+          "white": 164,
+          "blue": 195,
+          "black": 220
+        }
+      },
+      {
+        "hole": "13",
+        "par": 4,
+        "stroke_index_men": "02",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 328,
+          "red": 328,
+          "white": 386,
+          "blue": 409,
+          "black": 431
+        }
+      },
+      {
+        "hole": "14",
+        "par": 5,
+        "stroke_index_men": "16",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 450,
+          "red": 417,
+          "white": 475,
+          "blue": 506,
+          "black": 527
+        }
+      },
+      {
+        "hole": "15",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 336,
+          "red": 292,
+          "white": 357,
+          "blue": 385,
+          "black": 411
+        }
+      },
+      {
+        "hole": "16",
+        "par": 4,
+        "stroke_index_men": "04",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 316,
+          "red": 281,
+          "white": 360,
+          "blue": 381,
+          "black": 403
+        }
+      },
+      {
+        "hole": "17",
+        "par": 3,
+        "stroke_index_men": "12",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 111,
+          "red": 74,
+          "white": 129,
+          "blue": 149,
+          "black": 184
+        }
+      },
+      {
+        "hole": "18",
+        "par": 5,
+        "stroke_index_men": "18",
+        "stroke_index_women": null,
+        "yards": {
+          "gold": 397,
+          "red": 397,
+          "white": 527,
+          "blue": 527,
+          "black": 533
+        }
+      }
+    ]
+  }
+}

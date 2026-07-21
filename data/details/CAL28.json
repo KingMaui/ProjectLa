@@ -1,0 +1,251 @@
+{
+  "id": "CAL28",
+  "name": "Poplar Creek Golf Course",
+  "city": "San Mateo",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "silver": {
+        "slope": 112,
+        "rating": 66.1,
+        "color": "#C0C0C0"
+      },
+      "gold": {
+        "slope": 114,
+        "rating": 68,
+        "color": "#FFD700"
+      },
+      "black": {
+        "slope": 117,
+        "rating": 70.2,
+        "color": "#000000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 70,
+    "yardage": {
+      "silver": {
+        "men": 5189,
+        "women": 5189,
+        "women_rating": 70.8,
+        "women_slope": 116
+      },
+      "gold": {
+        "men": 5631,
+        "women": 5631,
+        "women_rating": 73.1,
+        "women_slope": 120
+      },
+      "black": {
+        "men": 6035
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 5,
+        "stroke_index_men": "05",
+        "stroke_index_women": "05",
+        "yards": {
+          "silver": 467,
+          "gold": 495,
+          "black": 519
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "01",
+        "stroke_index_women": "01",
+        "yards": {
+          "silver": 372,
+          "gold": 403,
+          "black": 421
+        }
+      },
+      {
+        "hole": "03",
+        "par": 3,
+        "stroke_index_men": "07",
+        "stroke_index_women": "07",
+        "yards": {
+          "silver": 143,
+          "gold": 177,
+          "black": 188
+        }
+      },
+      {
+        "hole": "04",
+        "par": 4,
+        "stroke_index_men": "11",
+        "stroke_index_women": "11",
+        "yards": {
+          "silver": 372,
+          "gold": 387,
+          "black": 403
+        }
+      },
+      {
+        "hole": "05",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "silver": 128,
+          "gold": 160,
+          "black": 172
+        }
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": "09",
+        "stroke_index_women": "09",
+        "yards": {
+          "silver": 239,
+          "gold": 261,
+          "black": 286
+        }
+      },
+      {
+        "hole": "07",
+        "par": 3,
+        "stroke_index_men": "15",
+        "stroke_index_women": "15",
+        "yards": {
+          "silver": 160,
+          "gold": 171,
+          "black": 202
+        }
+      },
+      {
+        "hole": "08",
+        "par": 4,
+        "stroke_index_men": "13",
+        "stroke_index_women": "13",
+        "yards": {
+          "silver": 262,
+          "gold": 272,
+          "black": 292
+        }
+      },
+      {
+        "hole": "09",
+        "par": 5,
+        "stroke_index_men": "03",
+        "stroke_index_women": "03",
+        "yards": {
+          "silver": 450,
+          "gold": 461,
+          "black": 471
+        }
+      },
+      {
+        "hole": "10",
+        "par": 4,
+        "stroke_index_men": "08",
+        "stroke_index_women": "08",
+        "yards": {
+          "silver": 392,
+          "gold": 423,
+          "black": 455
+        }
+      },
+      {
+        "hole": "11",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": "14",
+        "yards": {
+          "silver": 259,
+          "gold": 277,
+          "black": 321
+        }
+      },
+      {
+        "hole": "12",
+        "par": 3,
+        "stroke_index_men": "10",
+        "stroke_index_women": "10",
+        "yards": {
+          "silver": 155,
+          "gold": 178,
+          "black": 210
+        }
+      },
+      {
+        "hole": "13",
+        "par": 4,
+        "stroke_index_men": "06",
+        "stroke_index_women": "06",
+        "yards": {
+          "silver": 331,
+          "gold": 377,
+          "black": 407
+        }
+      },
+      {
+        "hole": "14",
+        "par": 5,
+        "stroke_index_men": "04",
+        "stroke_index_women": "04",
+        "yards": {
+          "silver": 495,
+          "gold": 506,
+          "black": 537
+        }
+      },
+      {
+        "hole": "15",
+        "par": 3,
+        "stroke_index_men": "12",
+        "stroke_index_women": "12",
+        "yards": {
+          "silver": 118,
+          "gold": 138,
+          "black": 158
+        }
+      },
+      {
+        "hole": "16",
+        "par": 5,
+        "stroke_index_men": "02",
+        "stroke_index_women": "02",
+        "yards": {
+          "silver": 425,
+          "gold": 464,
+          "black": 475
+        }
+      },
+      {
+        "hole": "17",
+        "par": 3,
+        "stroke_index_men": "18",
+        "stroke_index_women": "18",
+        "yards": {
+          "silver": 105,
+          "gold": 129,
+          "black": 136
+        }
+      },
+      {
+        "hole": "18",
+        "par": 4,
+        "stroke_index_men": "16",
+        "stroke_index_women": "16",
+        "yards": {
+          "silver": 316,
+          "gold": 352,
+          "black": 382
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,370 @@
+{
+  "id": "CAL01",
+  "name": "Presidio Golf Course",
+  "city": "San Francisco",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "red": {
+        "slope": 121,
+        "rating": 64.8,
+        "color": "#FF0000"
+      },
+      "blue+red": {
+        "slope": 125,
+        "rating": 66.4,
+        "color": "#800080"
+      },
+      "blue": {
+        "slope": 128,
+        "rating": 69.4,
+        "color": "#0000FF"
+      },
+      "white+blue": {
+        "slope": 129,
+        "rating": 70,
+        "color": "#8080FF"
+      },
+      "white": {
+        "slope": 133,
+        "rating": 71,
+        "color": "#FFFFFF"
+      },
+      "black+white": {
+        "slope": 134,
+        "rating": 71.4,
+        "color": "#808080"
+      },
+      "black": {
+        "slope": 136,
+        "rating": 72.5,
+        "color": "#000000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 72,
+    "yardage": {
+      "red": {
+        "men": 4876,
+        "women": 4876,
+        "women_rating": 69.9,
+        "women_slope": 122
+      },
+      "blue+red": {
+        "men": 5201,
+        "women": 5201,
+        "women_rating": 72.4,
+        "women_slope": 124
+      },
+      "blue": {
+        "men": 5746,
+        "women": 5746,
+        "women_rating": 75,
+        "women_slope": 129
+      },
+      "white+blue": {
+        "men": 5867,
+        "women": 5867,
+        "women_rating": 75.7,
+        "women_slope": 130
+      },
+      "white": {
+        "men": 6103,
+        "women": 6103,
+        "women_rating": 70,
+        "women_slope": 133
+      },
+      "black+white": {
+        "men": 6232,
+        "women": 6232,
+        "women_rating": 77.7,
+        "women_slope": 135
+      },
+      "black": {
+        "men": 6481,
+        "women": 6481,
+        "women_rating": 79,
+        "women_slope": 137
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 4,
+        "stroke_index_men": "10",
+        "stroke_index_women": "14",
+        "yards": {
+          "red": 319,
+          "blue+red": 319,
+          "blue": 339,
+          "white+blue": 339,
+          "white": 349,
+          "black+white": 349,
+          "black": 372
+        }
+      },
+      {
+        "hole": "02",
+        "par": 5,
+        "stroke_index_men": "16",
+        "stroke_index_women": "04",
+        "yards": {
+          "red": 350,
+          "blue+red": 350,
+          "blue": 411,
+          "white+blue": 435,
+          "white": 435,
+          "black+white": 435,
+          "black": 472
+        }
+      },
+      {
+        "hole": "03",
+        "par": 4,
+        "stroke_index_men": "02",
+        "stroke_index_women": "02",
+        "yards": {
+          "red": 300,
+          "blue+red": 300,
+          "blue": 348,
+          "white+blue": 365,
+          "white": 365,
+          "black+white": 385,
+          "black": 385
+        }
+      },
+      {
+        "hole": "04",
+        "par": 3,
+        "stroke_index_men": "18",
+        "stroke_index_women": "18",
+        "yards": {
+          "red": 86,
+          "blue+red": 86,
+          "blue": 108,
+          "white+blue": 108,
+          "white": 118,
+          "black+white": 130,
+          "black": 130
+        }
+      },
+      {
+        "hole": "05",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": "12",
+        "yards": {
+          "red": 256,
+          "blue+red": 289,
+          "blue": 289,
+          "white+blue": 298,
+          "white": 298,
+          "black+white": 307,
+          "black": 307
+        }
+      },
+      {
+        "hole": "06",
+        "par": 4,
+        "stroke_index_men": "04",
+        "stroke_index_women": "08",
+        "yards": {
+          "red": 295,
+          "blue+red": 347,
+          "blue": 347,
+          "white+blue": 347,
+          "white": 361,
+          "black+white": 361,
+          "black": 388
+        }
+      },
+      {
+        "hole": "07",
+        "par": 3,
+        "stroke_index_men": "06",
+        "stroke_index_women": "16",
+        "yards": {
+          "red": 145,
+          "blue+red": 145,
+          "blue": 175,
+          "white+blue": 184,
+          "white": 184,
+          "black+white": 184,
+          "black": 219
+        }
+      },
+      {
+        "hole": "08",
+        "par": 4,
+        "stroke_index_men": "08",
+        "stroke_index_women": "10",
+        "yards": {
+          "red": 269,
+          "blue+red": 348,
+          "blue": 348,
+          "white+blue": 348,
+          "white": 356,
+          "black+white": 378,
+          "black": 378
+        }
+      },
+      {
+        "hole": "09",
+        "par": 5,
+        "stroke_index_men": "12",
+        "stroke_index_women": "06",
+        "yards": {
+          "red": 371,
+          "blue+red": 371,
+          "blue": 440,
+          "white+blue": 440,
+          "white": 493,
+          "black+white": 493,
+          "black": 524
+        }
+      },
+      {
+        "hole": "10",
+        "par": 5,
+        "stroke_index_men": "09",
+        "stroke_index_women": "01",
+        "yards": {
+          "red": 391,
+          "blue+red": 391,
+          "blue": 469,
+          "white+blue": 469,
+          "white": 486,
+          "black+white": 501,
+          "black": 501
+        }
+      },
+      {
+        "hole": "11",
+        "par": 4,
+        "stroke_index_men": "03",
+        "stroke_index_women": "13",
+        "yards": {
+          "red": 298,
+          "blue+red": 298,
+          "blue": 373,
+          "white+blue": 387,
+          "white": 387,
+          "black+white": 387,
+          "black": 419
+        }
+      },
+      {
+        "hole": "12",
+        "par": 4,
+        "stroke_index_men": "01",
+        "stroke_index_women": "05",
+        "yards": {
+          "red": 282,
+          "blue+red": 282,
+          "blue": 368,
+          "white+blue": 368,
+          "white": 442,
+          "black+white": 442,
+          "black": 453
+        }
+      },
+      {
+        "hole": "13",
+        "par": 3,
+        "stroke_index_men": "13",
+        "stroke_index_women": "15",
+        "yards": {
+          "red": 120,
+          "blue+red": 156,
+          "blue": 156,
+          "white+blue": 156,
+          "white": 169,
+          "black+white": 169,
+          "black": 180
+        }
+      },
+      {
+        "hole": "14",
+        "par": 4,
+        "stroke_index_men": "11",
+        "stroke_index_women": "09",
+        "yards": {
+          "red": 295,
+          "blue+red": 304,
+          "blue": 304,
+          "white+blue": 326,
+          "white": 326,
+          "black+white": 344,
+          "black": 344
+        }
+      },
+      {
+        "hole": "15",
+        "par": 3,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "red": 129,
+          "blue+red": 129,
+          "blue": 133,
+          "white+blue": 133,
+          "white": 147,
+          "black+white": 147,
+          "black": 171
+        }
+      },
+      {
+        "hole": "16",
+        "par": 4,
+        "stroke_index_men": "07",
+        "stroke_index_women": "11",
+        "yards": {
+          "red": 276,
+          "blue+red": 338,
+          "blue": 338,
+          "white+blue": 364,
+          "white": 364,
+          "black+white": 364,
+          "black": 382
+        }
+      },
+      {
+        "hole": "17",
+        "par": 4,
+        "stroke_index_men": "05",
+        "stroke_index_women": "07",
+        "yards": {
+          "red": 281,
+          "blue+red": 335,
+          "blue": 335,
+          "white+blue": 335,
+          "white": 343,
+          "black+white": 350,
+          "black": 350
+        }
+      },
+      {
+        "hole": "18",
+        "par": 5,
+        "stroke_index_men": "15",
+        "stroke_index_women": "03",
+        "yards": {
+          "red": 413,
+          "blue+red": 413,
+          "blue": 465,
+          "white+blue": 465,
+          "white": 480,
+          "black+white": 506,
+          "black": 506
+        }
+      }
+    ]
+  }
+}

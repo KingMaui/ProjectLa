@@ -1,0 +1,309 @@
+{
+  "id": "CAL06",
+  "name": "Corica Park South Course",
+  "city": "Alameda",
+  "state": "California",
+  "holes_available": [
+    18
+  ],
+  "hole_data_verified": true,
+  "map": {
+    "tees": {
+      "yellow": {
+        "slope": 107,
+        "rating": 63.3,
+        "color": "#FFFF00"
+      },
+      "red": {
+        "slope": 114,
+        "rating": 65.2,
+        "color": "#FF0000"
+      },
+      "white": {
+        "slope": 119,
+        "rating": 67.8,
+        "color": "#FFFFFF"
+      },
+      "blue": {
+        "slope": 123,
+        "rating": 70.4,
+        "color": "#0000FF"
+      },
+      "black": {
+        "slope": 128,
+        "rating": 73,
+        "color": "#000000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 18,
+    "par_total": 72,
+    "yardage": {
+      "yellow": {
+        "men": 4767,
+        "women": 4767,
+        "women_rating": 67.5,
+        "women_slope": 115
+      },
+      "red": {
+        "men": 5201,
+        "women": 5201,
+        "women_rating": 70.4,
+        "women_slope": 120
+      },
+      "white": {
+        "men": 5744,
+        "women": 5744,
+        "women_rating": 73.7,
+        "women_slope": 129
+      },
+      "blue": {
+        "men": 6303,
+        "women": 6303,
+        "women_rating": 76,
+        "women_slope": 132
+      },
+      "black": {
+        "men": 6874
+      }
+    },
+    "holes": [
+      {
+        "hole": "01",
+        "par": 5,
+        "stroke_index_men": "11",
+        "stroke_index_women": "11",
+        "yards": {
+          "yellow": 401,
+          "red": 439,
+          "white": 473,
+          "blue": 504,
+          "black": 533
+        }
+      },
+      {
+        "hole": "02",
+        "par": 4,
+        "stroke_index_men": "07",
+        "stroke_index_women": "07",
+        "yards": {
+          "yellow": 264,
+          "red": 292,
+          "white": 327,
+          "blue": 356,
+          "black": 394
+        }
+      },
+      {
+        "hole": "03",
+        "par": 4,
+        "stroke_index_men": "13",
+        "stroke_index_women": "13",
+        "yards": {
+          "yellow": 255,
+          "red": 289,
+          "white": 329,
+          "blue": 357,
+          "black": 388
+        }
+      },
+      {
+        "hole": "04",
+        "par": 4,
+        "stroke_index_men": "01",
+        "stroke_index_women": "01",
+        "yards": {
+          "yellow": 287,
+          "red": 339,
+          "white": 378,
+          "blue": 415,
+          "black": 469
+        }
+      },
+      {
+        "hole": "05",
+        "par": 3,
+        "stroke_index_men": "15",
+        "stroke_index_women": "15",
+        "yards": {
+          "yellow": 72,
+          "red": 79,
+          "white": 89,
+          "blue": 108,
+          "black": 133
+        }
+      },
+      {
+        "hole": "06",
+        "par": 5,
+        "stroke_index_men": "09",
+        "stroke_index_women": "09",
+        "yards": {
+          "yellow": 369,
+          "red": 397,
+          "white": 451,
+          "blue": 484,
+          "black": 525
+        }
+      },
+      {
+        "hole": "07",
+        "par": 3,
+        "stroke_index_men": "05",
+        "stroke_index_women": "05",
+        "yards": {
+          "yellow": 120,
+          "red": 128,
+          "white": 145,
+          "blue": 163,
+          "black": 187
+        }
+      },
+      {
+        "hole": "08",
+        "par": 4,
+        "stroke_index_men": "17",
+        "stroke_index_women": "17",
+        "yards": {
+          "yellow": 165,
+          "red": 178,
+          "white": 211,
+          "blue": 262,
+          "black": 297
+        }
+      },
+      {
+        "hole": "09",
+        "par": 4,
+        "stroke_index_men": "03",
+        "stroke_index_women": "03",
+        "yards": {
+          "yellow": 278,
+          "red": 316,
+          "white": 358,
+          "blue": 381,
+          "black": 409
+        }
+      },
+      {
+        "hole": "10",
+        "par": 4,
+        "stroke_index_men": "06",
+        "stroke_index_women": "06",
+        "yards": {
+          "yellow": 319,
+          "red": 348,
+          "white": 373,
+          "blue": 405,
+          "black": 444
+        }
+      },
+      {
+        "hole": "11",
+        "par": 3,
+        "stroke_index_men": "08",
+        "stroke_index_women": "08",
+        "yards": {
+          "yellow": 149,
+          "red": 160,
+          "white": 185,
+          "blue": 220,
+          "black": 248
+        }
+      },
+      {
+        "hole": "12",
+        "par": 4,
+        "stroke_index_men": "02",
+        "stroke_index_women": "02",
+        "yards": {
+          "yellow": 352,
+          "red": 369,
+          "white": 402,
+          "blue": 442,
+          "black": 474
+        }
+      },
+      {
+        "hole": "13",
+        "par": 4,
+        "stroke_index_men": "14",
+        "stroke_index_women": "14",
+        "yards": {
+          "yellow": 239,
+          "red": 259,
+          "white": 280,
+          "blue": 306,
+          "black": 332
+        }
+      },
+      {
+        "hole": "14",
+        "par": 4,
+        "stroke_index_men": "16",
+        "stroke_index_women": "16",
+        "yards": {
+          "yellow": 250,
+          "red": 274,
+          "white": 304,
+          "blue": 340,
+          "black": 370
+        }
+      },
+      {
+        "hole": "15",
+        "par": 5,
+        "stroke_index_men": "10",
+        "stroke_index_women": "10",
+        "yards": {
+          "yellow": 371,
+          "red": 397,
+          "white": 430,
+          "blue": 464,
+          "black": 495
+        }
+      },
+      {
+        "hole": "16",
+        "par": 3,
+        "stroke_index_men": "18",
+        "stroke_index_women": "18",
+        "yards": {
+          "yellow": 105,
+          "red": 112,
+          "white": 130,
+          "blue": 147,
+          "black": 179
+        }
+      },
+      {
+        "hole": "17",
+        "par": 5,
+        "stroke_index_men": "12",
+        "stroke_index_women": "12",
+        "yards": {
+          "yellow": 452,
+          "red": 479,
+          "white": 515,
+          "blue": 559,
+          "black": 579
+        }
+      },
+      {
+        "hole": "18",
+        "par": 4,
+        "stroke_index_men": "04",
+        "stroke_index_women": "04",
+        "yards": {
+          "yellow": 319,
+          "red": 346,
+          "white": 364,
+          "blue": 390,
+          "black": 418
+        }
+      }
+    ]
+  }
+}

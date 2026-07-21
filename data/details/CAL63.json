@@ -1,0 +1,43 @@
+{
+  "id": "CAL63",
+  "name": "Blackberry Farm Golf Course",
+  "city": "Cupertino",
+  "state": "California",
+  "holes_available": [
+    9
+  ],
+  "hole_data_verified": false,
+  "map": {
+    "tees": {
+      "blue": {
+        "slope": 57,
+        "rating": 93,
+        "color": "#0000FF"
+      },
+      "red": {
+        "slope": 58,
+        "rating": 91,
+        "color": "#FF0000"
+      }
+    },
+    "difficulty": "public"
+  },
+  "scorecard": {
+    "total_holes": 9,
+    "par_total": 29,
+    "yardage": {
+      "blue": {
+        "men": 1544,
+        "women_rating": 93,
+        "women_slope": 57
+      },
+      "red": {
+        "men": 1410,
+        "women": 1410,
+        "women_rating": 91,
+        "women_slope": 58
+      }
+    },
+    "holes": []
+  }
+}
