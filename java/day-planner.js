@@ -4,11 +4,10 @@
    Vanilla JS, no build step, no external dependencies.
 
    Data model (per block):
-     { id, bar: 'day'|'night', start (min from bar start, 0-719),
-       duration (min), label, category, synced (bool) }
+     { id, start (minutes from midnight, 0-1439), duration (min),
+       label, category, synced (bool) }
 
-   - "day" bar covers 06:00–18:00 (720 min)
-   - "night" bar covers 18:00–06:00 (720 min, wraps midnight)
+   One continuous 24-hour vertical bar (midnight to midnight).
 
    Storage:
      - Always saved to localStorage first (source of truth offline).
@@ -19,6 +18,9 @@
        session under a different key, change AUTH_LOCAL_KEY below —
        everything else (guest mode, offline fallback) keeps working
        either way.
+     - Backward-compatible with the earlier two-bar (day/night) version:
+       any already-saved record tagged bar:"day"/"night" is converted
+       to an absolute minutes-from-midnight value on load.
    ========================================================== */
 
 const PB_URL = window.PB_URL || '';
@@ -26,7 +28,7 @@ const COLLECTION = 'planner_blocks';
 const LOCAL_KEY = 'dayplanner_data_v1';
 const AUTH_LOCAL_KEY = 'pocketbase_auth';
 
-const DAY_LEN = 720;   // minutes per bar
+const DAY_LEN = 1440;  // minutes in a day
 const SLOT = 15;       // snap increment, minutes
 
 const CATEGORIES = [
@@ -43,7 +45,7 @@ const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
 // ---------------------------------------------------------
 let allData = {};          // { 'YYYY-MM-DD': [block, ...] }
 let state = { date: todayStr(), blocks: [] };
-let modalState = null;     // { mode:'create'|'edit', bar, id? }
+let modalState = null;     // { mode:'create'|'edit', id? }
 
 // DOM refs (filled in buildStaticDOM)
 let el = {};
@@ -72,9 +74,6 @@ function titleForDate(dateStr) {
 function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
 function snap(min) { return clamp(Math.round(min / SLOT) * SLOT, 0, DAY_LEN); }
 
-function absMinuteOf(bar, minInBar) {
-  return bar === 'day' ? (360 + minInBar) % 1440 : (1080 + minInBar) % 1440;
-}
 function formatClock(absMin) {
   let h = Math.floor(absMin / 60), m = absMin % 60;
   const ap = h >= 12 ? 'PM' : 'AM';
@@ -92,25 +91,25 @@ function hourLabel(h24) {
   let h12 = h24 % 12; if (h12 === 0) h12 = 12;
   return `${h12} ${ap}`;
 }
-function barHours(bar) {
-  return bar === 'day' ? [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] : [18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5];
+function timeValueFromMinutes(min) {
+  return `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
 }
-function clockToBarMinutes(bar, hh, mm) {
-  const raw = hh * 60 + mm;
-  if (bar === 'day') return clamp(raw - 360, 0, 719);
-  let v = raw - 1080;
-  if (v < 0) v += 1440;
-  return clamp(v, 0, 719);
+function minutesFromTimeValue(hh, mm) {
+  return clamp(hh * 60 + mm, 0, DAY_LEN - 1);
 }
-function barMinutesToTimeValue(bar, minInBar) {
-  const abs = absMinuteOf(bar, minInBar);
-  return `${String(Math.floor(abs / 60)).padStart(2, '0')}:${String(abs % 60).padStart(2, '0')}`;
-}
-function safeCapture(elm, id) { try { elm.setPointerCapture && elm.setPointerCapture(id); } catch (e) { /* not supported — drag still works via document listeners */ } }
-function safeRelease(elm, id) { try { elm.releasePointerCapture && elm.releasePointerCapture(id); } catch (e) { /* no-op */ } }
 function clone(x) { return JSON.parse(JSON.stringify(x)); }
 function uid() {
   return 'local-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+}
+function safeCapture(elm, id) { try { elm.setPointerCapture && elm.setPointerCapture(id); } catch (e) { /* not supported — drag still works via document listeners */ } }
+function safeRelease(elm, id) { try { elm.releasePointerCapture && elm.releasePointerCapture(id); } catch (e) { /* no-op */ } }
+
+// Back-compat: earlier two-bar version stored start as minutes-from-bar-start
+// with a bar:"day"/"night" tag. Convert those to absolute minutes-from-midnight.
+function normalizeBlock(b) {
+  if (b.bar === 'day') return { ...b, start: 360 + b.start, bar: undefined };
+  if (b.bar === 'night') return { ...b, start: (1080 + b.start) % 1440, bar: undefined };
+  return b;
 }
 
 // ---------------------------------------------------------
@@ -144,16 +143,16 @@ function getAuth() {
 }
 function toRemote(block, userId, date) {
   return {
-    user: userId, date, bar: block.bar,
+    user: userId, date, bar: 'full',
     start_min: block.start, duration_min: block.duration,
     label: block.label, category: block.category,
   };
 }
 function fromRemote(rec) {
-  return {
-    id: rec.id, bar: rec.bar, start: rec.start_min, duration: rec.duration_min,
-    label: rec.label, category: rec.category, synced: true,
-  };
+  let start = rec.start_min;
+  if (rec.bar === 'day') start = 360 + start;
+  else if (rec.bar === 'night') start = (1080 + start) % 1440;
+  return { id: rec.id, start, duration: rec.duration_min, label: rec.label, category: rec.category, synced: true };
 }
 async function pbList(date, userId, token) {
   const filter = encodeURIComponent(`user="${userId}" && date="${date}"`);
@@ -222,7 +221,7 @@ async function persistBlock(block) {
 async function deleteBlockEverywhere(block) {
   state.blocks = state.blocks.filter(b => b.id !== block.id);
   saveLocalAll();
-  renderTracks();
+  renderTrack();
   renderBudget();
   const auth = getAuth();
   if (!auth || !PB_URL || !block.synced) return;
@@ -232,7 +231,7 @@ async function deleteBlockEverywhere(block) {
 async function loadDate(date) {
   saveLocalAll(); // persist whatever we had for the previous date first
   state.date = date;
-  state.blocks = clone(allData[date] || []);
+  state.blocks = clone(allData[date] || []).map(normalizeBlock);
   renderAll();
 
   const auth = getAuth();
@@ -256,7 +255,7 @@ async function loadDate(date) {
     allData[date] = clone(state.blocks);
     saveLocalAll();
     setSyncStatus('synced');
-    renderTracks();
+    renderTrack();
     renderBudget();
   } catch (err) {
     console.warn('Day planner: could not reach PocketBase, using data saved on this device.', err);
@@ -267,13 +266,13 @@ async function loadDate(date) {
 // ---------------------------------------------------------
 // Collision-free drag bounds
 // ---------------------------------------------------------
-function freeBounds(bar, excludeId, aroundMin) {
-  const blocks = state.blocks.filter(b => b.bar === bar && b.id !== excludeId).sort((a, b) => a.start - b.start);
+function freeBounds(excludeId, aroundMin) {
+  const blocks = state.blocks.filter(b => b.id !== excludeId).sort((a, b) => a.start - b.start);
 
   // For move/resize, aroundMin is the dragged block's own original start, which by
   // invariant never sits inside another block. For create, a typed/clicked start
-  // can land inside an existing block — in that case push forward to its end
-  // (like "next available time"), chaining through any back-to-back blocks.
+  // can land inside an existing block — push forward to its end ("next available
+  // time"), chaining through any back-to-back blocks.
   let guard = 0;
   let containing;
   while (guard++ <= blocks.length && (containing = blocks.find(b => aroundMin >= b.start && aroundMin < b.start + b.duration))) {
@@ -314,26 +313,25 @@ function buildStaticDOM() {
       </div>
 
       <div class="dp-legend" id="dpLegend"></div>
-      <div class="dp-budget-bar" id="dpBudgetBar"></div>
 
-      <div class="dp-timeline-wrap">
-        <div class="dp-bar dp-bar-day">
-          <div class="dp-bar-head"><span class="dp-icon">☀</span> Day · 6 AM – 6 PM</div>
-          <div class="dp-track" id="dpTrackDay" data-bar="day"></div>
+      <div class="dp-main">
+        <div class="dp-timeline-wrap">
+          <div class="dp-bar">
+            <div class="dp-track" id="dpTrack"></div>
+          </div>
         </div>
-        <div class="dp-bar dp-bar-night">
-          <div class="dp-bar-head"><span class="dp-icon">☾</span> Night · 6 PM – 6 AM</div>
-          <div class="dp-track" id="dpTrackNight" data-bar="night"></div>
-        </div>
-      </div>
 
-      <div class="dp-summary">
-        <div class="dp-summary-head">
-          <div class="dp-summary-title">Time budget</div>
-          <div class="dp-summary-sub">24h, split across both bars</div>
+        <div class="dp-summary-col">
+          <div class="dp-summary">
+            <div class="dp-summary-head">
+              <div class="dp-summary-title">Time budget</div>
+              <div class="dp-summary-sub">24h, updates as you plan</div>
+            </div>
+            <div class="dp-budget-bar" id="dpBudgetBar"></div>
+            <div class="dp-totals" id="dpTotals"></div>
+            <div class="dp-cat-rows" id="dpCatRows"></div>
+          </div>
         </div>
-        <div class="dp-totals" id="dpTotals"></div>
-        <div class="dp-cat-rows" id="dpCatRows"></div>
       </div>
     </div>
   `;
@@ -357,17 +355,22 @@ function buildStaticDOM() {
           <input type="time" id="dpFieldStart">
         </div>
         <div class="dp-field">
-          <label for="dpFieldDuration">Duration (min)</label>
-          <input type="number" id="dpFieldDuration" min="15" step="15" value="60">
+          <label for="dpFieldHours">Duration</label>
+          <div class="dp-duration-combo">
+            <input type="number" id="dpFieldHours" min="0" max="23" step="1" value="1" aria-label="Hours">
+            <span class="dp-unit">h</span>
+            <input type="number" id="dpFieldMinutes" min="0" max="45" step="15" value="0" aria-label="Minutes">
+            <span class="dp-unit">m</span>
+          </div>
         </div>
       </div>
       <div class="dp-row dp-row-1">
         <div class="dp-field">
           <label>Category</label>
-          <div class="dp-swatches" id="dpSwatches"></div>
+          <div class="dp-cat-picker" id="dpCatPicker"></div>
         </div>
       </div>
-      <p class="dp-summary-sub" id="dpModalWarning" style="min-height:1.1em; margin:8px 0 0;"></p>
+      <p class="dp-summary-sub" id="dpModalWarning" style="min-height:1.1em; margin:10px 0 0;"></p>
       <div class="dp-modal-actions">
         <button class="dp-danger-link" id="dpDeleteBtn" style="display:none;">Delete</button>
         <span></span>
@@ -388,9 +391,8 @@ function buildStaticDOM() {
     addBtn: document.getElementById('dpAddBtn'),
     syncStatus: document.getElementById('dpSyncStatus'),
     legend: document.getElementById('dpLegend'),
+    track: document.getElementById('dpTrack'),
     budgetBar: document.getElementById('dpBudgetBar'),
-    trackDay: document.getElementById('dpTrackDay'),
-    trackNight: document.getElementById('dpTrackNight'),
     totals: document.getElementById('dpTotals'),
     catRows: document.getElementById('dpCatRows'),
     overlay: modalWrap,
@@ -398,8 +400,9 @@ function buildStaticDOM() {
     modalClose: document.getElementById('dpModalClose'),
     fieldLabel: document.getElementById('dpFieldLabel'),
     fieldStart: document.getElementById('dpFieldStart'),
-    fieldDuration: document.getElementById('dpFieldDuration'),
-    swatches: document.getElementById('dpSwatches'),
+    fieldHours: document.getElementById('dpFieldHours'),
+    fieldMinutes: document.getElementById('dpFieldMinutes'),
+    catPicker: document.getElementById('dpCatPicker'),
     modalWarning: document.getElementById('dpModalWarning'),
     deleteBtn: document.getElementById('dpDeleteBtn'),
     saveBtn: document.getElementById('dpSaveBtn'),
@@ -410,9 +413,11 @@ function buildStaticDOM() {
     `<span class="dp-chip"><span class="dp-dot" style="background:${c.color}"></span>${c.label}</span>`
   ).join('');
 
-  // category swatches inside modal
-  el.swatches.innerHTML = CATEGORIES.map(c =>
-    `<button type="button" class="dp-swatch" data-cat="${c.id}" style="background:${c.color}" title="${c.label}" aria-pressed="false"></button>`
+  // category picker inside modal — colored dot + visible name
+  el.catPicker.innerHTML = CATEGORIES.map(c =>
+    `<button type="button" class="dp-cat-btn" data-cat="${c.id}" style="--cat-color:${c.color}" aria-pressed="false">
+       <span class="dp-dot"></span>${c.label}
+     </button>`
   ).join('');
 }
 
@@ -434,27 +439,24 @@ function wireStaticHandlers() {
   });
 
   el.addBtn.addEventListener('click', () => {
-    // default: next free 60-minute slot in the day bar, starting from 9am (min 180)
-    const { lower, upper } = freeBounds('day', null, 180);
-    const start = clamp(180, lower, Math.max(lower, upper - SLOT));
+    // default: next free 60-minute slot starting from 9am
+    const { lower, upper } = freeBounds(null, 9 * 60);
+    const start = clamp(9 * 60, lower, Math.max(lower, upper - SLOT));
     const duration = clamp(60, SLOT, Math.max(SLOT, upper - start));
-    openModal('create', { bar: 'day', start, duration });
+    openModal('create', { start, duration });
   });
 
-  wireTrackCreateDrag(el.trackDay, 'day');
-  wireTrackCreateDrag(el.trackNight, 'night');
+  wireTrackCreateDrag(el.track);
 
   el.modalClose.addEventListener('click', closeModal);
   el.overlay.addEventListener('click', (e) => { if (e.target === el.overlay) closeModal(); });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && el.overlay.classList.contains('dp-show')) closeModal();
   });
-  el.swatches.addEventListener('click', (e) => {
-    const btn = e.target.closest('.dp-swatch');
+  el.catPicker.addEventListener('click', (e) => {
+    const btn = e.target.closest('.dp-cat-btn');
     if (!btn) return;
-    el.swatches.querySelectorAll('.dp-swatch').forEach(s => { s.classList.remove('dp-selected'); s.setAttribute('aria-pressed', 'false'); });
-    btn.classList.add('dp-selected');
-    btn.setAttribute('aria-pressed', 'true');
+    selectCategory(btn.dataset.cat);
   });
   el.saveBtn.addEventListener('click', saveModal);
   el.deleteBtn.addEventListener('click', () => {
@@ -472,38 +474,31 @@ function wireStaticHandlers() {
 // ---------------------------------------------------------
 function renderAll() {
   el.dateTitle.textContent = titleForDate(state.date);
-  renderTracks();
+  renderTrack();
   renderBudget();
 }
 
-function renderTracks() {
-  renderTrack(el.trackDay, 'day');
-  renderTrack(el.trackNight, 'night');
-}
-
-function renderTrack(trackEl, bar) {
+function renderTrack() {
+  const trackEl = el.track;
   trackEl.innerHTML = '';
 
-  // hour grid
-  barHours(bar).forEach((h, i) => {
-    const col = document.createElement('div');
-    col.className = 'dp-hourcol';
-    col.style.left = (i / 12 * 100) + '%';
-    col.style.width = (100 / 12) + '%';
+  // hour grid (24 rows)
+  for (let h = 0; h < 24; h++) {
+    const row = document.createElement('div');
+    row.className = 'dp-hourrow';
+    row.style.top = (h / 24 * 100) + '%';
     const label = document.createElement('span');
     label.className = 'dp-hour-label';
     label.textContent = hourLabel(h);
-    col.appendChild(label);
-    trackEl.appendChild(col);
-  });
+    row.appendChild(label);
+    trackEl.appendChild(row);
+  }
 
   // empty-state hint
-  const blocksForBar = state.blocks.filter(b => b.bar === bar);
-  if (blocksForBar.length === 0) {
+  if (state.blocks.length === 0) {
     const hint = document.createElement('div');
-    hint.className = 'dp-summary-sub';
-    hint.style.cssText = 'position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; text-align:center; padding:0 10px;';
-    hint.textContent = 'Click or drag to add a block';
+    hint.className = 'dp-track-empty-hint';
+    hint.textContent = 'Click or drag on the bar to add a block';
     trackEl.appendChild(hint);
   }
 
@@ -511,18 +506,14 @@ function renderTrack(trackEl, bar) {
   if (state.date === todayStr()) {
     const now = new Date();
     const nowAbs = now.getHours() * 60 + now.getMinutes();
-    const inThisBar = bar === 'day' ? (nowAbs >= 360 && nowAbs < 1080) : (nowAbs >= 1080 || nowAbs < 360);
-    if (inThisBar) {
-      const minInBar = bar === 'day' ? nowAbs - 360 : (nowAbs >= 1080 ? nowAbs - 1080 : nowAbs + 360);
-      const line = document.createElement('div');
-      line.className = 'dp-now-line';
-      line.style.left = (minInBar / DAY_LEN * 100) + '%';
-      trackEl.appendChild(line);
-    }
+    const line = document.createElement('div');
+    line.className = 'dp-now-line';
+    line.style.top = (nowAbs / DAY_LEN * 100) + '%';
+    trackEl.appendChild(line);
   }
 
   // blocks
-  blocksForBar.forEach(block => renderBlockEl(trackEl, block));
+  state.blocks.forEach(block => renderBlockEl(trackEl, block));
 }
 
 function renderBlockEl(trackEl, block) {
@@ -531,7 +522,6 @@ function renderBlockEl(trackEl, block) {
   wrap.className = 'dp-block';
   wrap.tabIndex = 0;
   wrap.dataset.id = block.id;
-  wrap.style.borderLeftColor = cat.color;
 
   const labelEl = document.createElement('div');
   labelEl.className = 'dp-block-label';
@@ -544,12 +534,12 @@ function renderBlockEl(trackEl, block) {
   delBtn.setAttribute('aria-label', 'Delete block');
   delBtn.textContent = '×';
 
-  const handleLeft = document.createElement('div');
-  handleLeft.className = 'dp-block-handle dp-h-left';
-  const handleRight = document.createElement('div');
-  handleRight.className = 'dp-block-handle dp-h-right';
+  const handleTop = document.createElement('div');
+  handleTop.className = 'dp-block-handle dp-h-top';
+  const handleBottom = document.createElement('div');
+  handleBottom.className = 'dp-block-handle dp-h-bottom';
 
-  wrap.append(labelEl, timeEl, delBtn, handleLeft, handleRight);
+  wrap.append(labelEl, timeEl, delBtn, handleTop, handleBottom);
   trackEl.appendChild(wrap);
 
   positionBlockEl(wrap, block);
@@ -559,17 +549,17 @@ function renderBlockEl(trackEl, block) {
     if (e.target.closest('.dp-block-handle') || e.target.closest('.dp-block-del')) return;
     e.preventDefault();
     const rect = trackEl.getBoundingClientRect();
-    const startClientX = e.clientX;
+    const startClientY = e.clientY;
     const origStart = block.start;
-    const { lower, upper } = freeBounds(block.bar, block.id, block.start);
+    const { lower, upper } = freeBounds(block.id, block.start);
     let moved = false;
     safeCapture(wrap, e.pointerId);
     wrap.classList.add('dp-dragging');
 
     function onMove(ev) {
-      if (Math.abs(ev.clientX - startClientX) > 3) moved = true;
-      const dxMin = (ev.clientX - startClientX) / rect.width * DAY_LEN;
-      block.start = clamp(snap(origStart + dxMin), lower, upper - block.duration);
+      if (Math.abs(ev.clientY - startClientY) > 3) moved = true;
+      const dyMin = (ev.clientY - startClientY) / rect.height * DAY_LEN;
+      block.start = clamp(snap(origStart + dyMin), lower, upper - block.duration);
       positionBlockEl(wrap, block);
     }
     function onUp() {
@@ -585,23 +575,23 @@ function renderBlockEl(trackEl, block) {
     document.addEventListener('pointerup', onUp);
   });
 
-  // resize — left edge
-  handleLeft.addEventListener('pointerdown', (e) => {
+  // resize — top edge (adjust start, end stays fixed)
+  handleTop.addEventListener('pointerdown', (e) => {
     e.preventDefault(); e.stopPropagation();
     const rect = trackEl.getBoundingClientRect();
-    const startClientX = e.clientX;
+    const startClientY = e.clientY;
     const origStart = block.start, end = block.start + block.duration;
-    const { lower } = freeBounds(block.bar, block.id, block.start);
-    safeCapture(handleLeft, e.pointerId);
+    const { lower } = freeBounds(block.id, block.start);
+    safeCapture(handleTop, e.pointerId);
     function onMove(ev) {
-      const dxMin = (ev.clientX - startClientX) / rect.width * DAY_LEN;
-      const newStart = clamp(snap(origStart + dxMin), lower, end - SLOT);
+      const dyMin = (ev.clientY - startClientY) / rect.height * DAY_LEN;
+      const newStart = clamp(snap(origStart + dyMin), lower, end - SLOT);
       block.start = newStart;
       block.duration = end - newStart;
       positionBlockEl(wrap, block);
     }
     function onUp() {
-      safeRelease(handleLeft, e.pointerId);
+      safeRelease(handleTop, e.pointerId);
       document.removeEventListener('pointermove', onMove);
       document.removeEventListener('pointerup', onUp);
       persistBlock(block);
@@ -611,22 +601,22 @@ function renderBlockEl(trackEl, block) {
     document.addEventListener('pointerup', onUp);
   });
 
-  // resize — right edge
-  handleRight.addEventListener('pointerdown', (e) => {
+  // resize — bottom edge (adjust duration, start stays fixed)
+  handleBottom.addEventListener('pointerdown', (e) => {
     e.preventDefault(); e.stopPropagation();
     const rect = trackEl.getBoundingClientRect();
-    const startClientX = e.clientX;
+    const startClientY = e.clientY;
     const start = block.start, origDuration = block.duration;
-    const { upper } = freeBounds(block.bar, block.id, block.start);
-    safeCapture(handleRight, e.pointerId);
+    const { upper } = freeBounds(block.id, block.start);
+    safeCapture(handleBottom, e.pointerId);
     function onMove(ev) {
-      const dxMin = (ev.clientX - startClientX) / rect.width * DAY_LEN;
-      const newEnd = clamp(snap(start + origDuration + dxMin), start + SLOT, upper);
+      const dyMin = (ev.clientY - startClientY) / rect.height * DAY_LEN;
+      const newEnd = clamp(snap(start + origDuration + dyMin), start + SLOT, upper);
       block.duration = newEnd - start;
       positionBlockEl(wrap, block);
     }
     function onUp() {
-      safeRelease(handleRight, e.pointerId);
+      safeRelease(handleBottom, e.pointerId);
       document.removeEventListener('pointermove', onMove);
       document.removeEventListener('pointerup', onUp);
       persistBlock(block);
@@ -647,10 +637,10 @@ function renderBlockEl(trackEl, block) {
     else if (e.key === 'Delete' || e.key === 'Backspace') {
       e.preventDefault();
       if (confirm(`Delete "${block.label || 'this block'}"?`)) deleteBlockEverywhere(block);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
-      const { lower, upper } = freeBounds(block.bar, block.id, block.start);
-      const dir = e.key === 'ArrowLeft' ? -SLOT : SLOT;
+      const { lower, upper } = freeBounds(block.id, block.start);
+      const dir = e.key === 'ArrowUp' ? -SLOT : SLOT;
       block.start = clamp(block.start + dir, lower, upper - block.duration);
       positionBlockEl(wrap, block);
       persistBlock(block);
@@ -660,27 +650,25 @@ function renderBlockEl(trackEl, block) {
 }
 
 function positionBlockEl(wrap, block) {
-  wrap.style.left = (block.start / DAY_LEN * 100) + '%';
-  wrap.style.width = (block.duration / DAY_LEN * 100) + '%';
-  wrap.classList.toggle('dp-narrow', block.duration < 90);
-  wrap.classList.toggle('dp-xnarrow', block.duration < 40);
+  wrap.style.top = (block.start / DAY_LEN * 100) + '%';
+  wrap.style.height = (block.duration / DAY_LEN * 100) + '%';
+  wrap.classList.toggle('dp-narrow', block.duration < 45);
+  wrap.classList.toggle('dp-xnarrow', block.duration < 25);
   const labelEl = wrap.querySelector('.dp-block-label');
   const timeEl = wrap.querySelector('.dp-block-time');
   labelEl.textContent = block.label || 'Untitled';
-  const startAbs = absMinuteOf(block.bar, block.start);
-  const endAbs = absMinuteOf(block.bar, block.start + block.duration);
-  timeEl.textContent = `${formatClock(startAbs)} – ${formatClock(endAbs)}`;
+  timeEl.textContent = `${formatClock(block.start)} – ${formatClock(block.start + block.duration)}`;
   const cat = CATEGORY_MAP[block.category] || CATEGORY_MAP.other;
   wrap.style.borderLeftColor = cat.color;
 }
 
-function wireTrackCreateDrag(trackEl, bar) {
+function wireTrackCreateDrag(trackEl) {
   trackEl.addEventListener('pointerdown', (e) => {
     if (e.target.closest('.dp-block')) return;
     e.preventDefault();
     const rect = trackEl.getBoundingClientRect();
-    const pxToMin = (clientX) => clamp((clientX - rect.left) / rect.width * DAY_LEN, 0, DAY_LEN);
-    const startMin = snap(pxToMin(e.clientX));
+    const pxToMin = (clientY) => clamp((clientY - rect.top) / rect.height * DAY_LEN, 0, DAY_LEN);
+    const startMin = snap(pxToMin(e.clientY));
     let curMin = startMin;
 
     const ghost = document.createElement('div');
@@ -691,10 +679,10 @@ function wireTrackCreateDrag(trackEl, bar) {
     function updateGhost() {
       const lo = Math.min(startMin, curMin), hi = Math.max(startMin, curMin);
       const dur = Math.max(hi - lo, SLOT);
-      ghost.style.left = (lo / DAY_LEN * 100) + '%';
-      ghost.style.width = (dur / DAY_LEN * 100) + '%';
+      ghost.style.top = (lo / DAY_LEN * 100) + '%';
+      ghost.style.height = (dur / DAY_LEN * 100) + '%';
     }
-    function onMove(ev) { curMin = snap(pxToMin(ev.clientX)); updateGhost(); }
+    function onMove(ev) { curMin = snap(pxToMin(ev.clientY)); updateGhost(); }
     function onUp() {
       document.removeEventListener('pointermove', onMove);
       document.removeEventListener('pointerup', onUp);
@@ -703,11 +691,11 @@ function wireTrackCreateDrag(trackEl, bar) {
       const hi = Math.max(startMin, curMin);
       let dur = hi - lo;
       if (dur < SLOT) dur = 60; // plain click → default 60-minute block
-      const { lower, upper } = freeBounds(bar, null, lo + dur / 2);
+      const { lower, upper } = freeBounds(null, lo + dur / 2);
       const clampedStart = clamp(lo, lower, Math.max(lower, upper - SLOT));
       const clampedDur = clamp(dur, SLOT, Math.max(SLOT, upper - clampedStart));
       if (upper - clampedStart < SLOT) return; // no room here
-      openModal('create', { bar, start: clampedStart, duration: clampedDur });
+      openModal('create', { start: clampedStart, duration: clampedDur });
     }
     document.addEventListener('pointermove', onMove);
     document.addEventListener('pointerup', onUp);
@@ -755,32 +743,34 @@ function renderBudget() {
 // ---------------------------------------------------------
 function openModal(mode, payload) {
   if (mode === 'create') {
-    modalState = { mode, bar: payload.bar, id: null };
+    modalState = { mode, id: null };
     el.modalTitle.textContent = 'Add block';
     el.fieldLabel.value = '';
-    el.fieldStart.value = barMinutesToTimeValue(payload.bar, payload.start);
-    el.fieldDuration.value = payload.duration;
-    selectSwatch('work');
+    el.fieldStart.value = timeValueFromMinutes(payload.start);
+    el.fieldHours.value = Math.floor(payload.duration / 60);
+    el.fieldMinutes.value = payload.duration % 60;
+    selectCategory('work');
     el.deleteBtn.style.display = 'none';
   } else {
     const block = payload;
-    modalState = { mode, bar: block.bar, id: block.id };
+    modalState = { mode, id: block.id };
     el.modalTitle.textContent = 'Edit block';
     el.fieldLabel.value = block.label || '';
-    el.fieldStart.value = barMinutesToTimeValue(block.bar, block.start);
-    el.fieldDuration.value = block.duration;
-    selectSwatch(block.category || 'other');
+    el.fieldStart.value = timeValueFromMinutes(block.start);
+    el.fieldHours.value = Math.floor(block.duration / 60);
+    el.fieldMinutes.value = block.duration % 60;
+    selectCategory(block.category || 'other');
     el.deleteBtn.style.display = '';
   }
   el.modalWarning.textContent = '';
   el.overlay.classList.add('dp-show');
   el.fieldLabel.focus();
 }
-function selectSwatch(catId) {
-  el.swatches.querySelectorAll('.dp-swatch').forEach(s => {
-    const on = s.dataset.cat === catId;
-    s.classList.toggle('dp-selected', on);
-    s.setAttribute('aria-pressed', String(on));
+function selectCategory(catId) {
+  el.catPicker.querySelectorAll('.dp-cat-btn').forEach(btn => {
+    const on = btn.dataset.cat === catId;
+    btn.classList.toggle('dp-selected', on);
+    btn.setAttribute('aria-pressed', String(on));
   });
 }
 function closeModal() {
@@ -789,18 +779,19 @@ function closeModal() {
 }
 function saveModal() {
   if (!modalState) return;
-  const bar = modalState.bar;
   const label = el.fieldLabel.value.trim() || 'Untitled';
-  const selectedSwatch = el.swatches.querySelector('.dp-swatch.dp-selected');
-  const category = selectedSwatch ? selectedSwatch.dataset.cat : 'other';
+  const selectedBtn = el.catPicker.querySelector('.dp-cat-btn.dp-selected');
+  const category = selectedBtn ? selectedBtn.dataset.cat : 'other';
 
   const [hh, mm] = (el.fieldStart.value || '09:00').split(':').map(Number);
-  const start = clockToBarMinutes(bar, hh, mm);
-  let duration = Math.round((parseInt(el.fieldDuration.value, 10) || 60) / SLOT) * SLOT;
+  const start = minutesFromTimeValue(hh, mm);
+  const hours = Math.max(0, parseInt(el.fieldHours.value, 10) || 0);
+  const minutesPart = Math.max(0, parseInt(el.fieldMinutes.value, 10) || 0);
+  let duration = Math.round((hours * 60 + minutesPart) / SLOT) * SLOT;
   duration = Math.max(SLOT, duration);
 
   const excludeId = modalState.mode === 'edit' ? modalState.id : null;
-  const { lower, upper } = freeBounds(bar, excludeId, start);
+  const { lower, upper } = freeBounds(excludeId, start);
   const clampedStart = clamp(start, lower, Math.max(lower, upper - SLOT));
   const clampedDuration = clamp(duration, SLOT, Math.max(SLOT, upper - clampedStart));
 
@@ -813,7 +804,7 @@ function saveModal() {
   }
 
   if (modalState.mode === 'create') {
-    const block = { id: uid(), bar, start: clampedStart, duration: clampedDuration, label, category, synced: false };
+    const block = { id: uid(), start: clampedStart, duration: clampedDuration, label, category, synced: false };
     state.blocks.push(block);
     persistBlock(block);
   } else {
@@ -823,7 +814,7 @@ function saveModal() {
     block.start = clampedStart; block.duration = clampedDuration;
     persistBlock(block);
   }
-  renderTracks();
+  renderTrack();
   renderBudget();
   closeModal();
 }
@@ -833,7 +824,7 @@ function saveModal() {
 // ---------------------------------------------------------
 function updateNowLine() {
   if (state.date !== todayStr()) return;
-  renderTracks();
+  renderTrack();
 }
 
 // ---------------------------------------------------------
