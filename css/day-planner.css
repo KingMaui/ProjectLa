@@ -12,10 +12,13 @@
   --dp-work:     var(--primary-color);
   --dp-personal: var(--secondary-color);
   --dp-health:   var(--accent-color);
+  --dp-commute:  #0AA3B5;
   --dp-rest:     var(--neutral-400);
   --dp-other:    #7C5CFC;
 
   --dp-hour-h: 64px;     /* row height per hour in the vertical bar */
+  --dp-hour-h-overview: 22px; /* row height when zoomed out to see the whole day */
+  --dp-gutter: 54px;     /* reserved column so hour labels are never covered by a block */
   --dp-sticky-top: 88px; /* offset so the summary panel clears the site navbar when sticky */
   --dp-slot-min: 15;     /* drag/resize snap, in minutes */
 
@@ -79,6 +82,8 @@
 .dp-timeline-wrap{ flex:0 0 320px; max-width:100%; }
 .dp-summary-col{ flex:1; min-width:0; }
 
+.dp-bar-toolbar{ display:flex; justify-content:flex-end; margin-bottom:8px; }
+
 .dp-bar{
   border-radius: var(--radius-lg);
   border:1px solid var(--neutral-200);
@@ -100,6 +105,10 @@
     var(--dp-c-mid) 92%, var(--dp-c-mid) 100%);
 }
 .dp-track.dp-dragging-block, .dp-track.dp-dragging-resize{ cursor: default; }
+.dp-track::before{
+  content:''; position:absolute; left: var(--dp-gutter); top:0; bottom:0; width:1px;
+  background: rgba(255,255,255,.28); pointer-events:none;
+}
 
 .dp-hourrow{
   position:absolute; left:0; right:0;
@@ -126,11 +135,19 @@
 }
 
 .dp-ghost{
-  position:absolute; left:8px; right:8px; border-radius: var(--radius-md);
+  position:absolute; left: var(--dp-gutter); right:8px; border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--primary-color) 22%, white);
   border: 1.5px dashed var(--primary-color);
   pointer-events:none; z-index:6;
 }
+
+/* ── Zoom out: compact overview of the whole day ──────────── */
+.dp-timeline-wrap.dp-overview{ --dp-hour-h: var(--dp-hour-h-overview); }
+.dp-timeline-wrap.dp-overview .dp-block .dp-block-label,
+.dp-timeline-wrap.dp-overview .dp-block .dp-block-time{ display:none; }
+.dp-timeline-wrap.dp-overview .dp-block{ padding:1px 6px; min-height:8px; }
+.dp-timeline-wrap.dp-overview .dp-hour-label{ font-size:.56rem; padding:0 5px; }
+.dp-timeline-wrap.dp-overview .dp-hourrow.dp-hour-odd .dp-hour-label{ display:none; }
 
 .dp-track-empty-hint{
   position:absolute; top:0; left:0; right:0; text-align:center;
@@ -140,7 +157,7 @@
 
 /* ── Blocks (positioned by top/height now, full track width) ── */
 .dp-block{
-  position:absolute; left:8px; right:8px;
+  position:absolute; left: var(--dp-gutter); right:8px;
   border-radius: var(--radius-md);
   background: #fff;
   border:1px solid var(--neutral-200);
@@ -207,12 +224,29 @@
 .dp-kpi .dp-kpi-label{ color: var(--neutral-500); font-size:.85rem; }
 .dp-kpi .dp-kpi-value{ font-size:1.15rem; font-weight:900; color: var(--neutral-700); }
 
-.dp-cat-rows{ display:flex; flex-direction:column; gap:8px; }
+.dp-cat-rows{ display:flex; flex-direction:column; gap:12px; }
+.dp-cat-group{ display:flex; flex-direction:column; }
 .dp-cat-row{ display:grid; grid-template-columns: 100px 1fr 60px; align-items:center; gap:10px; font-size:.85rem; }
 .dp-cat-row .dp-cat-name{ display:flex; align-items:center; gap:6px; color: var(--neutral-600); font-weight:700; }
 .dp-cat-row .dp-cat-track{ height:8px; border-radius:999px; background: var(--neutral-100); overflow:hidden; }
 .dp-cat-row .dp-cat-fill{ height:100%; border-radius:999px; }
 .dp-cat-row .dp-cat-val{ text-align:right; color: var(--neutral-500); }
+
+.dp-cat-blocklist{
+  list-style:none; margin:6px 0 0; padding:0 0 0 14px;
+  display:flex; flex-direction:column; gap:2px;
+  border-left:2px solid var(--neutral-100);
+}
+.dp-cat-blocklist li{
+  display:flex; align-items:baseline; gap:8px;
+  font-size:.78rem; padding:3px 8px; border-radius:6px; cursor:pointer;
+}
+.dp-cat-blocklist li:hover{ background: var(--neutral-100); }
+.dp-cat-block-label{
+  flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  color: var(--neutral-700); font-weight:600;
+}
+.dp-cat-block-time{ flex-shrink:0; color: var(--neutral-500); white-space:nowrap; }
 
 /* ── Modal (add / edit block) ─────────────────────────────── */
 #dp-edit-overlay{ position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,.35); z-index:1000; padding:1rem; }
@@ -293,9 +327,11 @@
 
   :root{ --dp-hour-h: 56px; }
   .dp-timeline-wrap{ max-height:58vh; overflow-y:auto; -webkit-overflow-scrolling:touch; border-radius:var(--radius-lg); }
+  .dp-timeline-wrap.dp-overview{ max-height:none; overflow:visible; }
   .dp-summary-col{ margin-top:14px; }
 
-  .dp-hour-label{ font-size:.6rem; }
+  :root{ --dp-gutter: 46px; }
+  .dp-hour-label{ font-size:.6rem; padding:1px 4px; }
   .dp-block-label{ font-size:.78rem; }
   .dp-block-time{ font-size:.65rem; }
   .dp-totals{ grid-template-columns: repeat(3, 1fr); gap:8px; }
