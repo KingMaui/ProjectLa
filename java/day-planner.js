@@ -35,6 +35,7 @@ const CATEGORIES = [
   { id: 'work',     label: 'Work',     color: 'var(--dp-work)' },
   { id: 'personal', label: 'Personal', color: 'var(--dp-personal)' },
   { id: 'health',   label: 'Health',   color: 'var(--dp-health)' },
+  { id: 'commute',  label: 'Commute',  color: 'var(--dp-commute)' },
   { id: 'rest',     label: 'Rest',     color: 'var(--dp-rest)' },
   { id: 'other',    label: 'Other',    color: 'var(--dp-other)' },
 ];
@@ -46,6 +47,7 @@ const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
 let allData = {};          // { 'YYYY-MM-DD': [block, ...] }
 let state = { date: todayStr(), blocks: [] };
 let modalState = null;     // { mode:'create'|'edit', id? }
+let zoomedOut = false;     // whole-day overview toggle
 
 // DOM refs (filled in buildStaticDOM)
 let el = {};
@@ -103,6 +105,9 @@ function uid() {
 }
 function safeCapture(elm, id) { try { elm.setPointerCapture && elm.setPointerCapture(id); } catch (e) { /* not supported — drag still works via document listeners */ } }
 function safeRelease(elm, id) { try { elm.releasePointerCapture && elm.releasePointerCapture(id); } catch (e) { /* no-op */ } }
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
 
 // Back-compat: earlier two-bar version stored start as minutes-from-bar-start
 // with a bar:"day"/"night" tag. Convert those to absolute minutes-from-midnight.
@@ -315,7 +320,10 @@ function buildStaticDOM() {
       <div class="dp-legend" id="dpLegend"></div>
 
       <div class="dp-main">
-        <div class="dp-timeline-wrap">
+        <div class="dp-timeline-wrap" id="dpTimelineWrap">
+          <div class="dp-bar-toolbar">
+            <button class="dp-btn" id="dpZoomBtn" type="button" aria-pressed="false">Zoom out</button>
+          </div>
           <div class="dp-bar">
             <div class="dp-track" id="dpTrack"></div>
           </div>
@@ -391,6 +399,8 @@ function buildStaticDOM() {
     addBtn: document.getElementById('dpAddBtn'),
     syncStatus: document.getElementById('dpSyncStatus'),
     legend: document.getElementById('dpLegend'),
+    timelineWrap: document.getElementById('dpTimelineWrap'),
+    zoomBtn: document.getElementById('dpZoomBtn'),
     track: document.getElementById('dpTrack'),
     budgetBar: document.getElementById('dpBudgetBar'),
     totals: document.getElementById('dpTotals'),
@@ -446,6 +456,20 @@ function wireStaticHandlers() {
     openModal('create', { start, duration });
   });
 
+  el.zoomBtn.addEventListener('click', () => {
+    zoomedOut = !zoomedOut;
+    el.timelineWrap.classList.toggle('dp-overview', zoomedOut);
+    el.zoomBtn.textContent = zoomedOut ? 'Zoom in' : 'Zoom out';
+    el.zoomBtn.setAttribute('aria-pressed', String(zoomedOut));
+  });
+
+  el.catRows.addEventListener('click', (e) => {
+    const li = e.target.closest('li[data-id]');
+    if (!li) return;
+    const block = state.blocks.find(b => b.id === li.dataset.id);
+    if (block) openModal('edit', block);
+  });
+
   wireTrackCreateDrag(el.track);
 
   el.modalClose.addEventListener('click', closeModal);
@@ -485,7 +509,7 @@ function renderTrack() {
   // hour grid (24 rows)
   for (let h = 0; h < 24; h++) {
     const row = document.createElement('div');
-    row.className = 'dp-hourrow';
+    row.className = 'dp-hourrow ' + (h % 2 === 0 ? 'dp-hour-even' : 'dp-hour-odd');
     row.style.top = (h / 24 * 100) + '%';
     const label = document.createElement('span');
     label.className = 'dp-hour-label';
@@ -704,10 +728,13 @@ function wireTrackCreateDrag(trackEl) {
 
 function renderBudget() {
   const totalsByCategory = {};
-  CATEGORIES.forEach(c => { totalsByCategory[c.id] = 0; });
+  const blocksByCategory = {};
+  CATEGORIES.forEach(c => { totalsByCategory[c.id] = 0; blocksByCategory[c.id] = []; });
   let scheduled = 0;
   state.blocks.forEach(b => {
-    totalsByCategory[b.category] = (totalsByCategory[b.category] || 0) + b.duration;
+    const catId = CATEGORY_MAP[b.category] ? b.category : 'other';
+    totalsByCategory[catId] = (totalsByCategory[catId] || 0) + b.duration;
+    blocksByCategory[catId].push(b);
     scheduled += b.duration;
   });
   const free = clamp(1440 - scheduled, 0, 1440);
@@ -725,15 +752,27 @@ function renderBudget() {
     <div class="dp-kpi"><div class="dp-kpi-label">Blocks</div><div class="dp-kpi-value">${state.blocks.length}</div></div>
   `;
 
-  // per-category rows
+  // per-category rows, each with its own blocks listed underneath
   el.catRows.innerHTML = CATEGORIES.map(c => {
     const min = totalsByCategory[c.id];
     const pct = clamp(min / 1440 * 100, 0, 100);
+    const items = blocksByCategory[c.id].slice().sort((a, b) => a.start - b.start);
+    const listHtml = items.length ? `
+      <ul class="dp-cat-blocklist">
+        ${items.map(b => `
+          <li data-id="${b.id}">
+            <span class="dp-cat-block-label">${escapeHtml(b.label || 'Untitled')}</span>
+            <span class="dp-cat-block-time">${formatClock(b.start)}–${formatClock(b.start + b.duration)}</span>
+          </li>`).join('')}
+      </ul>` : '';
     return `
-      <div class="dp-cat-row">
-        <div class="dp-cat-name"><span class="dp-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${c.color}"></span>${c.label}</div>
-        <div class="dp-cat-track"><div class="dp-cat-fill" style="width:${pct}%; background:${c.color}"></div></div>
-        <div class="dp-cat-val">${min > 0 ? formatDuration(min) : '—'}</div>
+      <div class="dp-cat-group">
+        <div class="dp-cat-row">
+          <div class="dp-cat-name"><span class="dp-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${c.color}"></span>${c.label}</div>
+          <div class="dp-cat-track"><div class="dp-cat-fill" style="width:${pct}%; background:${c.color}"></div></div>
+          <div class="dp-cat-val">${min > 0 ? formatDuration(min) : '—'}</div>
+        </div>
+        ${listHtml}
       </div>`;
   }).join('');
 }
