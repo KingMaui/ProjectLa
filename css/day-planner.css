@@ -143,9 +143,14 @@
 
 /* ── Zoom out: compact overview of the whole day ──────────── */
 .dp-timeline-wrap.dp-overview{ --dp-hour-h: var(--dp-hour-h-overview); }
-.dp-timeline-wrap.dp-overview .dp-block .dp-block-label,
+.dp-timeline-wrap.dp-overview .dp-block{
+  padding:0 6px; min-height:14px;
+  display:flex; align-items:center;
+}
 .dp-timeline-wrap.dp-overview .dp-block .dp-block-time{ display:none; }
-.dp-timeline-wrap.dp-overview .dp-block{ padding:1px 6px; min-height:8px; }
+.dp-timeline-wrap.dp-overview .dp-block .dp-block-label{ font-size:.62rem; line-height:1.1; }
+/* too short to fit a title at this zoom level — drop it, keep just the color bar */
+.dp-timeline-wrap.dp-overview .dp-block.dp-narrow .dp-block-label{ display:none; }
 .dp-timeline-wrap.dp-overview .dp-hour-label{ font-size:.56rem; padding:0 5px; }
 .dp-timeline-wrap.dp-overview .dp-hourrow.dp-hour-odd .dp-hour-label{ display:none; }
 
